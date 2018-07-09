@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/title_home"
+            android:icon="@drawable/ic_home_white_24dp"
+            android:title="@string/title_home" />
+        <item
+            android:id="@+id/title_payment"
+            android:icon="@drawable/ic_bookmark_white_24dp"
+            android:title="@string/title_payment" />
+        <item
+            android:id="@+id/title_whistory"
+            android:icon="@drawable/ic_favorite_white_24dp"
+            android:title="@string/title_whistory" />
+        <item
+            android:id="@+id/title_myteam"
+            android:icon="@drawable/ic_payment_white_24dp"
+            android:title="@string/title_myteam" />
+        <item
+            android:id="@+id/title_installapp"
+            android:icon="@drawable/ic_settings_white_24dp"
+            android:title="@string/title_installapp" />
+
+        <item
+            android:id="@+id/title_noti"
+            android:icon="@drawable/ic_settings_white_24dp"
+            android:title="@string/title_noti" />
+
+        <item
+            android:id="@+id/title_faq"
+            android:icon="@drawable/ic_settings_white_24dp"
+            android:title="@string/title_faq" />
+        <item
+            android:id="@+id/title_contactus"
+            android:icon="@drawable/ic_settings_white_24dp"
+            android:title="@string/title_contactus" />
+        <item
+            android:id="@+id/title_refer"
+            android:icon="@drawable/ic_settings_white_24dp"
+            android:title="@string/title_refer" />
+        <item
+            android:id="@+id/title_logout"
+            android:icon="@drawable/ic_settings_white_24dp"
+            android:title="@string/title_logout" />
+    </group>
+</menu>
+
+

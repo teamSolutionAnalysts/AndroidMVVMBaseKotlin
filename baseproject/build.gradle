@@ -1,0 +1,150 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    buildToolsVersion rootProject.ext.androidBuildToolsVersion
+
+    defaultConfig {
+        applicationId "com.sa.baseproject"
+        minSdkVersion rootProject.ext.androidMinSdkVersion
+        targetSdkVersion rootProject.ext.androidTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        resValue "string", "app_name", "BaseProject"
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    kapt {
+        generateStubs = true
+    }
+
+    flavorDimensions "default"
+
+    productFlavors {
+        stage {
+            applicationId "com.sa.baseproject.stage"
+            versionCode 3
+            versionName "1.0"
+        }
+        dev {
+            applicationId "com.sa.baseproject.dev"
+            versionCode 2
+            versionName "1.0"
+        }
+        prod {
+            applicationId "com.sa.baseproject"
+            versionCode 1
+            versionName "1.0"
+        }
+    }
+
+
+    signingConfigs {
+
+        release {
+            try {
+                storeFile file("bproject.jks")
+                storePassword KEYSTORE_PASSWORD
+                keyAlias "bproject"
+                keyPassword KEY_PASSWORD
+            }
+            catch (ignored) {
+                throw new InvalidUserDataException("You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.")
+            }
+        }
+
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+
+            applicationVariants.all { variant ->
+                renameAPK(variant)
+            }
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildToolsVersion '27.0.3'
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    // Android Support libs
+    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+    implementation "com.android.support:design:$supportLibraryVersion"
+    implementation "com.android.support.constraint:constraint-layout:$contraintLayoutVersion"
+
+    // Kotlin libs
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // Retrofit, GSON and OkHttp
+    implementation "com.squareup.retrofit2:retrofit:$retrofitLibraryVersion"
+    implementation "com.google.code.gson:gson:$gsonLibraryVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitLibraryVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitLibraryVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+    implementation "com.squareup.okhttp3:okhttp:$okHttpLibraryVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttpLibraryVersion"
+
+    // Architecture Libs
+    implementation "android.arch.lifecycle:extensions:$archVersion"
+    implementation "android.arch.persistence.room:runtime:$archVersion"
+    implementation "android.arch.lifecycle:runtime:$archVersion"
+    implementation "android.arch.paging:runtime:$archPagingVersion"
+    implementation "android.arch.persistence.room:rxjava2:$archVersion"
+    kapt "android.arch.lifecycle:compiler:$archVersion"
+    kapt "android.arch.persistence.room:compiler:$archVersion"
+    kapt "com.android.databinding:compiler:$dataBindingVersion"
+
+    // Picasso
+    implementation "com.squareup.picasso:picasso:$picassoLibraryVersion"
+
+    //GCM libs
+    implementation "com.google.android.gms:play-services-location:$playserviceLibraryVersion"
+
+    // Exo player lib
+    implementation 'com.google.android.exoplayer:exoplayer:r2.4.3'
+
+    // SDP and SSP libs for dimensions
+    implementation 'com.intuit.sdp:sdp-android:1.0.5'
+    implementation 'com.intuit.ssp:ssp-android:1.0.5'
+}
+repositories {
+    mavenCentral()
+    google()
+}
+
+
+static def renameAPK(variant) {
+    variant.outputs.all { output ->
+        def formattedDate = new Date().format('dd-MM-YYYY')
+        def projectName = variant.mergedFlavor.resValues.get('app_name').getValue()
+        def projectVersionName = "_v" + variant.productFlavors.get(0).versionName
+        def projectBuildCode = "_b" + variant.productFlavors.get(0).versionCode
+        def buildDate = "_d" + formattedDate
+        def flavorsName = "_" + variant.productFlavors.get(0).name
+        def flavorsType = "_" + variant.variantData.variantConfiguration.buildType.name
+        def fileName = projectName + projectVersionName + projectBuildCode + buildDate + flavorsName + flavorsType + ".apk"
+        outputFileName = fileName
+    }
+}

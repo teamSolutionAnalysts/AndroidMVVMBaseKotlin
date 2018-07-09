@@ -1,0 +1,96 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!--<string name="app_name">BaseProject</string>-->
+    <string name="one">One</string>
+    <string name="two">Two</string>
+    <string name="three">Three</string>
+    <string name="four">Four</string>
+    <string name="please_wait">Please wait</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="msg_valid_email">Please enter valid email</string>
+    <string name="msg_valid_password">Please enter password</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+    <string name="signup">Signup</string>
+    <string name="details_screen">Details</string>
+
+
+    <!--Title-->
+    <string name="title_home">Home Task</string>
+    <string name="title_payment">Payment Wallet</string>
+    <string name="title_whistory">Withdrawal  History</string>
+    <string name="title_myteam">My Team</string>
+    <string name="title_installapp">Install Application</string>
+    <string name="title_noti">Notification</string>
+    <string name="title_faq">Faq</string>
+    <string name="title_contactus">Contact Us</string>
+    <string name="title_refer">Refer Earn</string>
+    <string name="title_logout">Logout</string>
+
+
+    <!--Error-->
+    <string name="error.message.location">"Location is not defined"</string>
+    <string name="error.message.network">Check your connection and try again.</string>
+    <string name="error.message.call">Call failed</string>
+    <string name="error.message.somethingwrong">Something went wrong, Please try later</string>
+    <string name="error.message.clienterror">Client error</string>
+    <string name="error.message.servererror">Server error</string>
+    <string name="error.message.no_record">No content found</string>
+    <string name="error.message.empty">Oops, there are no results to display</string>
+    <string name="error.message.error">Oops, there was an error fetching the data</string>
+    <string name="error.message.checkagain">Check again</string>
+    <string name="error.message.tryagain">Try again</string>
+
+
+    <!--Messages-->
+    <string name="msg_success">You are login successfully</string>
+
+    <!--Action-->
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+
+
+    <string name="button_login">Signin</string>
+    <string name="button_signup">Signup</string>
+
+    <string name="hint_email_or_username">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_phonenumber">Phone No</string>
+    <string name="hint_code">Reference code</string>
+    <string name="forgot">Forgot Password</string>
+    <string name="donthave">Don\'t have an account ? <b>SIGN UP!</b></string>
+
+
+    <string name="btn_next">Next</string>
+    <string name="txt_withdraw_amout">Withdraw Amount</string>
+    <string name="txt_withdraw">Withdraw</string>
+    <string name="etx_payment_number">Payment Number</string>
+    <string name="txt_currnet_balance">Current Balance</string>
+
+
+    <string name="enable_random_adaptation">Enable random adaptation</string>
+
+    <string name="error_drm_not_supported">Protected content not supported on API levels below 18</string>
+
+    <string name="error_drm_unsupported_scheme">This device does not support the required DRM scheme</string>
+
+    <string name="error_drm_unknown">An unknown DRM error occurred</string>
+
+    <string name="error_no_decoder">This device does not provide a decoder for <xliff:g id="mime_type">%1$s</xliff:g></string>
+
+    <string name="error_no_secure_decoder">This device does not provide a secure decoder for <xliff:g id="mime_type">%1$s</xliff:g></string>
+
+    <string name="error_querying_decoders">Unable to query device decoders</string>
+
+    <string name="error_instantiating_decoder">Unable to instantiate decoder <xliff:g id="decoder_name">%1$s</xliff:g></string>
+
+    <string name="error_unsupported_video">Media includes video tracks, but none are playable by this device</string>
+
+    <string name="error_unsupported_audio">Media includes audio tracks, but none are playable by this device</string>
+
+    <string name="storage_permission_denied">Permission to access storage was denied</string>
+
+    <string name="sample_list_load_error">One or more sample lists failed to load</string>
+
+</resources>

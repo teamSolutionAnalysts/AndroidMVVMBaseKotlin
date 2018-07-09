@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F44336</color>
+    <color name="colorPrimaryDark">#F44336</color>
+    <color name="colorAccent">#F44336</color>
+    <color name="colorWhite">#FFFFFF</color>
+
+
+    <!-- grayscale -->
+    <color name="white">#FFFFFF</color>
+    <color name="gray_light">#DBDBDB</color>
+    <color name="gray">#939393</color>
+    <color name="gray_dark">#5F5F5F</color>
+    <color name="black">#323232</color>
+
+    <!-- basic colors -->
+
+    <color name="orange">#FF9D2F</color>
+
+    <!-- Color Pallete -->
+
+    <color name="popupbg">#e5e5e5</color>
+    <color name="linecolor">#c1c1c1</color>
+    <color name="very_darkgray">#515151</color>
+    <color name="light_gray">#ffefefef</color>
+    <color name="dark_gray">#6c6c6c</color>
+    <color name="dark_gray_reward_bg">#666666</color>
+    <color name="red">#ff0000</color>
+    <color name="pink">#ed1e6e</color>
+    <color name="green">#1cba48</color>
+    <color name="white_green">#A9FF80</color>
+    <color name="blue">#0d70b3</color>
+    <color name="white_blue">#00BFFF</color>
+    <color name="dark_blue">#0c4d81</color>
+    <color name="light_blue">#ff0d8cd1</color>
+
+    <!--Text color-->
+    <color name="text_primary_color">#000000</color>
+    <color name="text_primary_color_disabled">#c9c6c6</color>
+    <color name="text_secondary_color">#c9c6c6</color>
+    <color name="text_secondary_dark_color">#6c6c6c</color>
+    <color name="text_hint_color">#999999</color>
+    <color name="text_link_color">#0b60b3</color>
+    <color name="text_dialog_button_color">#0077cc</color>
+    <color name="text_quick_response_color">#ffffff</color>
+
+
+    <!--Divider-->
+    <color name="toolbar_divider_color">#e5e5e5</color>
+    <color name="list_divider_color">#f2f2f2</color>
+    <color name="tw__transparent">#00000000</color>
+    <color name="semiblack__transparent">#66000000</color>
+
+</resources>
