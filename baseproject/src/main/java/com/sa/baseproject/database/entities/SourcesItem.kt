@@ -3,8 +3,11 @@ package com.sa.baseproject.database.entities
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(tableName = "Source")
 data class SourcesItem(
 
@@ -32,4 +35,4 @@ data class SourcesItem(
 
         @field:SerializedName("url")
         var url: String? = null
-)
+) : Parcelable

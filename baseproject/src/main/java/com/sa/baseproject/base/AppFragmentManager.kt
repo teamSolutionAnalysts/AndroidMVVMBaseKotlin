@@ -5,16 +5,15 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
-import android.support.v7.app.AppCompatActivity
 import com.sa.baseproject.R
 import java.util.*
 
 // Handling of fragment switch , adding fragment to stack or removing fragment from stack, setting top bar data
 
-class AppFragmentManager(private val mainActivity: AppCompatActivity, private val containerId: Int) {
+class AppFragmentManager(private val activity: AppActivity, private val containerId: Int) {
 
     private val TAG = "SwitchFragment"
-    private val fragmentManager: FragmentManager = mainActivity.supportFragmentManager
+    private val fragmentManager: FragmentManager = activity.supportFragmentManager
     private var ft: FragmentTransaction? = null
 
     private val stack = Stack<Fragment>()
@@ -24,13 +23,22 @@ class AppFragmentManager(private val mainActivity: AppCompatActivity, private va
 
         when (currentState) {
             AppFragmentState.F_HOME -> {
-                mainActivity.supportActionBar!!.setTitle(R.string.title_home)
-                mainActivity.supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_menu_white)
+                activity.supportActionBar!!.setTitle(R.string.title_home)
+                activity.supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_menu_white)
             }
 
-            AppFragmentState.F_HOME -> {
-                mainActivity.supportActionBar!!.setTitle(R.string.title_home)
-                mainActivity.supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_menu_white)
+            AppFragmentState.F_NEWS_LIST -> {
+                activity.supportActionBar!!.title = "News List"
+                activity.supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+                activity.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+                activity.supportActionBar!!.setDefaultDisplayHomeAsUpEnabled(true)
+            }
+
+            AppFragmentState.F_NEWS_DETAIL -> {
+                activity.supportActionBar!!.title = "News Detail"
+                activity.supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+                activity.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+                activity.supportActionBar!!.setDefaultDisplayHomeAsUpEnabled(true)
             }
         }
 
@@ -42,7 +50,7 @@ class AppFragmentManager(private val mainActivity: AppCompatActivity, private va
         if (stack.size > 1) {
             popFragment(isAnimation)
         } else {
-            this.mainActivity.finish()
+            this.activity.finish()
         }
     }
 
@@ -57,7 +65,7 @@ class AppFragmentManager(private val mainActivity: AppCompatActivity, private va
         if (isAnimation) {
             ft!!.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
         }
-        val fragment = Fragment.instantiate(this.mainActivity, fragmentEnum.fragment.name)
+        val fragment = Fragment.instantiate(this.activity, fragmentEnum.fragment.name)
 
         if (keys != null && keys is Bundle) {
             fragment.arguments = keys
@@ -81,7 +89,7 @@ class AppFragmentManager(private val mainActivity: AppCompatActivity, private va
         if (isAnimation) {
             ft!!.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
         }
-        val fragment = Fragment.instantiate(this.mainActivity, fragmentEnum.fragment.name)
+        val fragment = Fragment.instantiate(this.activity, fragmentEnum.fragment.name)
         if (keys != null && keys is Bundle) {
             fragment.arguments = keys
         }
@@ -112,7 +120,7 @@ class AppFragmentManager(private val mainActivity: AppCompatActivity, private va
 
     // When not to resume last fragment
     fun popFragment(numberOfFragment: Int) {
-        val fragmentManager = mainActivity.supportFragmentManager
+        val fragmentManager = activity.supportFragmentManager
         val ft = fragmentManager.beginTransaction()
         /*ft.setCustomAnimations(R.anim.hold,
                 R.anim.exit_to_right,
@@ -179,7 +187,7 @@ class AppFragmentManager(private val mainActivity: AppCompatActivity, private va
     }
 
     fun <T> passDataBetweenFragment(appFragmentState: AppFragmentState, bundle: T) {
-        val fragment = getFragment(appFragmentState) as AppFragment<*>?
+        val fragment = getFragment(appFragmentState) as AppFragment
         if (bundle != null) {
 //            fragment?.switchData(bundle)
         }
@@ -225,14 +233,14 @@ class AppFragmentManager(private val mainActivity: AppCompatActivity, private va
 
 
     fun clearAllFragment() {
-        val supportFragmentManager = mainActivity.supportFragmentManager
+        val supportFragmentManager = activity.supportFragmentManager
         for (entry in 0 until supportFragmentManager.backStackEntryCount) {
             val tag = supportFragmentManager.getBackStackEntryAt(entry).name
-            val showFragment = mainActivity.supportFragmentManager.findFragmentByTag(tag)
+            val showFragment = activity.supportFragmentManager.findFragmentByTag(tag)
             if (showFragment != null && entry != 0) {
                 showFragment.userVisibleHint = false
             }
         }
-        mainActivity.supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        activity.supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
     }
 }

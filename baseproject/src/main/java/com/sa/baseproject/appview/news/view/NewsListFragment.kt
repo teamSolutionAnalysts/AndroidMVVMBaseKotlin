@@ -4,7 +4,9 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.sa.baseproject.R
 import com.sa.baseproject.appview.news.adapter.NewsSourceAdapter
 import com.sa.baseproject.appview.news.viewmodel.NewsListViewModel
@@ -13,25 +15,31 @@ import com.sa.baseproject.database.entities.SourcesItem
 import kotlinx.android.synthetic.main.activity_offline_new_source_list.*
 import java.util.*
 
-class NewsListFragment : AppFragment<NewsListViewModel>() {
+class NewsListFragment : AppFragment() {
+    override fun pageVisible() {
 
-    override val viewModel = NewsListViewModel::class.java
-    override val layoutResId = R.layout.activity_news_source_list
-    private var adapter: NewsSourceAdapter? = null
-    var viewProvider: NewsListViewModel? = null
+    }
 
-    override fun onCreateView(view: View, savedInstanceState: Bundle?, viewModel: NewsListViewModel) {
-
-        viewProvider = ViewModelProviders.of(this).get(NewsListViewModel::class.java)
-
+    override fun initializeComponent(view: View?) {
         setListData()
-        viewProvider!!.sourceList.observe(this, Observer<List<SourcesItem>> { list ->
+    }
+
+    private var adapter: NewsSourceAdapter? = null
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        val viewProvider = ViewModelProviders.of(this).get(NewsListViewModel::class.java)
+
+        viewProvider.sourceList.observe(this, Observer<List<SourcesItem>> { list ->
             if (list != null && list.isNotEmpty()) {
                 adapter!!.setData(list as ArrayList<SourcesItem>?)
             } else {
-                viewProvider!!.getNewsSourceData()
+                viewProvider.getNewsSourceData()
             }
         })
+
+        return inflater.inflate(R.layout.activity_news_source_list, container, false)
+
     }
 
     private fun setListData() {

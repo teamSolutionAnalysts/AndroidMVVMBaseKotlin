@@ -6,7 +6,7 @@ import com.sa.baseproject.appview.news.view.NewsDetailsFragment
 import com.sa.baseproject.appview.news.view.NewsListFragment
 
 
-enum class AppFragmentState(var fragment: Class<out AppFragment<*>>) {
+enum class AppFragmentState(var fragment: Class<out AppFragment>) {
 
     F_HOME(HomeFragment::class.java),
     F_NEWS_LIST(NewsListFragment::class.java),

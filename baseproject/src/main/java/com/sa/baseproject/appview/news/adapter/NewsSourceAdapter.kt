@@ -3,6 +3,7 @@ package com.sa.baseproject.appview.news.adapter
 import android.content.Context
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
+import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -36,7 +37,9 @@ class NewsSourceAdapter(val context: Context) : RecyclerView.Adapter<NewSourceVi
     override fun onBindViewHolder(holder: NewSourceViewHolder, position: Int) {
         holder.bind(data[position])
         holder.itemView.setOnClickListener {
-            (context as NewsActivity).appFragmentManager!!.addFragment<Any>(AppFragmentState.F_HOME, null, false)
+            val b = Bundle()
+            b.putParcelable("newsItem", data[position])
+            (context as NewsActivity).appFragmentManager!!.addFragment<Any>(AppFragmentState.F_NEWS_DETAIL, b, false)
         }
     }
 

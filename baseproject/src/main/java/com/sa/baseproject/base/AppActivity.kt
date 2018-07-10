@@ -42,15 +42,18 @@ abstract class AppActivity : AppCompatActivity(), ConnectionBridge {
         private set
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        appFragmentManager = AppFragmentManager(mainActivity = this, containerId = R.id.activity_main_container)
+        setContentView(defineLayoutResource())
+        createAppFragmentManager(this, R.id.activity_main_container)
         permissionUtils = PermissionUtils(this)
         super.onCreate(savedInstanceState)
-        setContentView(defineLayoutResource())
         initializeComponents()
         trackScreen()
         initFields()
     }
 
+    fun createAppFragmentManager(activity: AppActivity, container: Int) {
+        appFragmentManager = AppFragmentManager(activity = activity, containerId = container)
+    }
 
     override fun onBackPressed() {
         appFragmentManager!!.notifyFragment(true)
