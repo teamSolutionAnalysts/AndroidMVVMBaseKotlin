@@ -27,6 +27,7 @@ class NewsListViewModel : ViewModel() {
     }
 
     fun getNewsSourceData() {
+
         ApiManager.getNewsSource(object : ApiCallback<RespNewsSource> {
             override fun onFailure(apiErrorModel: ApiErrorModel) {
             }

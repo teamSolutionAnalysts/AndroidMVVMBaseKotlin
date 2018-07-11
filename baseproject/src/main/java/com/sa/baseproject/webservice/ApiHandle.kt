@@ -79,15 +79,13 @@ object ApiHandle {
                             DialogUtils.dialog(context, ApiConstant.SOMETHING_WRONG)
                         }
                         apiCallback.onFailure(responseModel!!)
-                        ProgressUtils.getInstance(context).close()
+                        ProgressUtils.closeOldProgressDialog()
                     }
 
 
                     override fun onComplete() {
 
                     }
-
-
                 })
     }
 

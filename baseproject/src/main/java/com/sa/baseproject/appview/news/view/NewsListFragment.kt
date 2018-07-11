@@ -12,6 +12,7 @@ import com.sa.baseproject.appview.news.adapter.NewsSourceAdapter
 import com.sa.baseproject.appview.news.viewmodel.NewsListViewModel
 import com.sa.baseproject.base.AppFragment
 import com.sa.baseproject.database.entities.SourcesItem
+import com.sa.baseproject.utils.ProgressUtils
 import kotlinx.android.synthetic.main.activity_offline_new_source_list.*
 import java.util.*
 
@@ -30,15 +31,18 @@ class NewsListFragment : AppFragment() {
 
         val viewProvider = ViewModelProviders.of(this).get(NewsListViewModel::class.java)
 
+        ProgressUtils.showOldProgressDialog(context!!)
         viewProvider.sourceList.observe(this, Observer<List<SourcesItem>> { list ->
             if (list != null && list.isNotEmpty()) {
                 adapter!!.setData(list as ArrayList<SourcesItem>?)
+                ProgressUtils.closeOldProgressDialog()
             } else {
+                ProgressUtils.showOldProgressDialog(context!!)
                 viewProvider.getNewsSourceData()
             }
         })
 
-        return inflater.inflate(R.layout.activity_news_source_list, container, false)
+        return inflater.inflate(R.layout.fragment_news_list, container, false)
 
     }
 

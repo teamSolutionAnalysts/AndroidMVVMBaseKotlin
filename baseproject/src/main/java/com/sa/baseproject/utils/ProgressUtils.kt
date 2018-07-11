@@ -3,7 +3,6 @@ package com.sa.baseproject.utils
 import android.app.ProgressDialog
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
-
 import com.sa.baseproject.R
 
 
@@ -11,12 +10,15 @@ import com.sa.baseproject.R
  * Created by altafhussain.shaikh on 4/24/2016.
  *
  */
-class ProgressUtils {
+object ProgressUtils {
+
+    private var progressDialog: ProgressDialog? = null
 
     val isShowing: Boolean
         get() = progressDialog != null
 
-    fun show() {
+    @Deprecated("ProgressDialog is deprecated use show(activity) method instead")
+    fun showOldProgressDialog(context: Context) {
         if (progressDialog == null || !progressDialog!!.isShowing) {
             progressDialog = ProgressDialog(context)
             progressDialog!!.setCancelable(false)
@@ -31,16 +33,18 @@ class ProgressUtils {
         }
     }
 
-    fun forceShow() {
+    @Deprecated("ProgressDialog is deprecated use show(activity) method instead")
+    fun forceShowOldProgressDialog(context: Context) {
         progressDialog = ProgressDialog(context)
         progressDialog!!.setCancelable(true)
         progressDialog!!.isIndeterminate = true
         //        progressDialog.setTitle(R.string.validating);
-        progressDialog!!.setMessage(context!!.getString(R.string.please_wait))
+        progressDialog!!.setMessage(context.getString(R.string.please_wait))
         progressDialog!!.show()
     }
 
-    fun close() {
+    @Deprecated("ProgressDialog is deprecated use show(activity) method instead")
+    fun closeOldProgressDialog() {
         try {
             if (progressDialog != null && progressDialog!!.isShowing) {
                 progressDialog!!.dismiss()
@@ -52,24 +56,5 @@ class ProgressUtils {
             progressDialog = null
         }
     }
-
-    companion object {
-
-        private var context: Context? = null
-        private var instance: ProgressUtils? = null
-        private var progressDialog: ProgressDialog? = null
-
-        fun getInstance(ctx: Context): ProgressUtils {
-
-            context = ctx
-
-            if (instance == null) {
-                instance = ProgressUtils()
-            }
-
-            return instance as ProgressUtils
-        }
-    }
-
 
 }
