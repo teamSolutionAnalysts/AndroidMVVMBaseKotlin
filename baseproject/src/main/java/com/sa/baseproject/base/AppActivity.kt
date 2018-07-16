@@ -15,7 +15,6 @@ import android.view.View
 import android.widget.TextView
 import com.photoshoot.photoshootapp.utils.broadcasts.ConnectivityUtils
 import com.sa.baseproject.App
-
 import com.sa.baseproject.R
 import com.sa.baseproject.utils.PermissionUtils
 import com.sa.baseproject.utils.ToastUtils
@@ -34,29 +33,19 @@ abstract class AppActivity : AppCompatActivity(), ConnectionBridge {
     protected abstract fun initializeComponents() //Activity's components initialization here
     abstract fun trackScreen()
 
-    var appFragmentManager: AppFragmentManager? = null
-        private set
-
-
     var permissionUtils: PermissionUtils? = null
         private set
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setContentView(defineLayoutResource())
-        createAppFragmentManager(this, R.id.activity_main_container)
-        permissionUtils = PermissionUtils(this)
         super.onCreate(savedInstanceState)
+        setContentView(defineLayoutResource())
+        permissionUtils = PermissionUtils(this)
         initializeComponents()
         trackScreen()
         initFields()
     }
 
-    fun createAppFragmentManager(activity: AppActivity, container: Int) {
-        appFragmentManager = AppFragmentManager(activity = activity, containerId = container)
-    }
-
     override fun onBackPressed() {
-        appFragmentManager!!.notifyFragment(true)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {

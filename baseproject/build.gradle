@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs"
 
 android {
     compileSdkVersion rootProject.ext.androidCompileSdkVersion
@@ -117,7 +118,9 @@ dependencies {
     implementation "android.arch.persistence.room:rxjava2:$archVersion"
     kapt "android.arch.lifecycle:compiler:$archVersion"
     kapt "android.arch.persistence.room:compiler:$archVersion"
-    kapt "com.android.databinding:compiler:$dataBindingVersion"
+    annotationProcessor "androidx.databinding:databinding-compiler:3.3.0-alpha2"
+    implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
 
     // Picasso
     implementation "com.squareup.picasso:picasso:$picassoLibraryVersion"
@@ -131,6 +134,7 @@ dependencies {
     // SDP and SSP libs for dimensions
     implementation 'com.intuit.sdp:sdp-android:1.0.5'
     implementation 'com.intuit.ssp:ssp-android:1.0.5'
+
 }
 repositories {
     mavenCentral()

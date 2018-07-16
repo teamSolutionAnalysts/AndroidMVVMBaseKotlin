@@ -9,8 +9,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.android.databinding.library.baseAdapters.BR
 import com.sa.baseproject.R
-import com.sa.baseproject.appview.news.view.NewsActivity
-import com.sa.baseproject.base.AppFragmentState
 import com.sa.baseproject.database.entities.SourcesItem
 import java.util.*
 
@@ -39,7 +37,6 @@ class NewsSourceAdapter(val context: Context) : RecyclerView.Adapter<NewSourceVi
         holder.itemView.setOnClickListener {
             val b = Bundle()
             b.putParcelable("newsItem", data[position])
-            (context as NewsActivity).appFragmentManager!!.addFragment<Any>(AppFragmentState.F_NEWS_DETAIL, b, false)
         }
     }
 

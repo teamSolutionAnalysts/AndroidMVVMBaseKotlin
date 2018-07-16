@@ -5,11 +5,10 @@ import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.MenuItem
-import android.view.View
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import com.sa.baseproject.R
 import com.sa.baseproject.base.AppActivity
-import com.sa.baseproject.base.AppFragmentState
-import com.sa.baseproject.utils.KeyboardUtils
 import com.sa.baseproject.utils.SharedPreferenceUtil
 import com.sa.baseproject.utils.ToastUtils
 import kotlinx.android.synthetic.main.activity_main.*
@@ -28,57 +27,64 @@ class MainActivity : AppActivity(), NavigationView.OnNavigationItemSelectedListe
     private var mTitle: CharSequence? = null
 
     override fun defineLayoutResource(): Int {
-        return R.layout.activity_main
+
+        return R.layout.activity_main1
     }
+
+    override fun onSupportNavigateUp() =
+            findNavController(R.id.navHostFragment).navigateUp()
+
+    private fun setupNavigation() {
+        val navController = findNavController(R.id.navHostFragment)
+        setupActionBarWithNavController(this, navController, drawer_layout)
+    }
+
 
     override fun initializeComponents() {
 
-        setSupportActionBar(toolbar)
 
-        //setSupportActionBar(toolbar)
-        //if(supportActionBar!=null) {
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-
-        drawareToggle = object : ActionBarDrawerToggle(this,
-                drawer_layout,
-                toolbar,
-                R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close) {
-
-            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
-                super.onDrawerSlide(drawerView, slideOffset)
-                KeyboardUtils.hideKeyboard(toolbar)
-            }
-
-            override fun onDrawerClosed(drawerView: View) {
-                KeyboardUtils.hideKeyboard(toolbar)
-            }
-
-            override fun onDrawerOpened(drawerView: View) {
-                KeyboardUtils.hideKeyboard(toolbar)
-            }
-        }
-
-        drawer_layout!!.addDrawerListener(drawareToggle!!)
-        drawareToggle!!.syncState()
+        setupNavigation()
+//        drawareToggle = object : ActionBarDrawerToggle(this,
+//                drawer_layout,
+//                toolbar,
+//                R.string.navigation_drawer_open,
+//                R.string.navigation_drawer_close) {
+//
+//            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
+//                super.onDrawerSlide(drawerView, slideOffset)
+//                KeyboardUtils.hideKeyboard(toolbar)
+//            }
+//
+//            override fun onDrawerClosed(drawerView: View) {
+//                KeyboardUtils.hideKeyboard(toolbar)
+//            }
+//
+//            override fun onDrawerOpened(drawerView: View) {
+//                KeyboardUtils.hideKeyboard(toolbar)
+//            }
+//        }
+//
+//        drawer_layout!!.addDrawerListener(drawareToggle!!)
+//        drawareToggle!!.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
-        drawareToggle!!.toolbarNavigationClickListener = View.OnClickListener { onBackPressed() }
-        appFragmentManager!!.addFragment<Any>(AppFragmentState.F_HOME, null, false)
+//        drawareToggle!!.toolbarNavigationClickListener = View.OnClickListener { onBackPressed() }
+//        appFragmentManager!!.addFragment<Any>(AppFragmentState.F_HOME, null, false)
 
         SharedPreferenceUtil.getInstance(this@MainActivity)!!.saveData("test", "1")
         ToastUtils.longToast(stringText = "1")
         //  txtName.setText("test@test.com")
 
-        toolbar.setNavigationOnClickListener {
-            if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-                drawer_layout.closeDrawer(GravityCompat.START)
-            } else {
-                drawer_layout.openDrawer(GravityCompat.START)
-            }
-        }
+//        toolbar.setNavigationOnClickListener {
+//            if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+//                drawer_layout.closeDrawer(GravityCompat.START)
+//            } else {
+//                drawer_layout.openDrawer(GravityCompat.START)
+//            }
+//        }
 
     }
+
 
     override fun onBackPressed() {
 
@@ -98,7 +104,6 @@ class MainActivity : AppActivity(), NavigationView.OnNavigationItemSelectedListe
         when (id) {
             R.id.title_home -> {
                 mTitle = getString(R.string.title_home)
-                appFragmentManager!!.addFragment<Any>(AppFragmentState.F_HOME, null, false)
             }
             R.id.title_payment -> {
                 mTitle = getString(R.string.title_payment)

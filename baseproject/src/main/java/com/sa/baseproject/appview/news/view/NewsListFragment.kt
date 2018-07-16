@@ -52,4 +52,6 @@ class NewsListFragment : AppFragment() {
         rvNewsSource.setHasFixedSize(true)
         rvNewsSource.adapter = adapter
     }
+
+
 }
