@@ -121,6 +121,7 @@ dependencies {
     annotationProcessor "androidx.databinding:databinding-compiler:3.3.0-alpha2"
     implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version"
     implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
+    implementation "android.arch.paging:runtime:$paging_version"
 
     // Picasso
     implementation "com.squareup.picasso:picasso:$picassoLibraryVersion"

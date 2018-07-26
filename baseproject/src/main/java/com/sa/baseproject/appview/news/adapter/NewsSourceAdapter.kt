@@ -1,9 +1,11 @@
 package com.sa.baseproject.appview.news.adapter
 
+import android.arch.paging.PagedListAdapter
 import android.content.Context
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.os.Bundle
+import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -16,7 +18,7 @@ import java.util.*
  * Created by Kinjal Dhamat on 6/11/2018.
  */
 
-class NewsSourceAdapter(val context: Context) : RecyclerView.Adapter<NewSourceViewHolder>() {
+class NewsSourceAdapter(val context: Context) : PagedListAdapter<SourcesItem, NewsSourceAdapter.NewSourceViewHolder>(POST_COMPARATOR) {
     private val data: ArrayList<SourcesItem> = ArrayList()
 
     fun setData(data: ArrayList<SourcesItem>?) {
@@ -44,12 +46,23 @@ class NewsSourceAdapter(val context: Context) : RecyclerView.Adapter<NewSourceVi
         return data.size
     }
 
-}
+    companion object {
+        val POST_COMPARATOR = object : DiffUtil.ItemCallback<SourcesItem>() {
+            override fun areContentsTheSame(oldItem: SourcesItem, newItem: SourcesItem): Boolean =
+                    oldItem == newItem
 
-class NewSourceViewHolder(private val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
+            override fun areItemsTheSame(oldItem: SourcesItem, newItem: SourcesItem): Boolean =
+                    oldItem.id == newItem.id
 
-    fun bind(source: SourcesItem) {
-        binding.setVariable(BR.source, source)
-        binding.executePendingBindings()
+
+        }
+    }
+
+    class NewSourceViewHolder(private val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(source: SourcesItem) {
+            binding.setVariable(BR.source, source)
+            binding.executePendingBindings()
+        }
     }
 }

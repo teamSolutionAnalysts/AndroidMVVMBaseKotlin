@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@+id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.sa.baseproject.appview.home.view.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_newsListFragment"
+            app:destination="@id/newsListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_videoPlayerActivity"
+            app:destination="@id/videoPlayerActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/videoPlayerActivity"
+        android:name="com.sa.baseproject.appview.videoview.view.VideoPlayerActivity"
+        android:label="VideoPlayerActivity"
+        tools:layout="@layout/activity_video_play" />
+    <fragment
+        android:id="@+id/newsListFragment"
+        android:name="com.sa.baseproject.appview.news.view.NewsListFragment"
+        android:label="NewsListFragment"
+        tools:layout="@layout/fragment_news_list">
+        <action
+            android:id="@+id/action_newsListFragment_to_newsDetailsFragment"
+            app:destination="@id/newsDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsDetailsFragment"
+        android:name="com.sa.baseproject.appview.news.view.NewsDetailsFragment"
+        android:label="NewsDetailsFragment"
+        tools:layout="@layout/fragment_news_details" />
+</navigation>
