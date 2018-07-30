@@ -118,6 +118,7 @@ dependencies {
     kapt "android.arch.lifecycle:compiler:$archVersion"
     kapt "android.arch.persistence.room:compiler:$archVersion"
     kapt "com.android.databinding:compiler:$dataBindingVersion"
+    implementation "android.arch.paging:runtime:$pagingVersion"
 
     // Picasso
     implementation "com.squareup.picasso:picasso:$picassoLibraryVersion"

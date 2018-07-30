@@ -1,7 +1,8 @@
 package com.sa.baseproject.webservice
 
 import com.sa.baseproject.App
-import com.sa.baseproject.appview.news.model.RespNewsSource
+import com.sa.baseproject.appview.news.model.ListDataModel
+import com.sa.baseproject.appview.news.model.ListRequest
 import com.sa.baseproject.appview.signup.model.ReqSingup
 import com.sa.baseproject.appview.signup.model.ResSingup
 import com.sa.baseproject.model.LoginModel
@@ -15,19 +16,6 @@ import retrofit2.Response
  */
 
 object ApiManager {
-
-    fun getNewsSource(
-            apiCallback: ApiCallback<RespNewsSource>) {
-        val observable = App
-                .instance
-                ?.apiService
-                ?.apiInterface!!
-                .getNewsSource()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-
-        ApiHandle.createRetrofitBase(observable, apiCallback)
-    }
 
     fun login(loginModel: com.sa.baseproject.model.request.LoginModel,
               apiCallback: ApiCallback<LoginModel>) {
@@ -53,4 +41,15 @@ object ApiManager {
         ApiHandle.createRetrofitBase(observable, apiCallback)
     }
 
+    fun getList(apiCallback: ApiCallback<ListDataModel>, request: ListRequest) {
+        val observable = App
+                .instance
+                ?.apiService
+                ?.apiInterface!!
+                .getNewsSource(request)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+
+        ApiHandle.createRetrofitBase(observable, apiCallback)
+    }
 }

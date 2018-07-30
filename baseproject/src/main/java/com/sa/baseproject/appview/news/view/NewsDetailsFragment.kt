@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.sa.baseproject.R
 import com.sa.baseproject.appview.news.viewmodel.NewsDetailsViewModel
 import com.sa.baseproject.base.AppFragment
-import com.sa.baseproject.database.entities.SourcesItem
+import com.sa.baseproject.database.entities.ListItem
 import com.sa.baseproject.databinding.FragmentNewsDetailsBinding
 
 
@@ -27,7 +27,7 @@ class NewsDetailsFragment : AppFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val newsItem = arguments!!["newsItem"] as SourcesItem
+        val newsItem = arguments!!["newsItem"] as ListItem
         val viewModelFactory = NewsDetailsViewModel.Factory(newsItem)
 
         val viewModel1 = ViewModelProviders.of(this, viewModelFactory).get(NewsDetailsViewModel::class.java)

@@ -16,7 +16,9 @@ object ApiConstant {
     val SOMETHING_WRONG = "Something went wrong.Please try again later"
 
 
-    val HTTP_BASE_URL = "https://newsapi.org/v2/"
+//    val HTTP_BASE_URL = "https://newsapi.org/v2/"
+
+    val HTTP_BASE_URL = "http://192.168.1.178:9090/apis/firstdemo/"
 
     val HEADER_AUTHORIZATION_NAME: String = "x-auth-token"
     val HEADER_NEWS_API_KEY: String = "x-api-key"

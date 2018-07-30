@@ -6,12 +6,8 @@
     <data>
 
         <variable
-            name="newsSource"
-            type="com.sa.baseproject.appview.news.model.RespNewsSource" />
-
-        <variable
             name="source"
-            type="com.sa.baseproject.database.entities.SourcesItem" />
+            type="com.sa.baseproject.database.entities.ListItem" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -29,7 +25,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:gravity="center_vertical"
-            android:text="@{source.name}"
+            android:text="@{source.firstName}"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
