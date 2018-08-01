@@ -1,6 +1,6 @@
 package com.sa.baseproject.webservice
 
-import com.sa.baseproject.App
+import com.sa.baseproject.BaseApp
 import com.sa.baseproject.appview.news.model.ListDataModel
 import com.sa.baseproject.appview.news.model.ListRequest
 import com.sa.baseproject.appview.signup.model.ReqSingup
@@ -19,7 +19,7 @@ object ApiManager {
 
     fun login(loginModel: com.sa.baseproject.model.request.LoginModel,
               apiCallback: ApiCallback<LoginModel>) {
-        val observable = App
+        val observable = BaseApp
                 .instance
                 ?.apiService
                 ?.apiInterface!!
@@ -31,7 +31,7 @@ object ApiManager {
 
     fun singup(reqSingup: ReqSingup,
                apiCallback: ApiCallback<Response<ResSingup>>) {
-        val observable = App
+        val observable = BaseApp
                 .instance
                 ?.apiService
                 ?.apiInterface!!
@@ -42,7 +42,7 @@ object ApiManager {
     }
 
     fun getList(apiCallback: ApiCallback<ListDataModel>, request: ListRequest) {
-        val observable = App
+        val observable = BaseApp
                 .instance
                 ?.apiService
                 ?.apiInterface!!

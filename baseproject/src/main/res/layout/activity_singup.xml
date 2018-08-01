@@ -1,112 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="signup"
+            type="com.sa.baseproject.appview.signup.viewmodel.SignUpViewModel" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary">
+        android:layout_height="match_parent">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:titleTextColor="@color/colorWhite" />
-    </android.support.design.widget.AppBarLayout>
+            android:background="@color/colorPrimary">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:titleTextColor="@color/colorWhite" />
+        </android.support.design.widget.AppBarLayout>
 
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:src="@mipmap/ic_launcher"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/username_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        app:layout_constraintTop_toBottomOf="@id/logo">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/username"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/username_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_email_or_username"
-            android:inputType="text" />
+            setErrorMessage="@{signup.errorMessage}"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            app:layout_constraintTop_toBottomOf="@id/logo">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_email_or_username"
+                android:text="@{signup.email}"
+                android:inputType="text" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/password_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        app:layout_constraintTop_toBottomOf="@id/username_layout">
+        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/password"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/password_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_password"
-            android:inputType="textPassword" />
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            app:layout_constraintTop_toBottomOf="@id/username_layout">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/phone_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        app:layout_constraintTop_toBottomOf="@id/password_layout">
+        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/phoneno"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/phone_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_phonenumber"
-            android:inputType="textPassword" />
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            app:layout_constraintTop_toBottomOf="@id/password_layout">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/phoneno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_phonenumber"
+                android:inputType="textPassword" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/refreral_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        app:layout_constraintTop_toBottomOf="@id/phone_layout">
+        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/referel"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/refreral_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_code"
-            android:inputType="textPassword" />
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            app:layout_constraintTop_toBottomOf="@id/phone_layout">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/referel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_code"
+                android:inputType="textPassword" />
 
-    <Button
-        android:id="@+id/button_singup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:background="@drawable/bg_btn_main"
-        android:text="@string/button_signup"
-        android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/refreral_layout" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/button_singup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="@drawable/bg_btn_main"
+            android:text="@string/button_signup"
+            android:textColor="@color/white"
+            android:onClick="@{signup::validateFields}"
+            app:layout_constraintTop_toBottomOf="@id/refreral_layout" />
 
 
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+</layout>

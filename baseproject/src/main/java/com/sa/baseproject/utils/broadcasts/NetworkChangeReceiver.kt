@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
 import android.support.v4.content.LocalBroadcastManager
-import com.sa.baseproject.App
+import com.sa.baseproject.BaseApp
 
 
 /**
@@ -38,7 +38,7 @@ class NetworkChangeReceiver : BroadcastReceiver() {
     private fun notifyAboutChangeConnection(activeConnection: Boolean) {
         val intent = Intent(ACTION_LOCAL_CONNECTIVITY)
         intent.putExtra(EXTRA_IS_ACTIVE_CONNECTION, activeConnection)
-        LocalBroadcastManager.getInstance(App.instance!!).sendBroadcast(intent)
+        LocalBroadcastManager.getInstance(BaseApp.instance!!).sendBroadcast(intent)
     }
 
     companion object {

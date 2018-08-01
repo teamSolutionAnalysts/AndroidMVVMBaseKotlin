@@ -11,7 +11,7 @@ import com.sa.baseproject.webservice.ApiService
  *
  */
 
-class App : Application() {
+class BaseApp : Application() {
     var apiService: ApiService? = null
 
 
@@ -32,7 +32,7 @@ class App : Application() {
     }
 
     companion object {
-        var instance: App? = null
+        var instance: BaseApp? = null
         var daoInstance: AppDatabase? = null
     }
 

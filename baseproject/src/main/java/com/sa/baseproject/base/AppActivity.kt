@@ -14,7 +14,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import com.photoshoot.photoshootapp.utils.broadcasts.ConnectivityUtils
-import com.sa.baseproject.App
+import com.sa.baseproject.BaseApp
 
 import com.sa.baseproject.R
 import com.sa.baseproject.utils.PermissionUtils
@@ -116,7 +116,7 @@ abstract class AppActivity : AppCompatActivity(), ConnectionBridge {
             val snackBarTextId = android.support.design.R.id.snackbar_text
             val textView = snackBarView.findViewById<View>(snackBarTextId) as TextView
             textView.setTextColor(Color.WHITE)
-            snackBarView.setBackgroundColor(ContextCompat.getColor(App.instance!!, R.color.colorAccent))
+            snackBarView.setBackgroundColor(ContextCompat.getColor(BaseApp.instance!!, R.color.colorAccent))
             mSnackbar!!.show()
             // recursively call this method again when the snackbar was dismissed through a swipe
             mSnackbar!!.addCallback(object : Snackbar.Callback() {

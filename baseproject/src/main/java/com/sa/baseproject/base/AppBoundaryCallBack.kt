@@ -2,7 +2,7 @@ package com.sa.baseproject.base
 
 import android.arch.paging.PagedList
 import android.util.Log
-import com.sa.baseproject.App
+import com.sa.baseproject.BaseApp
 import com.sa.baseproject.appview.news.model.ListDataModel
 import com.sa.baseproject.appview.news.model.ListRequest
 import com.sa.baseproject.database.AppDatabase
@@ -27,7 +27,7 @@ class AppBoundaryCallBack(service : ApiManager, database : AppDatabase) : PagedL
 
             override fun onSuccess(response: ListDataModel) {
 
-                App.daoInstance?.appDao()?.insert(response.data!!)
+                BaseApp.daoInstance?.appDao()?.insert(response.data!!)
                 page++
             }
 
@@ -53,7 +53,7 @@ class AppBoundaryCallBack(service : ApiManager, database : AppDatabase) : PagedL
 
             override fun onSuccess(response: ListDataModel) {
 
-                App.daoInstance?.appDao()?.insert(response.data!!)
+                BaseApp.daoInstance?.appDao()?.insert(response.data!!)
                 page++
             }
 

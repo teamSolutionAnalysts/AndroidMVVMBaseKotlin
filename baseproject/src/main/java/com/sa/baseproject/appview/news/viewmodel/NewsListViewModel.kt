@@ -4,7 +4,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.paging.LivePagedListBuilder
 import android.arch.paging.PagedList
-import com.sa.baseproject.App
+import com.sa.baseproject.BaseApp
 import com.sa.baseproject.database.entities.ListItem
 
 /**
@@ -23,7 +23,7 @@ class NewsListViewModel : ViewModel() {
                 .setEnablePlaceholders(true)
                 .build()
 
-        val factory = App.daoInstance?.appDao()?.allData()
+        val factory = BaseApp.daoInstance?.appDao()?.allData()
         itemPagedList = LivePagedListBuilder(factory!!, pagedListConfig).build()
         getData()
     }

@@ -10,7 +10,7 @@ import androidx.work.Constraints
 import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
-import com.sa.baseproject.App
+import com.sa.baseproject.BaseApp
 import com.sa.baseproject.R
 import com.sa.baseproject.base.AppActivity
 import com.sa.baseproject.base.AppFragmentState
@@ -85,7 +85,7 @@ class MainActivity : AppActivity(), NavigationView.OnNavigationItemSelectedListe
         }
 
 
-        if (App.daoInstance?.appDao()?.countItems()!! <= 0) {
+        if (BaseApp.daoInstance?.appDao()?.countItems()!! <= 0) {
             val myConstraints = Constraints.Builder()
                     .setRequiredNetworkType(NetworkType.CONNECTED)
                     .build()

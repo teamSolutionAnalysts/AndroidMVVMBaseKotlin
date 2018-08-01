@@ -2,7 +2,7 @@ package com.sa.baseproject.workers
 
 import android.util.Log
 import androidx.work.Worker
-import com.sa.baseproject.App
+import com.sa.baseproject.BaseApp
 import com.sa.baseproject.appview.news.model.ListDataModel
 import com.sa.baseproject.appview.news.model.ListRequest
 import com.sa.baseproject.webservice.ApiCallback
@@ -22,7 +22,7 @@ class MyTestWorker : Worker() {
             }
 
             override fun onSuccess(response: ListDataModel) {
-                App.daoInstance?.appDao()?.insert(response.data!!)
+                BaseApp.daoInstance?.appDao()?.insert(response.data!!)
                 isFailure = false
             }
 

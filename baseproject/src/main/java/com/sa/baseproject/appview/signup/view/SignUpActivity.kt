@@ -1,15 +1,12 @@
 package com.sa.baseproject.appview.signup.view
 
+import android.arch.lifecycle.ViewModelProviders
+import android.databinding.DataBindingUtil
 import com.sa.baseproject.R
-import com.sa.baseproject.appview.signup.model.ReqSingup
-import com.sa.baseproject.appview.signup.model.ResSingup
+import com.sa.baseproject.appview.signup.viewmodel.SignUpViewModel
 import com.sa.baseproject.base.AppActivity
-import com.sa.baseproject.webservice.ApiCallback
-import com.sa.baseproject.webservice.ApiErrorModel
-import com.sa.baseproject.webservice.ApiManager
-
+import com.sa.baseproject.databinding.ActivitySingupBinding
 import kotlinx.android.synthetic.main.activity_singup.*
-import retrofit2.Response
 
 
 class SignUpActivity : AppActivity() {
@@ -29,34 +26,13 @@ class SignUpActivity : AppActivity() {
         toolbar.title = "Singup"
         supportActionBar!!.setTitle(R.string.signup)
 
-        button_singup.setOnClickListener {
-            //callAPIRegister()
-        }
-
+        val viewProvider = ViewModelProviders.of(this).get(SignUpViewModel::class.java)
+        val binding = DataBindingUtil.setContentView<ActivitySingupBinding>(this, R.layout.activity_singup)
+        binding.signup = viewProvider
 
     }
 
     override fun trackScreen() {
 
     }
-
-
-    private fun callAPIRegister() {
-        val reqSingup = ReqSingup()
-        reqSingup.email = username.text.toString()
-        reqSingup.password = password.text.toString()
-        // reqSingup.password = phoneno.text.toString()
-
-        ApiManager.singup(reqSingup, object : ApiCallback<Response<ResSingup>> {
-            override fun onSuccess(response: Response<ResSingup>) {
-
-            }
-
-            override fun onFailure(apiErrorModel: ApiErrorModel) {
-
-            }
-
-        })
-    }
-
 }
