@@ -6,12 +6,18 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.MenuItem
 import android.view.View
+import androidx.work.Constraints
+import androidx.work.NetworkType
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkManager
+import com.sa.baseproject.App
 import com.sa.baseproject.R
 import com.sa.baseproject.base.AppActivity
 import com.sa.baseproject.base.AppFragmentState
 import com.sa.baseproject.utils.KeyboardUtils
 import com.sa.baseproject.utils.SharedPreferenceUtil
 import com.sa.baseproject.utils.ToastUtils
+import com.sa.baseproject.workers.MyTestWorker
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -76,6 +82,19 @@ class MainActivity : AppActivity(), NavigationView.OnNavigationItemSelectedListe
             } else {
                 drawer_layout.openDrawer(GravityCompat.START)
             }
+        }
+
+
+        if (App.daoInstance?.appDao()?.countItems()!! <= 0) {
+            val myConstraints = Constraints.Builder()
+                    .setRequiredNetworkType(NetworkType.CONNECTED)
+                    .build()
+
+            val workA = OneTimeWorkRequest.Builder(MyTestWorker::class.java)
+                    .setConstraints(myConstraints)
+                    .build()
+
+            WorkManager.getInstance().enqueue(workA)
         }
 
     }

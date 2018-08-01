@@ -20,6 +20,9 @@ interface AppDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(listData: List<ListItem>)
 
+    @Query("SELECT COUNT(*) from ListItem")
+    fun countItems(): Int
+
     @Query("DELETE FROM ListItem")
     fun clear()
 }

@@ -38,22 +38,6 @@ class NewsListFragment : AppFragment() {
             }
         })
 
-
-
-//        val request = ListRequest(false.toString(), 50.toString(), 1.toString())
-//
-//        ApiManager.getList(object : ApiCallback<ListDataModel> {
-//            override fun onFailure(apiErrorModel: ApiErrorModel) {
-//                Log.e("error", apiErrorModel.message)
-//            }
-//
-//            override fun onSuccess(response: ListDataModel) {
-//
-//                App.daoInstance?.appDao()?.insert(response.data!!)
-//            }
-//
-//        }, request)
-
         return inflater.inflate(R.layout.fragment_news_list, container, false)
 
     }
