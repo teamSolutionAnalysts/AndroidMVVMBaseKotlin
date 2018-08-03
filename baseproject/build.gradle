@@ -113,7 +113,6 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$archVersion"
     implementation "android.arch.persistence.room:runtime:$archVersion"
     implementation "android.arch.lifecycle:runtime:$archVersion"
-    implementation "android.arch.paging:runtime:$archPagingVersion"
     implementation "android.arch.persistence.room:rxjava2:$archVersion"
     kapt "android.arch.lifecycle:compiler:$archVersion"
     kapt "android.arch.persistence.room:compiler:$archVersion"

@@ -1,16 +1,13 @@
 package com.sa.baseproject.utils
 
-import android.app.Activity
 import android.content.Context
-import android.graphics.Typeface
-import android.support.design.widget.Snackbar
-import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import android.text.TextUtils
-import android.widget.FrameLayout
-import android.widget.TextView
 import android.widget.Toast
 import com.sa.baseproject.R
+import com.sa.baseproject.utils.baseinrerface.OkCancelDialogInterface
+import com.sa.baseproject.utils.baseinrerface.OkCancelNeutralDialogInterface
+import com.sa.baseproject.utils.baseinrerface.OkDialogInterface
 
 
 object DialogUtils {
@@ -88,9 +85,40 @@ object DialogUtils {
             dialog.dismiss()
             callback.ok()
         }
-        builder.setPositiveButton(context.getString(android.R.string.cancel)) { dialog, which ->
+        builder.setNegativeButton(context.getString(android.R.string.cancel)) { dialog, which ->
             dialog.dismiss()
             callback.cancel()
+        }
+        val dialog = builder.create()
+        if (!dialog.isShowing)
+            dialog.show()
+    }
+
+    /**
+     * Show Default dialog with ok and cancel two buttons.
+     *
+     * @param context Application/Activity Context for creating dialog.
+     * @param title   Title of dialog
+     * @param message Message of dialog
+     * @param callback Callback for button click of dialog
+     */
+    fun okCancelNuteralDialog(context: Context, title: String, message: String, callback: OkCancelNeutralDialogInterface) {
+
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle(title)
+        builder.setMessage(message)
+        builder.setCancelable(false)
+        builder.setPositiveButton(context.getString(android.R.string.ok)) { dialog, which ->
+            dialog.dismiss()
+            callback.ok()
+        }
+        builder.setNegativeButton(context.getString(android.R.string.cancel)) { dialog, which ->
+            dialog.dismiss()
+            callback.cancel()
+        }
+        builder.setNeutralButton(context.getString(android.R.string.cancel)) { dialog, which ->
+            dialog.dismiss()
+            callback.neutral()
         }
         val dialog = builder.create()
         if (!dialog.isShowing)

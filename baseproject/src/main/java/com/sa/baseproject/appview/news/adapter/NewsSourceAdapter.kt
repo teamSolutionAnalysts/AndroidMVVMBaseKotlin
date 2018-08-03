@@ -32,13 +32,14 @@ class NewsSourceAdapter(val context: Context) : PagedListAdapter<ListItem, NewsS
         val item = getItem(position)
         if (item != null) {
             holder.bind(item)
+
             holder.itemView.setOnClickListener {
                 val b = Bundle()
                 b.putParcelable("newsItem", item)
                 (context as NewsActivity).appFragmentManager!!.addFragment<Any>(AppFragmentState.F_NEWS_DETAIL, b, false)
             }
         } else {
-            Log.e("error", "null - " + position)
+            Log.e("error", "null - $position")
         }
     }
 
