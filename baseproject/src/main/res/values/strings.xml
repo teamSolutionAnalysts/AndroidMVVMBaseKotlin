@@ -93,4 +93,10 @@
 
     <string name="sample_list_load_error">One or more sample lists failed to load</string>
 
+    <string name="piker_cam">Camera</string>
+    <string name="piker_gall">Gallery</string>
+    <string name="piker_chosevideo">Choose Video</string>
+    <string name="piker_choseimage">Choose Image</string>
+    <string name="txt_file_toolarge">File is too large. Maximum size is %1$sMB</string>
+
 </resources>

@@ -20,4 +20,8 @@
         <item name="android:textColor">@color/gray_dark</item>
     </style>
 
+    <style name="MaterialThemeDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
 </resources>
