@@ -15,28 +15,41 @@ import com.sa.baseproject.base.AppFragment
 import com.sa.baseproject.database.entities.ListItem
 import kotlinx.android.synthetic.main.activity_offline_new_source_list.*
 
+
 class NewsListFragment : AppFragment() {
+
+    var viewProvider: NewsListViewModel? = null
     override fun pageVisible() {
 
     }
 
     override fun initializeComponent(view: View?) {
         setListData()
+
+        swipeContainer.setOnRefreshListener {
+            viewProvider?.fetchTimelineAsync()
+        }
+
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light)
     }
 
     private var adapter: NewsSourceAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val viewProvider = ViewModelProviders.of(this).get(NewsListViewModel::class.java)
+        viewProvider = ViewModelProviders.of(this).get(NewsListViewModel::class.java)
 
-        viewProvider.itemPagedList.observe(this, Observer<PagedList<ListItem>> { list ->
+        viewProvider?.itemPagedList?.observe(this, Observer<PagedList<ListItem>> { list ->
             if (list != null && list.isNotEmpty()) {
                 adapter?.submitList(list)
             } else {
-                viewProvider.itemPagedList
+                viewProvider?.itemPagedList
             }
         })
+
 
         return inflater.inflate(R.layout.fragment_news_list, container, false)
 

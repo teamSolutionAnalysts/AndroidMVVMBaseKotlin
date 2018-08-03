@@ -4,10 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvNewsSource"
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="5dp"
-        tools:listitem="@layout/item_new_source" />
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvNewsSource"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            tools:listitem="@layout/item_new_source" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
 </android.support.constraint.ConstraintLayout>

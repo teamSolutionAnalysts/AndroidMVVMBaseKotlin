@@ -9,6 +9,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import retrofit2.HttpException
+import java.io.EOFException
 import java.io.IOException
 
 /**
@@ -30,16 +31,46 @@ object ApiHandle {
 
                     override fun onError(error: Throwable) {
                         var responseModel: ApiErrorModel? = null
-                        if (error is HttpException) {
-                            try {
+                        when (error) {
+                            is HttpException -> try {
                                 val response = error.response()
-                                val gson = Gson()
-                                val responseString = response.errorBody()!!.string()
-                                responseModel = gson.fromJson<ApiErrorModel>(responseString, ApiErrorModel::class.java)
-                            } catch (e: IOException) {
+                                when {
+                                    response.code() >= 500 -> {
+                                        responseModel = ApiErrorModel()
+                                        responseModel.error = response.message()
+                                        responseModel.status = response.code().toString()
+                                        responseModel.message = response.message()
+                                    }
+                                    response.code() == 400 -> {
+                                        responseModel = ApiErrorModel()
+                                        responseModel.error = response.message()
+                                        responseModel.status = response.code().toString()
+                                        responseModel.message = response.message()
+                                    }
+                                    else -> {
+                                        val gson = Gson()
+                                        val responseString = response.errorBody()!!.string()
+                                        responseModel = gson.fromJson<ApiErrorModel>(responseString, ApiErrorModel::class.java)
+                                        responseModel.error = response.message()
+                                        responseModel.status = response.code().toString()
+                                        responseModel.message = response.message()
+                                    }
+                                }
+                            } catch (e: Exception) {
                                 e.printStackTrace()
                             }
-
+                            is EOFException -> {
+                                responseModel = ApiErrorModel()
+                                responseModel.error = "Request timeout."
+                                responseModel.status = 408.toString()
+                                responseModel.message = "Request timeout."
+                            }
+                            else -> {
+                                responseModel = ApiErrorModel()
+                                responseModel.error = "Something went wrong."
+                                responseModel.status = 600.toString()
+                                responseModel.message = "Something went wrong."
+                            }
                         }
                         apiCallback.onFailure(responseModel!!)
                     }
