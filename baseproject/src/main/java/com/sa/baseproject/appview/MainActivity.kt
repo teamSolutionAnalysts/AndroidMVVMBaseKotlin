@@ -17,7 +17,7 @@ import com.sa.baseproject.base.AppFragmentState
 import com.sa.baseproject.utils.KeyboardUtils
 import com.sa.baseproject.utils.SharedPreferenceUtil
 import com.sa.baseproject.utils.ToastUtils
-import com.sa.baseproject.workers.MyTestWorker
+
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -89,12 +89,12 @@ class MainActivity : AppActivity(), NavigationView.OnNavigationItemSelectedListe
             val myConstraints = Constraints.Builder()
                     .setRequiredNetworkType(NetworkType.CONNECTED)
                     .build()
-
+/*
             val workA = OneTimeWorkRequest.Builder(MyTestWorker::class.java)
                     .setConstraints(myConstraints)
                     .build()
 
-            WorkManager.getInstance().enqueue(workA)
+            WorkManager.getInstance().enqueue(workA)*/
         }
 
     }

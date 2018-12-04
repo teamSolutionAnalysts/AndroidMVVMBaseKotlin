@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.sa.baseproject.R
 import com.sa.baseproject.appview.news.view.NewsActivity
-import com.sa.baseproject.appview.videoview.view.VideoPlayerActivity
+
 import com.sa.baseproject.base.AppFragment
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 class HomeFragment : AppFragment() {
     override fun initializeComponent(view: View?) {
         btnVideo.setOnClickListener {
-            activity?.startActivity(Intent(activity, VideoPlayerActivity::class.java))
+
         }
 
         btnNews.setOnClickListener {

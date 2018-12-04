@@ -10,7 +10,7 @@ import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
 import com.sa.baseproject.BaseApp
 import com.sa.baseproject.database.entities.ListItem
-import com.sa.baseproject.workers.MyTestWorker
+
 
 /**
  * Created by Kinjal Dhamat on 6/12/2018.
@@ -34,7 +34,7 @@ class NewsListViewModel : ViewModel() {
 
 
     fun fetchTimelineAsync() {
-        val myConstraints = Constraints.Builder()
+       /* val myConstraints = Constraints.Builder()
                 .setRequiredNetworkType(NetworkType.CONNECTED)
                 .build()
 
@@ -42,7 +42,7 @@ class NewsListViewModel : ViewModel() {
                 .setConstraints(myConstraints)
                 .build()
 
-        WorkManager.getInstance().enqueue(workA)
+        WorkManager.getInstance().enqueue(workA)*/
     }
 
 }

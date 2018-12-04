@@ -26,10 +26,6 @@
             android:name=".appview.ForgotActivity"
             android:screenOrientation="portrait" />
 
-        <activity
-            android:name=".appview.news.view.NewsActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".appview.videoview.view.VideoPlayerActivity" />
 
         <activity
             android:name=".appview.login.view.SingInActivity"
@@ -42,7 +38,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="provider"
+            android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
