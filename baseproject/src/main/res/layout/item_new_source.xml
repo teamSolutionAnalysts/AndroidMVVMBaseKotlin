@@ -10,7 +10,7 @@
             type="com.sa.baseproject.database.entities.ListItem" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,5 +48,5 @@
             tools:text="@tools:sample/cities" />
 
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

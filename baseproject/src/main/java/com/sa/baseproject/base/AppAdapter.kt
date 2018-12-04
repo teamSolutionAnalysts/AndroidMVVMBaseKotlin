@@ -1,10 +1,10 @@
 package com.sa.baseproject.base
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
 
-abstract class AppAdapter<holder : RecyclerView.ViewHolder, T> : AppHolderAdapter<holder, T>() {
+abstract class AppAdapter<holder : androidx.recyclerview.widget.RecyclerView.ViewHolder, T> : AppHolderAdapter<holder, T>() {
     private val items = ArrayList<T>()
 
     init {

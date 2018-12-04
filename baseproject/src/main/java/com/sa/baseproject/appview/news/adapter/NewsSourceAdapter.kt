@@ -1,16 +1,16 @@
 package com.sa.baseproject.appview.news.adapter
 
-import android.arch.paging.PagedListAdapter
+import androidx.paging.PagedListAdapter
 import android.content.Context
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import android.os.Bundle
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.android.databinding.library.baseAdapters.BR
+import androidx.databinding.library.baseAdapters.BR
 import com.sa.baseproject.R
 import com.sa.baseproject.appview.news.view.NewsActivity
 import com.sa.baseproject.base.AppFragmentState
@@ -55,7 +55,7 @@ class NewsSourceAdapter(val context: Context) : PagedListAdapter<ListItem, NewsS
         }
     }
 
-    class NewSourceViewHolder(private val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
+    class NewSourceViewHolder(private val binding: ViewDataBinding) : androidx.recyclerview.widget.RecyclerView.ViewHolder(binding.root) {
 
         fun bind(source: ListItem) {
             binding.setVariable(BR.source, source)

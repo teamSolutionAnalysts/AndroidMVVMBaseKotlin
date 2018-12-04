@@ -13,7 +13,7 @@ android {
         targetSdkVersion rootProject.ext.androidTargetSdkVersion
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         resValue "string", "app_name", "BaseProject"
         vectorDrawables.useSupportLibrary = true
     }
@@ -88,14 +88,14 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.1-alpha01', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
     // Android Support libs
-    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
-    implementation "com.android.support:design:$supportLibraryVersion"
-    implementation "com.android.support.constraint:constraint-layout:$contraintLayoutVersion"
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'com.google.android.material:material:1.1.0-alpha01'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
 
     // Kotlin libs
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -110,20 +110,20 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okHttpLibraryVersion"
 
     // Architecture Libs
-    implementation "android.arch.lifecycle:extensions:$archVersion"
-    implementation "android.arch.persistence.room:runtime:$archVersion"
-    implementation "android.arch.lifecycle:runtime:$archVersion"
-    implementation "android.arch.persistence.room:rxjava2:$archVersion"
-    kapt "android.arch.lifecycle:compiler:$archVersion"
-    kapt "android.arch.persistence.room:compiler:$archVersion"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation 'androidx.room:room-runtime:2.1.0-alpha02'
+    implementation 'androidx.lifecycle:lifecycle-runtime:2.0.0'
+    implementation 'androidx.room:room-rxjava2:2.1.0-alpha02'
+    kapt 'androidx.lifecycle:lifecycle-compiler:2.0.0'
+    kapt 'androidx.room:room-compiler:2.1.0-alpha02'
 
-    implementation "android.arch.paging:runtime:$pagingVersion"
+    implementation 'androidx.paging:paging-runtime:2.1.0-beta01'
     implementation "android.arch.work:work-runtime-ktx:$workerVersion"
 
     // Picasso
 
     implementation "com.squareup.picasso:picasso:$picassoLibraryVersion"
-    implementation "com.android.support:support-media-compat:28.0.0"
+    implementation "androidx.media:media:1.1.0-alpha01"
 
     //GCM libs
     implementation "com.google.android.gms:play-services-location:$playserviceLibraryVersion"

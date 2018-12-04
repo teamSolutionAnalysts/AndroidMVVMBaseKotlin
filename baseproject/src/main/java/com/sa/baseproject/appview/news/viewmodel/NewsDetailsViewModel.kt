@@ -1,9 +1,9 @@
 package com.sa.baseproject.appview.news.viewmodel
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
-import android.support.annotation.NonNull
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.annotation.NonNull
 import com.sa.baseproject.database.entities.ListItem
 
 /**

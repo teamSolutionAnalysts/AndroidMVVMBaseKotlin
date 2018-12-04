@@ -1,6 +1,6 @@
 package com.sa.baseproject.base
 
-import android.arch.paging.PagedList
+import androidx.paging.PagedList
 import android.util.Log
 import com.sa.baseproject.BaseApp
 import com.sa.baseproject.appview.news.model.ListDataModel

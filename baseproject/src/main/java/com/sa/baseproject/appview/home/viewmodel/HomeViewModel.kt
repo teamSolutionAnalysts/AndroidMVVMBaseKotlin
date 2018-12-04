@@ -1,5 +1,5 @@
 package com.sa.baseproject.appview.home.viewmodel
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 
 class HomeViewModel : ViewModel()

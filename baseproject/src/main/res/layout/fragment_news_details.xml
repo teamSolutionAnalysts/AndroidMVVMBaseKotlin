@@ -10,7 +10,7 @@
             type="com.sa.baseproject.appview.news.viewmodel.NewsDetailsViewModel" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -64,5 +64,5 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/tvDescription"
             app:layout_constraintTop_toTopOf="@+id/tvDescription" />
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

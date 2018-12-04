@@ -1,10 +1,10 @@
 package com.sa.baseproject.appview.news.view
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.arch.paging.PagedList
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.paging.PagedList
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,7 +57,7 @@ class NewsListFragment : AppFragment() {
 
     private fun setListData() {
         adapter = NewsSourceAdapter(context!!)
-        rvNewsSource.layoutManager = LinearLayoutManager(context)
+        rvNewsSource.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         rvNewsSource.setHasFixedSize(true)
         rvNewsSource.adapter = adapter
     }

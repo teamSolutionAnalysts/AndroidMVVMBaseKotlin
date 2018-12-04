@@ -1,7 +1,7 @@
 package com.sa.baseproject.appview.signup.view
 
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
+import androidx.databinding.DataBindingUtil
 import com.sa.baseproject.R
 import com.sa.baseproject.appview.signup.viewmodel.SignUpViewModel
 import com.sa.baseproject.base.AppActivity

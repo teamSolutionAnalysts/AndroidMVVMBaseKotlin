@@ -6,10 +6,10 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Color
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v4.content.ContextCompat
-import android.support.v4.content.LocalBroadcastManager
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
+import androidx.core.content.ContextCompat
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
@@ -25,7 +25,7 @@ import com.sa.baseproject.utils.broadcasts.NetworkChangeReceiver
 
 abstract class AppActivity : AppCompatActivity(), ConnectionBridge {
 
-    private lateinit var localBroadcastManager: LocalBroadcastManager
+    private lateinit var localBroadcastManager: androidx.localbroadcastmanager.content.LocalBroadcastManager
     private var networkBroadcastReceiver: NetworkBroadcastReceiver? = null
 
     private var mSnackbar: Snackbar? = null
@@ -113,7 +113,7 @@ abstract class AppActivity : AppCompatActivity(), ConnectionBridge {
             }
 
             val snackBarView = mSnackbar!!.view
-            val snackBarTextId = android.support.design.R.id.snackbar_text
+            val snackBarTextId = com.google.android.material.R.id.snackbar_text
             val textView = snackBarView.findViewById<View>(snackBarTextId) as TextView
             textView.setTextColor(Color.WHITE)
             snackBarView.setBackgroundColor(ContextCompat.getColor(BaseApp.instance!!, R.color.colorAccent))
@@ -157,7 +157,7 @@ abstract class AppActivity : AppCompatActivity(), ConnectionBridge {
 
     private fun initFields() {
         networkBroadcastReceiver = NetworkBroadcastReceiver()
-        localBroadcastManager = LocalBroadcastManager.getInstance(this)
+        localBroadcastManager = androidx.localbroadcastmanager.content.LocalBroadcastManager.getInstance(this)
     }
 
 

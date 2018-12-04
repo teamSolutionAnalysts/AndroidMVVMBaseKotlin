@@ -2,7 +2,7 @@ package com.sa.baseproject.base
 
 import android.os.Bundle
 import android.os.SystemClock
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +13,7 @@ import com.sa.baseproject.utils.Constants
 /**
  * Base class for all the fragments used, manages common feature needed in the most of the fragments
  */
-abstract class AppFragment : Fragment(), View.OnClickListener {
+abstract class AppFragment : androidx.fragment.app.Fragment(), View.OnClickListener {
 
     protected abstract fun initializeComponent(view: View?) //to initialize the fragments components
 
