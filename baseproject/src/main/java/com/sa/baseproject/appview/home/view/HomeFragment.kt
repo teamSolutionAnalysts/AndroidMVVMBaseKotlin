@@ -22,7 +22,7 @@ class HomeFragment : AppFragment() {
         }
 
         btnNews.setOnClickListener {
-           // activity?.startActivity(Intent(activity, NewsActivity::class.java))
+            activity?.startActivity(Intent(activity, NewsActivity::class.java))
         }
     }
 

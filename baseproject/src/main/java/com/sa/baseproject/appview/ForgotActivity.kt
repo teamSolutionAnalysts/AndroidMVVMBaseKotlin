@@ -6,7 +6,6 @@ import com.sa.baseproject.appview.login.view.SingInActivity
 import com.sa.baseproject.base.AppActivity
 import kotlinx.android.synthetic.main.activity_forgot.*
 
-
 class ForgotActivity : AppActivity() {
     override fun checkNetworkAvailableWithError(): Boolean {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -19,7 +18,6 @@ class ForgotActivity : AppActivity() {
     }
 
     override fun initializeComponents() {
-
         setSupportActionBar(toolbar)
         supportActionBar!!.setTitle(R.string.forgot)
         button_forgot.setOnClickListener{

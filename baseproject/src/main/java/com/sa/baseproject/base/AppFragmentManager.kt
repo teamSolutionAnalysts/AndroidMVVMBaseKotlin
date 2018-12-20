@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+
 import com.sa.baseproject.R
 import java.util.*
 
@@ -13,10 +14,10 @@ import java.util.*
 class AppFragmentManager(private val activity: AppActivity, private val containerId: Int) {
 
     private val TAG = "SwitchFragment"
-    private val fragmentManager: androidx.fragment.app.FragmentManager = activity.supportFragmentManager
-    private var ft: androidx.fragment.app.FragmentTransaction? = null
+    private val fragmentManager: FragmentManager = activity.supportFragmentManager
+    private var ft: FragmentTransaction? = null
 
-    private val stack = Stack<androidx.fragment.app.Fragment>()
+    private val stack = Stack<Fragment>()
 
     // Common Handling of top bar for all fragments like header name, icon on top bar in case of moving to other fragment and coming back again
     private fun <T> setUp(currentState: AppFragmentState, keys: T?) {
@@ -31,14 +32,14 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
                 activity.supportActionBar!!.title = "News List"
                 activity.supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
                 activity.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-                activity.supportActionBar!!.setDefaultDisplayHomeAsUpEnabled(true)
+             //   activity.supportActionBar!!.setDefaultDisplayHomeAsUpEnabled(true)
             }
 
             AppFragmentState.F_NEWS_DETAIL -> {
                 activity.supportActionBar!!.title = "News Detail"
                 activity.supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
                 activity.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-                activity.supportActionBar!!.setDefaultDisplayHomeAsUpEnabled(true)
+               // activity.supportActionBar!!.setDefaultDisplayHomeAsUpEnabled(true)
             }
         }
 
@@ -65,7 +66,7 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
         if (isAnimation) {
             ft!!.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
         }
-        val fragment = androidx.fragment.app.Fragment.instantiate(this.activity, fragmentEnum.fragment.name)
+        val fragment = Fragment.instantiate(this.activity, fragmentEnum.fragment.name)
 
         if (keys != null && keys is Bundle) {
             fragment.arguments = keys
@@ -89,7 +90,7 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
         if (isAnimation) {
             ft!!.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
         }
-        val fragment = androidx.fragment.app.Fragment.instantiate(this.activity, fragmentEnum.fragment.name)
+        val fragment = Fragment.instantiate(this.activity, fragmentEnum.fragment.name)
         if (keys != null && keys is Bundle) {
             fragment.arguments = keys
         }
@@ -209,11 +210,11 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
         //        }
     }
 
-    fun getFragment(appFragmentState: AppFragmentState): androidx.fragment.app.Fragment? {
+    fun getFragment(appFragmentState: AppFragmentState): Fragment? {
         return fragmentManager.findFragmentByTag(appFragmentState.fragment.name)
     }
 
-    fun getFragment(): androidx.fragment.app.Fragment? {
+    fun getFragment(): Fragment? {
         return fragmentManager.findFragmentById(containerId)
     }
 
@@ -241,6 +242,6 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
                 showFragment.userVisibleHint = false
             }
         }
-        activity.supportFragmentManager.popBackStack(null, androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        activity.supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
     }
 }

@@ -25,7 +25,9 @@
         <activity
             android:name=".appview.ForgotActivity"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name=".appview.news.view.NewsActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".appview.login.view.SingInActivity"

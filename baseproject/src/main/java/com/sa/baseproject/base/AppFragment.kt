@@ -13,7 +13,7 @@ import com.sa.baseproject.utils.Constants
 /**
  * Base class for all the fragments used, manages common feature needed in the most of the fragments
  */
-abstract class AppFragment : androidx.fragment.app.Fragment(), View.OnClickListener {
+abstract class AppFragment : Fragment(), View.OnClickListener {
 
     protected abstract fun initializeComponent(view: View?) //to initialize the fragments components
 
