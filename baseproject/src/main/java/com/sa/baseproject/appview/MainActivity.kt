@@ -25,9 +25,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppActivity(), NavigationView.OnNavigationItemSelectedListener {
-    override fun checkNetworkAvailableWithError(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+
 
     private var drawer: androidx.drawerlayout.widget.DrawerLayout? = null
     private var drawareToggle: ActionBarDrawerToggle? = null
