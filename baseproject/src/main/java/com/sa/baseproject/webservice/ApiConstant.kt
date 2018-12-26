@@ -18,7 +18,8 @@ object ApiConstant {
 
 //    val HTTP_BASE_URL = "https://newsapi.org/v2/"
 
-    val HTTP_BASE_URL = "http://192.168.1.178:9090/apis/firstdemo/"
+//    val HTTP_BASE_URL = "http://192.168.1.178:9090/apis/firstdemo/"
+    val HTTP_BASE_URL = "http://gateway-api.vm.35.161.243.193.xip.io/api/v1/"
 
     val HEADER_AUTHORIZATION_NAME: String = "x-auth-token"
     val HEADER_NEWS_API_KEY: String = "x-api-key"

@@ -8,6 +8,8 @@ import com.sa.baseproject.appview.news.model.ListRequest
 import com.sa.baseproject.webservice.ApiCallback
 import com.sa.baseproject.webservice.ApiErrorModel
 import com.sa.baseproject.webservice.ApiManager
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MyTestWorker : Worker() {
     override fun doWork(): Result {
@@ -22,7 +24,7 @@ class MyTestWorker : Worker() {
             }
 
             override fun onSuccess(response: ListDataModel) {
-                BaseApp.daoInstance?.appDao()?.insert(response.data!!)
+                GlobalScope.launch { BaseApp.appDao?.insert(response.data!!) }
                 isFailure = false
             }
 

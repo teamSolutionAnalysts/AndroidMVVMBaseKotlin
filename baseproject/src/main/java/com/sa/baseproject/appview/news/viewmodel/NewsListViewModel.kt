@@ -11,13 +11,17 @@ import androidx.work.WorkManager
 import com.sa.baseproject.BaseApp
 import com.sa.baseproject.database.entities.ListItem
 import com.sa.baseproject.workers.MyTestWorker
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * Created by Kinjal Dhamat on 6/12/2018.
  */
 class NewsListViewModel : ViewModel() {
 
-    val itemPagedList: LiveData<PagedList<ListItem>>
+    var itemPagedList: LiveData<PagedList<ListItem>>? = null
     var page = 1
 
 
@@ -28,8 +32,13 @@ class NewsListViewModel : ViewModel() {
                 .setEnablePlaceholders(true)
                 .build()
 
-        val factory = BaseApp.daoInstance?.appDao()?.allData()
-        itemPagedList = LivePagedListBuilder(factory!!, pagedListConfig).build()
+        GlobalScope.launch {
+            val factory = BaseApp.appDao?.allData()
+            withContext(Dispatchers.Main) {
+                itemPagedList = LivePagedListBuilder(factory!!, pagedListConfig).build()
+            }
+        }
+
     }
 
 

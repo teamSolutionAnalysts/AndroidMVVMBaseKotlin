@@ -8,6 +8,7 @@ package com.sa.baseproject.utils
  */
 object Constants {
 
+    val DATABASE_NAME = "Demo.db"
     // Note the value of the field is the same as the name to avoid duplication issues
     val PREF_EMAIL = "PREF_EMAIL"
     val BUNDLE_AGE = "BUNDLE_AGE"

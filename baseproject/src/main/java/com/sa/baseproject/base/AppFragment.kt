@@ -6,8 +6,9 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.sa.baseproject.utils.Constants
+import com.sa.baseproject.wscoroutine.CustomCoroutineScope
+import kotlinx.coroutines.CoroutineScope
 
 
 /**
@@ -51,5 +52,11 @@ abstract class AppFragment : Fragment(), View.OnClickListener {
         if (userVisibleHint) {
             pageVisible()
         }
+    }
+
+    protected fun getFragmentScope(fragment: Fragment): CoroutineScope {
+        val localScopeApiHandle = CustomCoroutineScope()
+        fragment.lifecycle.addObserver(localScopeApiHandle)
+        return localScopeApiHandle.getCoroutineScope()
     }
 }
