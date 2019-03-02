@@ -3,6 +3,7 @@ package com.sa.baseproject
 import android.app.Application
 import androidx.room.Room
 import com.sa.baseproject.database.AppDatabase
+import com.sa.baseproject.database.daos.AppDao
 import com.sa.baseproject.webservice.ApiService
 
 
@@ -18,9 +19,7 @@ class BaseApp : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        daoInstance = Room.databaseBuilder(this, AppDatabase::class.java, "demo.db")
-                .allowMainThreadQueries()
-                .build()
+        appDao = AppDatabase.getInstance(this)?.appDao()
         apiService = ApiService()
     }
 
@@ -33,7 +32,7 @@ class BaseApp : Application() {
 
     companion object {
         var instance: BaseApp? = null
-        var daoInstance: AppDatabase? = null
+        var appDao: AppDao? = null
     }
 
 }

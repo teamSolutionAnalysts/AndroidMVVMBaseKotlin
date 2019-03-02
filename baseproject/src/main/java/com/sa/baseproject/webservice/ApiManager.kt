@@ -6,6 +6,7 @@ import com.sa.baseproject.appview.news.model.ListRequest
 import com.sa.baseproject.appview.signup.model.ReqSingup
 import com.sa.baseproject.appview.signup.model.ResSingup
 import com.sa.baseproject.model.LoginModel
+import com.sa.baseproject.model.PayBillsItem
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Response
@@ -51,5 +52,19 @@ object ApiManager {
                 .observeOn(AndroidSchedulers.mainThread())
 
         ApiHandle.createRetrofitBase(observable, apiCallback)
+    }
+
+    fun getHomePayBills(
+            apiCallback: ApiCallback<PayBillsItem>) {
+        val observable = BaseApp
+                .instance
+                ?.apiService
+                ?.apiInterface!!
+                .getHomePayBills()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+
+        ApiHandle.createRetrofitBase(observable, apiCallback)
+
     }
 }

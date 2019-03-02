@@ -10,8 +10,10 @@ import com.sa.baseproject.database.entities.ListItem
 import com.sa.baseproject.webservice.ApiCallback
 import com.sa.baseproject.webservice.ApiErrorModel
 import com.sa.baseproject.webservice.ApiManager
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
-class AppBoundaryCallBack(service : ApiManager, database : AppDatabase) : PagedList.BoundaryCallback<ListItem>() {
+class AppBoundaryCallBack(service: ApiManager, database: AppDatabase) : PagedList.BoundaryCallback<ListItem>() {
 
     var page = 1
 
@@ -27,7 +29,7 @@ class AppBoundaryCallBack(service : ApiManager, database : AppDatabase) : PagedL
 
             override fun onSuccess(response: ListDataModel) {
 
-                BaseApp.daoInstance?.appDao()?.insert(response.data!!)
+                GlobalScope.launch { BaseApp.appDao?.insert(response.data!!) }
                 page++
             }
 
@@ -53,7 +55,7 @@ class AppBoundaryCallBack(service : ApiManager, database : AppDatabase) : PagedL
 
             override fun onSuccess(response: ListDataModel) {
 
-                BaseApp.daoInstance?.appDao()?.insert(response.data!!)
+                GlobalScope.launch { BaseApp.appDao?.insert(response.data!!) }
                 page++
             }
 

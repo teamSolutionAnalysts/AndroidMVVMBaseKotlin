@@ -22,6 +22,9 @@ import com.sa.baseproject.utils.SharedPreferenceUtil
 import com.sa.baseproject.utils.ToastUtils
 
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
 
 
 class MainActivity : AppActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -85,8 +88,17 @@ class MainActivity : AppActivity(), NavigationView.OnNavigationItemSelectedListe
             }
         }
 
+        var count: Int? = null
 
-        if (BaseApp.daoInstance?.appDao()?.countItems()!! <= 0) {
+        runBlocking {
+            async(Dispatchers.Default) {
+                count = BaseApp.appDao?.countItems()
+            }
+        }
+
+
+
+        if (count != null && count!! <= 0) {
             val myConstraints = Constraints.Builder()
                     .setRequiredNetworkType(NetworkType.CONNECTED)
                     .build()

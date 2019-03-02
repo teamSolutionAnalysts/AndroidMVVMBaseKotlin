@@ -21,6 +21,8 @@ import com.sa.baseproject.utils.PermissionUtils
 import com.sa.baseproject.utils.ToastUtils
 import com.sa.baseproject.utils.baseinrerface.ConnectionBridge
 import com.sa.baseproject.utils.broadcasts.NetworkChangeReceiver
+import com.sa.baseproject.wscoroutine.CustomCoroutineScope
+import kotlinx.coroutines.CoroutineScope
 
 
 abstract class AppActivity : AppCompatActivity(), ConnectionBridge {
@@ -171,4 +173,9 @@ abstract class AppActivity : AppCompatActivity(), ConnectionBridge {
     }
 
 
+    protected fun getActivityScope(activity: AppCompatActivity): CoroutineScope {
+        val localScopeApiHandle = CustomCoroutineScope()
+        activity.lifecycle.addObserver(localScopeApiHandle)
+        return localScopeApiHandle.getCoroutineScope()
+    }
 }

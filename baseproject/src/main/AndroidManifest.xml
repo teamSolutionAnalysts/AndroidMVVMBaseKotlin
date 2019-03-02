@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sa.baseproject">
 
-
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -21,14 +20,13 @@
         <activity
             android:name=".appview.signup.view.SignUpActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".appview.ForgotActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".appview.news.view.NewsActivity"
             android:screenOrientation="portrait" />
-
+        <!--<activity android:name=".appview.videoview.view.VideoPlayerActivity" />-->
         <activity
             android:name=".appview.login.view.SingInActivity"
             android:screenOrientation="portrait">
@@ -48,7 +46,6 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-
         <receiver
             android:name=".utils.broadcasts.NetworkChangeReceiver"
             android:label="NetworkChangeReceiver">
@@ -56,6 +53,14 @@
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
+
+        <activity android:name=".appview.coroutinedemo.CoroutineScopeActivity">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
     </application>
 
 </manifest>
