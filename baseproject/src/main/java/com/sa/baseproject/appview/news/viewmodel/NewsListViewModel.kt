@@ -4,13 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import androidx.work.Constraints
-import androidx.work.NetworkType
-import androidx.work.OneTimeWorkRequest
-import androidx.work.WorkManager
+
 import com.sa.baseproject.BaseApp
 import com.sa.baseproject.database.entities.ListItem
-import com.sa.baseproject.workers.MyTestWorker
+
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -43,15 +40,7 @@ class NewsListViewModel : ViewModel() {
 
 
     fun fetchTimelineAsync() {
-        val myConstraints = Constraints.Builder()
-                .setRequiredNetworkType(NetworkType.CONNECTED)
-                .build()
 
-        val workA = OneTimeWorkRequest.Builder(MyTestWorker::class.java)
-                .setConstraints(myConstraints)
-                .build()
-
-        WorkManager.getInstance().enqueue(workA)
     }
 
 }
