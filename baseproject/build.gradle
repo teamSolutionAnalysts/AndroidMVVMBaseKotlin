@@ -84,7 +84,10 @@ android {
     androidExtensions {
         experimental = true
     }
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     packagingOptions {
         exclude 'META-INF/atomicfu.kotlin_module'
     }
@@ -98,16 +101,16 @@ dependencies {
     })
 
     // Android Support libs
-    implementation 'androidx.appcompat:appcompat:1.1.0-alpha05'
-    implementation 'com.google.android.material:material:1.1.0-alpha06'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha5'
+    implementation 'androidx.appcompat:appcompat:1.1.0-beta01'
+    implementation 'com.google.android.material:material:1.1.0-alpha07'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta2'
     implementation 'androidx.fragment:fragment:1.0.0'
     implementation 'androidx.core:core:1.0.2'
     implementation 'androidx.legacy:legacy-support-core-utils:1.0.0'
     implementation 'androidx.legacy:legacy-support-core-ui:1.0.0'
-    implementation 'androidx.core:core-ktx:1.1.0-alpha05'
+    implementation 'androidx.core:core-ktx:1.2.0-alpha02'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha05'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha06'
 
 
     // Kotlin libs
@@ -124,11 +127,11 @@ dependencies {
 
     // Architecture Libs
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
-    implementation 'androidx.room:room-runtime:2.1.0-alpha07'
+    implementation 'androidx.room:room-runtime:2.1.0'
     implementation 'androidx.lifecycle:lifecycle-runtime:2.0.0'
-    implementation 'androidx.room:room-rxjava2:2.1.0-alpha07'
+    implementation 'androidx.room:room-rxjava2:2.1.0'
     kapt 'androidx.lifecycle:lifecycle-compiler:2.0.0'
-    kapt 'androidx.room:room-compiler:2.1.0-alpha07'
+    kapt 'androidx.room:room-compiler:2.1.0'
 
     implementation 'androidx.paging:paging-runtime:2.1.0'
     implementation "android.arch.work:work-runtime-ktx:$workerVersion"
@@ -137,15 +140,15 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
 
-    implementation "androidx.media:media:1.1.0-alpha04"
+    implementation "androidx.media:media:1.1.0-rc01"
 
     //GCM libs
     implementation "com.google.android.gms:play-services-location:$playserviceLibraryVersion"
 
 
     // SDP and SSP libs for dimensions
-    implementation 'com.intuit.sdp:sdp-android:1.0.6'
-    implementation 'com.intuit.ssp:ssp-android:1.0.6'
+    implementation "com.intuit.sdp:sdp-android:$sdpVersion"
+    implementation "com.intuit.ssp:ssp-android:$sdpVersion"
 
 // Coroutine
 //    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.1'
