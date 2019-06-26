@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.sa.baseproject.R
-import com.sa.baseproject.appview.MainActivity
 import com.sa.baseproject.base.AppFragment
 import com.sa.baseproject.model.PayBillsItem
 import com.sa.baseproject.webservice.ApiCallback
