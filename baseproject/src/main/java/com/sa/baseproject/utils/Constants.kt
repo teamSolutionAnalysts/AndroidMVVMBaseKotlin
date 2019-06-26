@@ -21,5 +21,10 @@ object Constants {
 
     val MAX_CLICK_INTERVAL: Long = 500//Max time interval to prevent double click
     val REQUEST_CODE_ASK_PERMISSIONS = 10001
+        val NO_INTERNET_REQ_CODE = 2145
+        val FRAGMENT_ENUM = "FragmentEnum"
+        val BUNDLE = "Bundle"
+        val ANIMATION = "Animation"
+        val ISNEW = "isNew"
 }
 

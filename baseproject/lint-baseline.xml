@@ -1,0 +1,862 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="5" by="lint 3.4.1">
+
+        <issue id="CheckResult" message="The result of `subscribeWith` is not used">
+                <location file="src/main/java/com/sa/baseproject/webservice/ApiHandle.kt"
+                        line="25" />
+        </issue>
+
+        <issue id="CheckResult" message="The result of `subscribeWith` is not used">
+                <location file="src/main/java/com/sa/baseproject/webservice/ApiHandle.kt"
+                        line="88" />
+        </issue>
+
+        <issue id="ExifInterface"
+                message="Avoid using `android.media.ExifInterface`; use `android.support.media.ExifInterface` from the support library instead">
+                <location file="src/main/java/com/sa/baseproject/imagepicker/ImagePicker.kt"
+                        line="13" />
+        </issue>
+
+        <issue id="ExifInterface"
+                message="Avoid using `android.media.ExifInterface`; use `android.support.media.ExifInterface` from the support library instead">
+                <location file="src/main/java/com/sa/baseproject/videoparker/VideoPicker.kt"
+                        line="13" />
+        </issue>
+
+        <issue id="MissingConstraints"
+                message="This view is not constrained vertically: at runtime it will jump to the top unless you add a vertical constraint">
+                <location file="src/main/res/layout/activity_forgot.xml" line="8" />
+        </issue>
+
+        <issue id="MissingConstraints"
+                message="This view is not constrained vertically: at runtime it will jump to the top unless you add a vertical constraint">
+                <location file="src/main/res/layout/activity_login.xml" line="8" />
+        </issue>
+
+        <issue id="MissingConstraints"
+                message="This view is not constrained vertically: at runtime it will jump to the top unless you add a vertical constraint">
+                <location file="src/main/res/layout/activity_singup.xml" line="17" />
+        </issue>
+
+        <issue id="UnusedAttribute"
+                message="Attribute `android:foreground` has no effect on API levels lower than 23 (current min is 21)">
+                <location file="src/main/res/layout/activity_forgot.xml" line="59" />
+        </issue>
+
+        <issue id="UnusedAttribute"
+                message="Attribute `android:foreground` has no effect on API levels lower than 23 (current min is 21)">
+                <location file="src/main/res/layout/activity_login.xml" line="77" />
+        </issue>
+
+        <issue id="BatteryLife"
+                message="Declaring a broadcastreceiver for `android.net.conn.CONNECTIVITY_CHANGE` is deprecated for apps targeting N and higher. In general, apps should not rely on this broadcast and instead use `JobScheduler` or `GCMNetworkManager`.">
+                <location file="src/main/AndroidManifest.xml" line="53" />
+        </issue>
+
+        <issue id="VectorRaster"
+                message="Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more">
+                <location file="src/main/res/drawable/ic_user_profile.xml" line="2" />
+        </issue>
+
+        <issue id="AppCompatCustomView"
+                message="This custom view should extend `android.support.v7.widget.AppCompatImageView` instead">
+                <location file="src/main/java/com/sa/baseproject/imageview/TouchImageView.java"
+                        line="37" />
+        </issue>
+
+        <issue id="GradleDependency"
+                message="A newer version of androidx.appcompat:appcompat than 1.1.0-alpha05 is available: 1.1.0-beta01">
+                <location file="build.gradle" />
+        </issue>
+
+        <issue id="GradleDependency"
+                message="A newer version of androidx.constraintlayout:constraintlayout than 2.0.0-alpha5 is available: 2.0.0-beta2">
+                <location file="build.gradle" />
+        </issue>
+
+        <issue id="GradleDependency"
+                message="A newer version of androidx.core:core-ktx than 1.1.0-alpha05 is available: 1.2.0-alpha02">
+                <location file="build.gradle" />
+        </issue>
+
+        <issue id="GradleDependency"
+                message="A newer version of androidx.media:media than 1.1.0-alpha04 is available: 1.1.0-rc01">
+                <location file="build.gradle" />
+        </issue>
+
+        <issue id="GradleDependency"
+                message="A newer version of androidx.recyclerview:recyclerview than 1.1.0-alpha05 is available: 1.1.0-alpha06">
+                <location file="build.gradle" />
+        </issue>
+
+        <issue id="GradleDependency"
+                message="A newer version of androidx.room:room-compiler than 2.1.0-alpha07 is available: 2.1.0">
+                <location file="build.gradle" />
+        </issue>
+
+        <issue id="GradleDependency"
+                message="A newer version of androidx.room:room-runtime than 2.1.0-alpha07 is available: 2.1.0">
+                <location file="build.gradle" />
+        </issue>
+
+        <issue id="GradleDependency"
+                message="A newer version of androidx.room:room-rxjava2 than 2.1.0-alpha07 is available: 2.1.0">
+                <location file="build.gradle" />
+        </issue>
+
+        <issue id="GradleDependency"
+                message="A newer version of com.google.android.gms:play-services-location than 16.0.0 is available: 17.0.0">
+                <location file="build.gradle" />
+        </issue>
+
+        <issue id="GradleDependency"
+                message="A newer version of com.google.android.material:material than 1.1.0-alpha06 is available: 1.1.0-alpha07">
+                <location file="build.gradle" />
+        </issue>
+
+        <issue id="PrivateResource"
+                message="The resource `@style/Base_Theme_AppCompat_Dialog` is marked as private in com.google.android.material:material">
+                <location file="src/main/java/com/sa/baseproject/utils/ProgressUtils.kt"
+                        line="20" />
+        </issue>
+
+        <issue id="UnsafeProtectedBroadcastReceiver"
+                message="This broadcast receiver declares an intent-filter for a protected broadcast action string, which can only be sent by the system, not third-party applications. However, the receiver&apos;s onReceive method does not appear to call getAction to ensure that the received Intent&apos;s action string matches the expected value, potentially making it possible for another actor to send a spoofed intent with no action string or a different action string and cause undesired behavior.">
+                <location
+                        file="src/main/java/com/sa/baseproject/utils/broadcasts/NetworkChangeReceiver.kt"
+                        line="19" />
+        </issue>
+
+        <issue id="AllowBackup"
+                message="On SDK version 23 and up, your app data will be automatically backed up and restored on app install. Consider adding the attribute `android:fullBackupContent` to specify an `@xml` resource which configures which files to backup. More info: https://developer.android.com/training/backup/autosyncapi.html">
+                <location file="src/main/AndroidManifest.xml" line="11" />
+        </issue>
+
+        <issue id="AllowBackup"
+                message="Should explicitly set `android:allowBackup` to `true` or `false` (it&apos;s `true` by default, and that can have some security implications for the application&apos;s data)">
+                <location file="src/main/AndroidManifest.xml" line="11" />
+        </issue>
+
+        <issue id="ObsoleteSdkInt" message="Unnecessary; SDK_INT is always >= 21">
+                <location file="src/main/java/com/sa/baseproject/imagepicker/ImagePicker.kt"
+                        line="149" />
+        </issue>
+
+        <issue id="ObsoleteSdkInt" message="Unnecessary; SDK_INT is never &lt; 21">
+                <location file="src/main/java/com/sa/baseproject/imageview/TouchImageView.java"
+                        line="1207" />
+        </issue>
+
+        <issue id="ObsoleteSdkInt" message="Unnecessary; SDK_INT is always >= 21">
+                <location file="src/main/java/com/sa/baseproject/imageview/TouchImageView.java"
+                        line="1269" />
+        </issue>
+
+        <issue id="StaticFieldLeak"
+                message="This `AsyncTask` class should be static or leaks might occur (com.sa.baseproject.imagepicker.ImagePicker.SaveBitmapAsyncTask)">
+                <location file="src/main/java/com/sa/baseproject/imagepicker/ImagePicker.kt"
+                        line="293" />
+        </issue>
+
+        <issue id="StaticFieldLeak"
+                message="This `AsyncTask` class should be static or leaks might occur (com.sa.baseproject.imagepicker.ImagePicker.OptimizeBitmapTask)">
+                <location file="src/main/java/com/sa/baseproject/imagepicker/ImagePicker.kt"
+                        line="372" />
+        </issue>
+
+        <issue id="StaticFieldLeak"
+                message="This `AsyncTask` class should be static or leaks might occur (com.sa.baseproject.videoparker.VideoPicker.SaveBitmapAsyncTask)">
+                <location file="src/main/java/com/sa/baseproject/videoparker/VideoPicker.kt"
+                        line="336" />
+        </issue>
+
+        <issue id="VectorPath"
+                message="Very long vector path (2359 characters), which is bad for performance. Considering reducing precision, removing minor details or rasterizing vector.">
+                <location file="src/main/res/drawable/ic_user_profile.xml" line="8" />
+        </issue>
+
+        <issue id="Overdraw"
+                message="Possible overdraw: Root element paints background `#11000000` with a theme that also paints a background (inferred theme is `@style/AppTheme.NoActionBar`)">
+                <location file="src/main/res/layout/activity_fragment_data_binding.xml" line="6" />
+        </issue>
+
+        <issue id="Overdraw"
+                message="Possible overdraw: Root element paints background `@color/white` with a theme that also paints a background (inferred theme is `@style/AppTheme.NoActionBar`)">
+                <location file="src/main/res/layout/fragment_home.xml" line="7" />
+        </issue>
+
+        <issue id="Overdraw"
+                message="Possible overdraw: Root element paints background `@color/colorPrimary` with a theme that also paints a background (inferred theme is `@style/AppTheme.NoActionBar`)">
+                <location file="src/main/res/layout/layout_drawer_header.xml" line="6" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.layout.activity_fragment_data_binding` appears to be unused">
+                <location file="src/main/res/layout/activity_fragment_data_binding.xml" line="2" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.layout.activity_news_details` appears to be unused">
+                <location file="src/main/res/layout/activity_news_details.xml" line="2" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.layout.activity_offline_new_source_list` appears to be unused">
+                <location file="src/main/res/layout/activity_offline_new_source_list.xml"
+                        line="2" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.layout.activity_video_play` appears to be unused">
+                <location file="src/main/res/layout/activity_video_play.xml" line="2" />
+        </issue>
+
+        <issue id="UnusedResources" message="The resource `R.drawable.bg` appears to be unused">
+                <location file="src/main/res/drawable/bg.jpg" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.drawable.black_border_btn` appears to be unused">
+                <location file="src/main/res/drawable/black_border_btn.xml" line="2" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.color.gray_light` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="11" />
+        </issue>
+
+        <issue id="UnusedResources" message="The resource `R.color.gray` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="12" />
+        </issue>
+
+        <issue id="UnusedResources" message="The resource `R.color.gray_dark` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="13" />
+        </issue>
+
+        <issue id="UnusedResources" message="The resource `R.color.orange` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="18" />
+        </issue>
+
+        <issue id="UnusedResources" message="The resource `R.color.popupbg` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="22" />
+        </issue>
+
+        <issue id="UnusedResources" message="The resource `R.color.linecolor` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="23" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.color.very_darkgray` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="24" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.color.light_gray` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="25" />
+        </issue>
+
+        <issue id="UnusedResources" message="The resource `R.color.dark_gray` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="26" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.color.dark_gray_reward_bg` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="27" />
+        </issue>
+
+        <issue id="UnusedResources" message="The resource `R.color.red` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="28" />
+        </issue>
+
+        <issue id="UnusedResources" message="The resource `R.color.pink` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="29" />
+        </issue>
+
+        <issue id="UnusedResources" message="The resource `R.color.green` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="30" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.color.white_green` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="31" />
+        </issue>
+
+        <issue id="UnusedResources" message="The resource `R.color.blue` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="32" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.color.white_blue` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="33" />
+        </issue>
+
+        <issue id="UnusedResources" message="The resource `R.color.dark_blue` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="34" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.color.light_blue` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="35" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.color.text_primary_color` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="38" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.color.text_primary_color_disabled` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="39" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.color.text_secondary_color` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="40" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.color.text_secondary_dark_color` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="41" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.color.text_hint_color` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="42" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.color.text_link_color` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="43" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.color.text_dialog_button_color` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="44" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.color.text_quick_response_color` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="45" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.color.toolbar_divider_color` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="49" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.color.list_divider_color` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="50" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.color.tw__transparent` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="51" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.color.semiblack__transparent` appears to be unused">
+                <location file="src/main/res/values/colors.xml" line="52" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.dimen.font_larger` appears to be unused">
+                <location file="src/main/res/values/dimens.xml" line="8" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.dimen.font_large` appears to be unused">
+                <location file="src/main/res/values/dimens.xml" line="9" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.dimen.font_normal` appears to be unused">
+                <location file="src/main/res/values/dimens.xml" line="10" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.dimen.font_small` appears to be unused">
+                <location file="src/main/res/values/dimens.xml" line="11" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.dimen.spacing_huge` appears to be unused">
+                <location file="src/main/res/values/dimens.xml" line="14" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.dimen.spacing_large` appears to be unused">
+                <location file="src/main/res/values/dimens.xml" line="15" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.dimen.spacing_normal` appears to be unused">
+                <location file="src/main/res/values/dimens.xml" line="16" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.dimen.spacing_small` appears to be unused">
+                <location file="src/main/res/values/dimens.xml" line="17" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.dimen.spacing_tiny` appears to be unused">
+                <location file="src/main/res/values/dimens.xml" line="18" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.dimen.button_height_tall` appears to be unused">
+                <location file="src/main/res/values/dimens.xml" line="21" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.dimen.button_height_normal` appears to be unused">
+                <location file="src/main/res/values/dimens.xml" line="22" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.dimen.button_height_short` appears to be unused">
+                <location file="src/main/res/values/dimens.xml" line="23" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.drawable.drawer_shadow` appears to be unused">
+                <location file="src/main/res/drawable-xhdpi/drawer_shadow.9.png" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.drawable.ic_drawer` appears to be unused">
+                <location file="src/main/res/drawable-xhdpi/ic_drawer.png" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.drawable.ic_home_black_24dp` appears to be unused">
+                <location file="src/main/res/drawable/ic_home_black_24dp.xml" line="1" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.drawable.ic_user_profile` appears to be unused">
+                <location file="src/main/res/drawable/ic_user_profile.xml" line="1" />
+        </issue>
+
+        <issue id="UnusedResources" message="The resource `R.xml.lint` appears to be unused">
+                <location file="src/main/res/xml/lint.xml" line="2" />
+        </issue>
+
+        <issue id="UnusedResources" message="The resource `R.menu.menu` appears to be unused">
+                <location file="src/main/res/menu/menu.xml" line="2" />
+        </issue>
+
+        <issue id="UnusedResources" message="The resource `R.string.one` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="3" />
+        </issue>
+
+        <issue id="UnusedResources" message="The resource `R.string.two` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="4" />
+        </issue>
+
+        <issue id="UnusedResources" message="The resource `R.string.three` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="5" />
+        </issue>
+
+        <issue id="UnusedResources" message="The resource `R.string.four` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="6" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.please_wait` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="7" />
+        </issue>
+
+        <issue id="UnusedResources" message="The resource `R.string.email` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="8" />
+        </issue>
+
+        <issue id="UnusedResources" message="The resource `R.string.password` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="9" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.msg_valid_email` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="11" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.msg_valid_password` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="12" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.details_screen` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="16" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.error_message_location` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="33" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.error_message_call` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="35" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.error_message_somethingwrong` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="36" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.error_message_clienterror` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="37" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.error_message_servererror` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="38" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.error_message_no_record` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="39" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.error_message_checkagain` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="42" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.msg_success` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="47" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.action_save` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="50" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.action_cancel` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="51" />
+        </issue>
+
+        <issue id="UnusedResources" message="The resource `R.string.btn_next` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="65" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.txt_withdraw_amout` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="66" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.txt_withdraw` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="67" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.etx_payment_number` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="68" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.txt_currnet_balance` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="69" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.enable_random_adaptation` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="72" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.error_drm_not_supported` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="74" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.error_drm_unsupported_scheme` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="76" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.error_drm_unknown` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="78" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.error_no_decoder` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="80" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.error_no_secure_decoder` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="82" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.error_querying_decoders` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="84" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.error_instantiating_decoder` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="86" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.error_unsupported_video` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="88" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.error_unsupported_audio` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="90" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.storage_permission_denied` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="92" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.sample_list_load_error` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="94" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.string.piker_choseimage` appears to be unused">
+                <location file="src/main/res/values/strings.xml" line="99" />
+        </issue>
+
+        <issue id="UnusedResources"
+                message="The resource `R.style.ContentText` appears to be unused">
+                <location file="src/main/res/values/styles.xml" line="18" />
+        </issue>
+
+        <issue id="RedundantNamespace" message="This namespace declaration is redundant">
+                <location file="src/main/res/layout/activity_main.xml" line="12" />
+        </issue>
+
+        <issue id="RedundantNamespace" message="This namespace declaration is redundant">
+                <location file="src/main/res/layout/activity_offline_new_source_list.xml"
+                        line="7" />
+        </issue>
+
+        <issue id="IconLocation"
+                message="Found bitmap drawable `res/drawable/bg.jpg` in densityless folder">
+                <location file="src/main/res/drawable/bg.jpg" />
+        </issue>
+
+        <issue id="IconMissingDensityFolder"
+                message="Missing density variation folders in `src/main/res`: drawable-hdpi, drawable-mdpi, drawable-xxhdpi">
+                <location file="src/main/res" />
+        </issue>
+
+        <issue id="GoogleAppIndexingWarning"
+                message="App is not indexable by Google Search; consider adding at least one Activity with an ACTION-VIEW intent filter. See issue explanation for more details.">
+                <location file="src/main/AndroidManifest.xml" line="11" />
+        </issue>
+
+        <issue id="ClickableViewAccessibility"
+                message="Custom view ``ImageView`` has `setOnTouchListener` called on it but does not override `performClick`">
+                <location file="src/main/java/com/sa/baseproject/imageview/TouchImageView.java"
+                        line="134" />
+        </issue>
+
+        <issue id="ClickableViewAccessibility"
+                message="`PrivateOnTouchListener#onTouch` should call `View#performClick` when a click is detected">
+                <location file="src/main/java/com/sa/baseproject/imageview/TouchImageView.java"
+                        line="840" />
+        </issue>
+
+        <issue id="ContentDescription" message="Missing `contentDescription` attribute on image">
+                <location file="src/main/res/layout/activity_forgot.xml" line="22" />
+        </issue>
+
+        <issue id="ContentDescription" message="Missing `contentDescription` attribute on image">
+                <location file="src/main/res/layout/activity_login.xml" line="22" />
+        </issue>
+
+        <issue id="ContentDescription" message="Missing `contentDescription` attribute on image">
+                <location file="src/main/res/layout/activity_singup.xml" line="30" />
+        </issue>
+
+        <issue id="ContentDescription" message="Missing `contentDescription` attribute on image">
+                <location file="src/main/res/layout/layout_drawer_header.xml" line="41" />
+        </issue>
+
+        <issue id="SetTextI18n"
+                message="String literal in `setText` can not be translated. Use Android resources instead.">
+                <location
+                        file="src/main/java/com/sa/baseproject/appview/coroutinedemo/CoroutineScopeActivity.kt"
+                        line="35" />
+        </issue>
+
+        <issue id="SetTextI18n"
+                message="String literal in `setText` can not be translated. Use Android resources instead.">
+                <location
+                        file="src/main/java/com/sa/baseproject/appview/coroutinedemo/CoroutineScopeActivity.kt"
+                        line="40" />
+        </issue>
+
+        <issue id="SetTextI18n"
+                message="String literal in `setText` can not be translated. Use Android resources instead.">
+                <location
+                        file="src/main/java/com/sa/baseproject/appview/coroutinedemo/CoroutineScopeActivity.kt"
+                        line="51" />
+        </issue>
+
+        <issue id="SetTextI18n"
+                message="String literal in `setText` can not be translated. Use Android resources instead.">
+                <location
+                        file="src/main/java/com/sa/baseproject/appview/coroutinedemo/CoroutineScopeActivity.kt"
+                        line="56" />
+        </issue>
+
+        <issue id="SetTextI18n"
+                message="String literal in `setText` can not be translated. Use Android resources instead.">
+                <location
+                        file="src/main/java/com/sa/baseproject/appview/coroutinedemo/CoroutineScopeFragment.kt"
+                        line="33" />
+        </issue>
+
+        <issue id="SetTextI18n"
+                message="String literal in `setText` can not be translated. Use Android resources instead.">
+                <location
+                        file="src/main/java/com/sa/baseproject/appview/coroutinedemo/CoroutineScopeFragment.kt"
+                        line="38" />
+        </issue>
+
+        <issue id="HardcodedText"
+                message="Hardcoded string &quot;Activity level api call&quot;, should use `@string` resource">
+                <location file="src/main/res/layout/activity_coroutine_scope.xml" line="16" />
+        </issue>
+
+        <issue id="HardcodedText"
+                message="Hardcoded string &quot;Result&quot;, should use `@string` resource">
+                <location file="src/main/res/layout/activity_coroutine_scope.xml" line="29" />
+        </issue>
+
+        <issue id="HardcodedText"
+                message="Hardcoded string &quot;Globle level api call&quot;, should use `@string` resource">
+                <location file="src/main/res/layout/activity_coroutine_scope.xml" line="41" />
+        </issue>
+
+        <issue id="HardcodedText"
+                message="Hardcoded string &quot;Name&quot;, should use `@string` resource">
+                <location file="src/main/res/layout/activity_news_details.xml" line="24" />
+        </issue>
+
+        <issue id="HardcodedText"
+                message="Hardcoded string &quot;Description&quot;, should use `@string` resource">
+                <location file="src/main/res/layout/activity_news_details.xml" line="53" />
+        </issue>
+
+        <issue id="HardcodedText"
+                message="Hardcoded string &quot;Fragment level api call&quot;, should use `@string` resource">
+                <location file="src/main/res/layout/fragment_coroutine_scope.xml" line="16" />
+        </issue>
+
+        <issue id="HardcodedText"
+                message="Hardcoded string &quot;Result&quot;, should use `@string` resource">
+                <location file="src/main/res/layout/fragment_coroutine_scope.xml" line="29" />
+        </issue>
+
+        <issue id="HardcodedText"
+                message="Hardcoded string &quot;Choose wisely...&quot;, should use `@string` resource">
+                <location file="src/main/res/layout/fragment_home.xml" line="19" />
+        </issue>
+
+        <issue id="HardcodedText"
+                message="Hardcoded string &quot;See Video&quot;, should use `@string` resource">
+                <location file="src/main/res/layout/fragment_home.xml" line="32" />
+        </issue>
+
+        <issue id="HardcodedText"
+                message="Hardcoded string &quot;Read News&quot;, should use `@string` resource">
+                <location file="src/main/res/layout/fragment_home.xml" line="45" />
+        </issue>
+
+        <issue id="HardcodedText"
+                message="Hardcoded string &quot;Coroutine Activity Scope&quot;, should use `@string` resource">
+                <location file="src/main/res/layout/fragment_home.xml" line="60" />
+        </issue>
+
+        <issue id="HardcodedText"
+                message="Hardcoded string &quot;Coroutine Fragment Scope&quot;, should use `@string` resource">
+                <location file="src/main/res/layout/fragment_home.xml" line="73" />
+        </issue>
+
+        <issue id="HardcodedText"
+                message="Hardcoded string &quot;Name&quot;, should use `@string` resource">
+                <location file="src/main/res/layout/fragment_news_details.xml" line="24" />
+        </issue>
+
+        <issue id="HardcodedText"
+                message="Hardcoded string &quot;Description&quot;, should use `@string` resource">
+                <location file="src/main/res/layout/fragment_news_details.xml" line="50" />
+        </issue>
+
+        <issue id="HardcodedText"
+                message="Hardcoded string &quot;test@test.com&quot;, should use `@string` resource">
+                <location file="src/main/res/layout/layout_drawer_header.xml" line="27" />
+        </issue>
+
+        <issue id="HardcodedText"
+                message="Hardcoded string &quot;HeFEss&quot;, should use `@string` resource">
+                <location file="src/main/res/layout/layout_drawer_header.xml" line="37" />
+        </issue>
+
+        <issue id="HardcodedText"
+                message="Hardcoded string &quot;Test&quot;, should use `@string` resource">
+                <location file="src/main/res/menu/menu.xml" line="6" />
+        </issue>
+
+        <issue id="RtlHardcoded"
+                message="Redundant attribute `layout_marginLeft`; already defining `layout_marginStart` with `targetSdkVersion` 27">
+                <location file="src/main/res/layout/activity_news_details.xml" line="21" />
+        </issue>
+
+        <issue id="RtlHardcoded"
+                message="Redundant attribute `layout_marginLeft`; already defining `layout_marginStart` with `targetSdkVersion` 27">
+                <location file="src/main/res/layout/activity_news_details.xml" line="35" />
+        </issue>
+
+        <issue id="RtlHardcoded"
+                message="Redundant attribute `layout_marginRight`; already defining `layout_marginEnd` with `targetSdkVersion` 27">
+                <location file="src/main/res/layout/activity_news_details.xml" line="36" />
+        </issue>
+
+        <issue id="RtlHardcoded"
+                message="Redundant attribute `layout_marginLeft`; already defining `layout_marginStart` with `targetSdkVersion` 27">
+                <location file="src/main/res/layout/activity_news_details.xml" line="50" />
+        </issue>
+
+        <issue id="RtlHardcoded"
+                message="Redundant attribute `layout_marginLeft`; already defining `layout_marginStart` with `targetSdkVersion` 27">
+                <location file="src/main/res/layout/fragment_news_details.xml" line="21" />
+        </issue>
+
+        <issue id="RtlHardcoded"
+                message="Redundant attribute `layout_marginLeft`; already defining `layout_marginStart` with `targetSdkVersion` 27">
+                <location file="src/main/res/layout/item_new_source.xml" line="24" />
+        </issue>
+
+        <issue id="RtlHardcoded"
+                message="Consider replacing `android:layout_alignParentLeft` with `android:layout_alignParentStart=&quot;true&quot;` to better support right-to-left layouts">
+                <location file="src/main/res/layout/layout_drawer_header.xml" line="35" />
+        </issue>
+
+        <issue id="RtlHardcoded"
+                message="Consider replacing `android:layout_toRightOf` with `android:layout_toEndOf=&quot;@+id/txt_userinvitecode&quot;` to better support right-to-left layouts">
+                <location file="src/main/res/layout/layout_drawer_header.xml" line="46" />
+        </issue>
+
+        <issue id="RtlEnabled"
+                message="The project references RTL attributes, but does not explicitly enable or disable RTL support with `android:supportsRtl` in the manifest">
+                <location file="src/main/AndroidManifest.xml" />
+        </issue>
+
+</issues>

@@ -1,29 +1,25 @@
 package com.sa.baseproject.base
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
+import android.app.Activity
+import android.content.*
 import android.graphics.Color
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.core.content.ContextCompat
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import com.photoshoot.photoshootapp.utils.broadcasts.ConnectivityUtils
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.google.android.material.snackbar.Snackbar
 import com.sa.baseproject.BaseApp
-
 import com.sa.baseproject.R
+import com.sa.baseproject.utils.Constants
 import com.sa.baseproject.utils.PermissionUtils
 import com.sa.baseproject.utils.ToastUtils
 import com.sa.baseproject.utils.baseinrerface.ConnectionBridge
+import com.sa.baseproject.utils.broadcasts.ConnectivityUtils
 import com.sa.baseproject.utils.broadcasts.NetworkChangeReceiver
 import com.sa.baseproject.wscoroutine.CustomCoroutineScope
 import kotlinx.coroutines.CoroutineScope
-
 
 abstract class AppActivity : AppCompatActivity(), ConnectionBridge {
 
@@ -93,11 +89,11 @@ abstract class AppActivity : AppCompatActivity(), ConnectionBridge {
 
 
     protected fun checkShowingConnectionError() {
-        if (!isNetworkAvailable()) {
-            showStyledSankBar()
-        } else {
-            hideSnackBar()
-        }
+            //        if (!isNetworkAvailable()) {
+            //            showStyledSankBar()
+            //        } else {
+            //            hideSnackBar()
+            //        }
     }
 
     private fun showStyledSankBar() {
@@ -178,4 +174,14 @@ abstract class AppActivity : AppCompatActivity(), ConnectionBridge {
         activity.lifecycle.addObserver(localScopeApiHandle)
         return localScopeApiHandle.getCoroutineScope()
     }
+
+        override fun onActivityResult(requestCode : Int, resultCode : Int, data : Intent?) {
+                if (requestCode == Constants.NO_INTERNET_REQ_CODE && resultCode == Activity.RESULT_OK && data != null) {
+                        val fragment = data.getSerializableExtra(Constants.FRAGMENT_ENUM) as AppFragmentState
+                        val bundle = data.getBundleExtra(Constants.BUNDLE)
+                        val isAnimation = data.getBooleanExtra(Constants.ANIMATION, false)
+                        appFragmentManager!!.addFragment<Any>(fragment, bundle, isAnimation)
+                }
+                super.onActivityResult(requestCode, resultCode, data)
+        }
 }

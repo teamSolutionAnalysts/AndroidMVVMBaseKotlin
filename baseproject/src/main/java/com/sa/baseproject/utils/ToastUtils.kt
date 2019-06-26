@@ -1,7 +1,11 @@
 package com.sa.baseproject.utils
 
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.widget.TextView
 import android.widget.Toast
 import com.sa.baseproject.BaseApp
+import com.sa.baseproject.R
 
 /**
  * Purpose  - Class summary
@@ -26,4 +30,16 @@ object ToastUtils {
         }
     }
 
+        fun failureToast(stringText : String? = "Failure") {
+                val context = BaseApp.Companion.instance!!
+                val layout = LayoutInflater.from(context).inflate(R.layout.layout_toast_failure, null, false)
+                val text = layout.findViewById(R.id.tToastTitle) as TextView
+                text.text = stringText
+
+                val toast = Toast(context)
+                toast.setGravity(Gravity.BOTTOM, 0, 0)
+                toast.duration = Toast.LENGTH_LONG
+                toast.view = layout
+                toast.show()
+        }
 }

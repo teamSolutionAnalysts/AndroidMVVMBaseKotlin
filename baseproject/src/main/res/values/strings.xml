@@ -30,17 +30,17 @@
 
 
     <!--Error-->
-    <string name="error.message.location">"Location is not defined"</string>
-    <string name="error.message.network">Check your connection and try again.</string>
-    <string name="error.message.call">Call failed</string>
-    <string name="error.message.somethingwrong">Something went wrong, Please try later</string>
-    <string name="error.message.clienterror">Client error</string>
-    <string name="error.message.servererror">Server error</string>
-    <string name="error.message.no_record">No content found</string>
-    <string name="error.message.empty">Oops, there are no results to display</string>
-    <string name="error.message.error">Oops, there was an error fetching the data</string>
-    <string name="error.message.checkagain">Check again</string>
-    <string name="error.message.tryagain">Try again</string>
+    <string name="error_message_location">"Location is not defined"</string>
+    <string name="error_message_network">Check your connection and try again.</string>
+    <string name="error_message_call">Call failed</string>
+    <string name="error_message_somethingwrong">Something went wrong, Please try later</string>
+    <string name="error_message_clienterror">Client error</string>
+    <string name="error_message_servererror">Server error</string>
+    <string name="error_message_no_record">No content found</string>
+    <string name="error_message_empty">Oops, there are no results to display</string>
+    <string name="error_message_error">Oops, there was an error fetching the data</string>
+    <string name="error_message_checkagain">Check again</string>
+    <string name="error_message_tryagain">Try again</string>
 
 
     <!--Messages-->
@@ -98,5 +98,12 @@
     <string name="piker_chosevideo">Choose Video</string>
     <string name="piker_choseimage">Choose Image</string>
     <string name="txt_file_toolarge">File is too large. Maximum size is %1$sMB</string>
+    <string name="retry">Retry</string>
+    <string name="no_connection">No Internet Connection</string>
+    <string name="no_connection_msg">Please check your internet connectivity and try again</string>
+    <string name="nv_settings">Settings</string>
+    <string name="nv_home">Home</string>
+    <string name="nv_bookmark">Bookmark</string>
+    <string name="Failure">Failure</string>
 
 </resources>
