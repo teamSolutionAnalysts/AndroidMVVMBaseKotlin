@@ -1,0 +1,10 @@
+ext {
+    sourceDirectoriesPath = [common:"src/main/res/layout/common",
+                             coroutinedemo:"src/main/res/layout/coroutinedemo",
+                             news:"src/main/res/layout/news",
+                             home:"src/main/res/layout/home",
+                             signup:"src/main/res/layout/signup",
+                             login:"src/main/res/layout/login",
+                             layout:"src/main/res/layout",
+                             res:"src/main/res",]
+}
