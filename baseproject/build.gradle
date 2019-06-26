@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply from: '../dependencies.gradle'
+apply from: '../resourcepath.gradle'
 
 android {
     compileSdkVersion rootProject.ext.androidCompileSdkVersion
@@ -82,16 +83,7 @@ android {
     }
     sourceSets {
         main {
-            res.srcDirs =
-                    ['src/main/res/layout/common',
-                     'src/main/res/layout/coroutinedemo',
-                     'src/main/res/layout/news',
-                     'src/main/res/layout/home',
-                     'src/main/res/layout/signup',
-                     'src/main/res/layout/login',
-                     'src/main/res/layout',
-                     'src/main/res'
-                    ]
+            res.srcDirs = sourceDirectoriesPath.values()
         }
     }
     buildToolsVersion '28.0.3'
