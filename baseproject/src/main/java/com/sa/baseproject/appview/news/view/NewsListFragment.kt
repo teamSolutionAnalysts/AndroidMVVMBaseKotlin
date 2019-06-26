@@ -1,20 +1,18 @@
 package com.sa.baseproject.appview.news.view
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import androidx.paging.PagedList
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.paging.PagedList
 import com.sa.baseproject.R
 import com.sa.baseproject.appview.news.adapter.NewsSourceAdapter
 import com.sa.baseproject.appview.news.viewmodel.NewsListViewModel
 import com.sa.baseproject.base.AppFragment
 import com.sa.baseproject.database.entities.ListItem
 import kotlinx.android.synthetic.main.activity_offline_new_source_list.*
-
 
 class NewsListFragment : AppFragment() {
 
@@ -25,7 +23,6 @@ class NewsListFragment : AppFragment() {
 
     override fun initializeComponent(view: View?) {
         setListData()
-
         swipeContainer.setOnRefreshListener {
             viewProvider?.fetchTimelineAsync()
         }
@@ -34,6 +31,12 @@ class NewsListFragment : AppFragment() {
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light)
+
+        viewProvider?.dataObserver?.observe(this, Observer {
+            if (it!!) {
+                swipeContainer.isRefreshing = false
+            }
+        })
     }
 
     private var adapter: NewsSourceAdapter? = null

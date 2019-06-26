@@ -1,8 +1,8 @@
 package com.sa.baseproject.appview.signup.viewmodel
 
-import androidx.lifecycle.ViewModel
-import androidx.databinding.ObservableField
 import android.view.View
+import androidx.databinding.ObservableField
+import androidx.lifecycle.ViewModel
 
 class SignUpViewModel : ViewModel() {
 

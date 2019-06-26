@@ -9,8 +9,7 @@ import com.sa.baseproject.appview.signup.view.SignUpActivity
 import com.sa.baseproject.base.AppActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
-
-class SingInActivity : AppActivity() {
+class SignInActivity : AppActivity() {
 
     override fun checkNetworkAvailableWithError(): Boolean {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -24,19 +23,21 @@ class SingInActivity : AppActivity() {
 
     override fun initializeComponents() {
 
-
         setSupportActionBar(toolbar)
 
         supportActionBar!!.setTitle(R.string.login)
 
         txt_forgtpassword.setOnClickListener {
-            startActivity(Intent(this@SingInActivity, ForgotActivity::class.java))
+                startActivity(Intent(this@SignInActivity, ForgotActivity::class.java))
         }
         txt_singup.setOnClickListener {
-            startActivity(Intent(this@SingInActivity, SignUpActivity::class.java))
+                startActivity(Intent(this@SignInActivity, SignUpActivity::class.java))
         }
         button_singin.setOnClickListener {
-            startActivity(Intent(this@SingInActivity, MainActivity::class.java))
+                val intent = Intent(this@SignInActivity, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                startActivity(intent)
+                finish()
         }
     }
 

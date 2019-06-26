@@ -89,6 +89,19 @@ android {
         exclude 'META-INF/atomicfu.kotlin_module'
     }
 
+    lintOptions {
+        baseline file("lint-baseline.xml")
+        // if set to true (default), stops the build if errors are found.
+        abortOnError true
+
+        checkAllWarnings true
+//        warningsAsErrors true
+
+//         set to true to turn off analysis progress reporting by lint
+//        quiet true
+//         if true, only report errors
+//        ignoreWarnings true
+    }
 }
 
 dependencies {

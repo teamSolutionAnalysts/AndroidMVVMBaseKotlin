@@ -1,4 +1,4 @@
-package com.photoshoot.photoshootapp.utils.broadcasts
+package com.sa.baseproject.utils.broadcasts
 
 import android.content.Context
 import android.net.ConnectivityManager
