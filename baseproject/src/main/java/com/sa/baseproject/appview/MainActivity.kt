@@ -2,7 +2,6 @@ package com.sa.baseproject.appview
 
 import com.google.android.material.navigation.NavigationView
 import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.ActionBarDrawerToggle
 import android.view.MenuItem
 import android.view.View
@@ -14,7 +13,6 @@ import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager*/
 import com.sa.baseproject.BaseApp
 import com.sa.baseproject.R
-import com.sa.baseproject.R.id.toolbar
 import com.sa.baseproject.base.AppActivity
 import com.sa.baseproject.base.AppFragmentState
 import com.sa.baseproject.utils.KeyboardUtils

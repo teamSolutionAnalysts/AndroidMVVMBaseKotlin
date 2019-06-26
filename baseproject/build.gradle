@@ -80,7 +80,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
+    sourceSets {
+        main {
+            res.srcDirs =
+                    ['src/main/res/layout/common',
+                     'src/main/res/layout/coroutinedemo',
+                     'src/main/res/layout/news',
+                     'src/main/res/layout/home',
+                     'src/main/res/layout/signup',
+                     'src/main/res/layout/login',
+                     'src/main/res/layout',
+                     'src/main/res'
+                    ]
+        }
+    }
     buildToolsVersion '28.0.3'
     androidExtensions {
         experimental = true
