@@ -1,29 +1,29 @@
 package com.sa.baseproject.appview
 
-import com.google.android.material.navigation.NavigationView
-import androidx.core.view.GravityCompat
-import androidx.appcompat.app.ActionBarDrawerToggle
-import android.view.MenuItem
-import android.view.View
-import androidx.work.Constraints
-import androidx.work.NetworkType
 /*import androidx.work.Constraints
 import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager*/
+
+import android.os.Handler
+import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
+import androidx.work.Constraints
+import androidx.work.NetworkType
+import com.google.android.material.navigation.NavigationView
 import com.sa.baseproject.BaseApp
 import com.sa.baseproject.R
 import com.sa.baseproject.base.AppActivity
 import com.sa.baseproject.base.AppFragmentState
 import com.sa.baseproject.utils.KeyboardUtils
 import com.sa.baseproject.utils.SharedPreferenceUtil
-import com.sa.baseproject.utils.ToastUtils
-
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
-
 
 class MainActivity : AppActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -75,8 +75,6 @@ class MainActivity : AppActivity(), NavigationView.OnNavigationItemSelectedListe
         appFragmentManager!!.addFragment<Any>(AppFragmentState.F_HOME, null, false)
 
         SharedPreferenceUtil.getInstance(this@MainActivity)!!.saveData("test", "1")
-        ToastUtils.longToast(stringText = "1")
-        //  txtName.setText("test@test.com")
 
         toolbar.setNavigationOnClickListener {
             if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
@@ -110,12 +108,22 @@ class MainActivity : AppActivity(), NavigationView.OnNavigationItemSelectedListe
 
     }
 
+    private var doubleBackToExitPressedOnce = false
     override fun onBackPressed() {
 
         if (drawer_layout != null && drawer_layout.isDrawerOpen(nav_view)) {
             drawer_layout.closeDrawer(nav_view)
         } else {
-            super.onBackPressed()
+            if (appFragmentManager?.getStackSize() != null && appFragmentManager?.getStackSize()!! > 1) {
+                super.onBackPressed()
+            } else {
+                if (doubleBackToExitPressedOnce) {
+                    super.onBackPressed()
+                }
+                this.doubleBackToExitPressedOnce = true
+                Toast.makeText(BaseApp.instance, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
+                Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
+            }
         }
     }
 

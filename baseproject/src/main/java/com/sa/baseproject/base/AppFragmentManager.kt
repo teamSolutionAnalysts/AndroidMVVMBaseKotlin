@@ -1,12 +1,15 @@
 package com.sa.baseproject.base
 
-
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-
+import com.sa.baseproject.BaseApp
 import com.sa.baseproject.R
+import com.sa.baseproject.utils.Constants
+import com.sa.baseproject.utils.KeyboardUtils
+import com.sa.baseproject.utils.broadcasts.ConnectivityUtils
 import java.util.*
 
 // Handling of fragment switch , adding fragment to stack or removing fragment from stack, setting top bar data
@@ -18,9 +21,9 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
     private var ft: FragmentTransaction? = null
 
     private val stack = Stack<Fragment>()
-
+    fun getStackSize() = stack?.size ?: 0
     // Common Handling of top bar for all fragments like header name, icon on top bar in case of moving to other fragment and coming back again
-    private fun <T> setUp(currentState: AppFragmentState, keys: T?) {
+    fun <T> setUp(currentState : AppFragmentState, keys : T?) {
 
         when (currentState) {
             AppFragmentState.F_HOME -> {
@@ -41,9 +44,14 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
                 activity.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
                // activity.supportActionBar!!.setDefaultDisplayHomeAsUpEnabled(true)
             }
+
+            AppFragmentState.F_COROUTINE_SCOPE -> {
+                activity.supportActionBar!!.title = "Co-routine"
+                activity.supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+                activity.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+                // activity.supportActionBar!!.setDefaultDisplayHomeAsUpEnabled(true)
+            }
         }
-
-
     }
 
     // called when fragment backpressed
@@ -218,20 +226,38 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
         return fragmentManager.findFragmentById(containerId)
     }
 
-    fun <T> addFragment(fragmentEnum: AppFragmentState, keys: Any?, isAnimation: Boolean) {
-        val availableFragment = getFragment(fragmentEnum)
-        if (availableFragment != null) {
-            moveFragmentToTop(fragmentEnum, keys, isAnimation)
+    fun <T> addFragment(fragmentEnum : AppFragmentState, keys : Bundle?, isAnimation : Boolean) {
+        KeyboardUtils.hideKeyboard(activity)
+        if (ConnectivityUtils.isNetworkAvailable(BaseApp.instance!!.baseContext)) {
+            val availableFragment = getFragment(fragmentEnum)
+            if (availableFragment != null) {
+                moveFragmentToTop(fragmentEnum, keys, isAnimation)
+            } else {
+                addFragmentInStack(fragmentEnum, keys, isAnimation)
+            }
         } else {
-            addFragmentInStack(fragmentEnum, keys, isAnimation)
+            internetConnectionErrorFragmentAdd(fragmentEnum, keys, isAnimation)
         }
     }
 
-
-    fun <T> addFragmentAlwasNew(fragmentEnum: AppFragmentState, keys: Any?, isAnimation: Boolean) {
-        addFragmentInStack(fragmentEnum, keys, isAnimation)
+    fun <T> addFragmentAlwasNew(fragmentEnum : AppFragmentState, keys : Bundle?, isAnimation : Boolean) {
+        KeyboardUtils.hideKeyboard(activity)
+        if (ConnectivityUtils.isNetworkAvailable(BaseApp.instance!!.baseContext)) {
+            addFragmentInStack(fragmentEnum, keys, isAnimation)
+        } else {
+            internetConnectionErrorFragmentAdd(fragmentEnum, keys, isAnimation)
+        }
     }
 
+    private fun internetConnectionErrorFragmentAdd(fragmentEnum : AppFragmentState, keys : Bundle?, isAnimation : Boolean) {
+        val intent = Intent(activity, NoInternetActivity::class.java)
+        val bundle = Bundle()
+        bundle.putSerializable(Constants.FRAGMENT_ENUM, fragmentEnum)
+        bundle.putBundle(Constants.BUNDLE, keys)
+        bundle.putBoolean(Constants.ANIMATION, isAnimation)
+        addFragmentInStack<Any>(AppFragmentState.F_NO_INTERNET, bundle, false)
+        //            activity.startActivityForResult(intent, Constants.NO_INTERNET_REQ_CODE)
+    }
 
     fun clearAllFragment() {
         val supportFragmentManager = activity.supportFragmentManager
