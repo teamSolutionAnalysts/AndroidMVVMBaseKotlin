@@ -37,6 +37,10 @@ class HomeFragment : AppFragment() {
         btnFragmentScope.setOnClickListener {
             (activity as MainActivity).appFragmentManager!!.addFragment<Any>(AppFragmentState.F_COROUTINE_SCOPE, null, false)
         }
+
+        btnPermissionDemo.setOnClickListener {
+            (activity as MainActivity).appFragmentManager!!.addFragment<Any>(AppFragmentState.F_PERMISSION_DEMO, null, false)
+        }
     }
 
     override fun pageVisible() {

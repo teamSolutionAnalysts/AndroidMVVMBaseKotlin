@@ -35,18 +35,24 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
                 activity.supportActionBar!!.title = "News List"
                 activity.supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
                 activity.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-             //   activity.supportActionBar!!.setDefaultDisplayHomeAsUpEnabled(true)
+                //   activity.supportActionBar!!.setDefaultDisplayHomeAsUpEnabled(true)
             }
 
             AppFragmentState.F_NEWS_DETAIL -> {
                 activity.supportActionBar!!.title = "News Detail"
                 activity.supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
                 activity.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-               // activity.supportActionBar!!.setDefaultDisplayHomeAsUpEnabled(true)
+                // activity.supportActionBar!!.setDefaultDisplayHomeAsUpEnabled(true)
             }
 
             AppFragmentState.F_COROUTINE_SCOPE -> {
                 activity.supportActionBar!!.title = "Co-routine"
+                activity.supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+                activity.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+                // activity.supportActionBar!!.setDefaultDisplayHomeAsUpEnabled(true)
+            }
+            AppFragmentState.F_PERMISSION_DEMO -> {
+                activity.supportActionBar!!.title = "Permissions demo"
                 activity.supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
                 activity.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
                 // activity.supportActionBar!!.setDefaultDisplayHomeAsUpEnabled(true)

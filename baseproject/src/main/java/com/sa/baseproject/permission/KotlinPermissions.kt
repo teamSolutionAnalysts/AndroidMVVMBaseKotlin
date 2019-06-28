@@ -1,8 +1,10 @@
 package com.sa.baseproject.permission
 
+import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import java.lang.ref.WeakReference
 import java.util.*
@@ -101,7 +103,7 @@ object KotlinPermissions {
                 }
 
                 //ne need < Android Marshmallow
-                if (permissions.isEmpty() || Build.VERSION.SDK_INT < Build.VERSION_CODES.M ||
+                if (permissions.isEmpty() || Build.VERSION.SDK_INT <= Build.VERSION_CODES.M ||
                         permissionAlreadyAccepted(activity, permissions)) {
                     onAcceptedPermission(permissions)
                     semaphore.release()
@@ -148,6 +150,10 @@ object KotlinPermissions {
             }
             return true
         }
+    }
+
+    fun checkPermission(context: Context,permission: String): Boolean {
+        return ActivityCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
     }
 }
 

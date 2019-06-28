@@ -2,6 +2,7 @@ package com.sa.baseproject.utils
 
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.IntentSender
@@ -11,15 +12,16 @@ import android.util.Log
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.*
-import com.sa.baseproject.appview.MainActivity
-import com.sa.baseproject.utils.PermissionUtils.PermissionGranted
+import com.sa.baseproject.R
+import com.sa.baseproject.base.AppActivity
+import com.sa.baseproject.permission.KotlinPermissions
 
 /**
  * Created by sa on 05/04/17.
  *
  */
 
-class LocationUtils(private val context: Context) : GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener, PermissionGranted {
+class LocationUtils(private val context: Context) : GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
     private var mGoogleApiClient: GoogleApiClient? = null
     private var mLocationRequest: LocationRequest? = null
     var mCurrentLocation: Location? = null
@@ -30,10 +32,8 @@ class LocationUtils(private val context: Context) : GoogleApiClient.ConnectionCa
         private set
 
     private var builder: LocationSettingsRequest.Builder? = null
-    private val permissionUtils: PermissionUtils = (context as MainActivity).permissionUtils!!
 
     init {
-        permissionUtils.setPermissionGranted(this)
         buildGoogleApiClient()
         checkGPS()
         onStart()
@@ -43,7 +43,8 @@ class LocationUtils(private val context: Context) : GoogleApiClient.ConnectionCa
      * Builds a GoogleApiClient. Uses the `#addApi` method to request the
      * LocationServices API.
      */
-    @Synchronized private fun buildGoogleApiClient() {
+    @Synchronized
+    private fun buildGoogleApiClient() {
         mGoogleApiClient = GoogleApiClient.Builder(context)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -65,15 +66,35 @@ class LocationUtils(private val context: Context) : GoogleApiClient.ConnectionCa
 
     }
 
+    @SuppressLint("MissingPermission")
     private fun startLocationUpdates() {
-        if (!permissionUtils.checkPermission(ACCESS_COARSE_LOCATION) && !permissionUtils.checkPermission(ACCESS_FINE_LOCATION)) {
-            if(mGoogleApiClient!=null && mLocationRequest!=null) {
-                LocationServices.FusedLocationApi.requestLocationUpdates(
-                        mGoogleApiClient, mLocationRequest, this)
-            }
-        } else {
-            permissionUtils.checkPermission(ACCESS_COARSE_LOCATION, Constants.REQUEST_CODE_ASK_PERMISSIONS)
-        }
+
+
+        KotlinPermissions.with((context as AppActivity))
+                .permissions(ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION)
+                .onAccepted {
+                    if (it.size != 2) {
+                        ToastUtils.shortToast(R.string.permissions_denied)
+                        return@onAccepted
+                    } else {
+                        Log.i("test", "Permission -> Granted")
+                        if (mGoogleApiClient != null && mLocationRequest != null) {
+                            LocationServices.FusedLocationApi.requestLocationUpdates(
+                                    mGoogleApiClient, mLocationRequest, this)
+                        }
+                    }
+                }
+                .onDenied {
+                    Log.i("test", "Permission -> Denied")
+                    ToastUtils.shortToast(R.string.permissions_denied)
+                }
+                .onForeverDenied {
+                    ToastUtils.shortToast(R.string.permissions_denied)
+                    Log.i("test", "Forever -> Denied")
+                }
+                .ask()
+
+
     }
 
     private fun stopLocationUpdates() {
@@ -105,8 +126,8 @@ class LocationUtils(private val context: Context) : GoogleApiClient.ConnectionCa
 
     override fun onConnected(connectionHint: Bundle?) {
         if (mCurrentLocation == null) {
-            if (permissionUtils.checkPermission(ACCESS_COARSE_LOCATION) && permissionUtils.checkPermission(ACCESS_FINE_LOCATION)) {
-                permissionUtils.checkPermission(ACCESS_COARSE_LOCATION, Constants.REQUEST_CODE_ASK_PERMISSIONS)
+            if (KotlinPermissions.checkPermission(context, ACCESS_COARSE_LOCATION) && KotlinPermissions.checkPermission(context, ACCESS_FINE_LOCATION)) {
+                askForPermission(ACCESS_COARSE_LOCATION, Constants.REQUEST_CODE_ASK_PERMISSIONS)
                 return
             }
             mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient)
@@ -114,6 +135,26 @@ class LocationUtils(private val context: Context) : GoogleApiClient.ConnectionCa
 
         }
         startLocationUpdates()
+    }
+
+    private fun askForPermission(accessCoarseLocation: String, requestCodeAskPermissions: Int) {
+
+        KotlinPermissions.with((context as AppActivity))
+                .permissions(accessCoarseLocation)
+                .onAccepted {
+                    Log.i("test", "Permission -> Granted")
+                    onStart()
+
+                }
+                .onDenied {
+                    Log.i("test", "Permission -> Denied")
+                    ToastUtils.shortToast(R.string.permissions_denied)
+                }
+                .onForeverDenied {
+                    ToastUtils.shortToast(R.string.permissions_denied)
+                    Log.i("test", "Forever -> Denied")
+                }
+                .ask()
     }
 
     override fun onLocationChanged(location: Location) {
@@ -161,10 +202,6 @@ class LocationUtils(private val context: Context) : GoogleApiClient.ConnectionCa
         }
     }
 
-
-    override fun onPermissionGranted(requestCode: Int) {
-        onStart()
-    }
 
     companion object {
 
