@@ -375,7 +375,7 @@ class ImagePicker(private val context: Context, private val imagePickerInterface
 
         override fun onPreExecute() {
             super.onPreExecute()
-            ProgressUtils.showOldProgressDialog(context)
+                ProgressUtils.showProgressBar(context)
         }
 
         override fun doInBackground(vararg params: String): Bitmap? {
@@ -385,7 +385,7 @@ class ImagePicker(private val context: Context, private val imagePickerInterface
 
         override fun onPostExecute(bitmap: Bitmap) {
             super.onPostExecute(bitmap)
-            ProgressUtils.closeOldProgressDialog()
+                ProgressUtils.closeProgressBar()
             if (onGetBitmapListener != null)
                 onGetBitmapListener!!.onGetBitmap(bitmap)
         }

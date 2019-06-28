@@ -2,15 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
         <group android:checkableBehavior="none">
                 <item
-                        android:id="@+id/title_package_explore"
+                        android:id="@+id/title_one"
                         android:icon="@drawable/ic_bookmark_white_24dp"
                         android:title="@string/nv_bookmark" />
                 <item
-                        android:id="@+id/title_groups"
+                        android:id="@+id/title_two"
                         android:icon="@drawable/ic_home_white_24dp"
                         android:title="@string/nv_home" />
                 <item
-                        android:id="@+id/title_concierge"
+                        android:id="@+id/title_three"
                         android:icon="@drawable/ic_settings_white_24dp"
                         android:title="@string/nv_settings" />
 

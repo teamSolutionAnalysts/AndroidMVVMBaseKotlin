@@ -8,6 +8,7 @@
         android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appbarlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary">
@@ -25,6 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_above="@id/navigationView"
+                android:layout_below="@+id/appbarlayout"
                 android:background="@color/white"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -39,8 +41,8 @@
                 android:elevation="3dp"
                 android:layout_alignParentBottom="true"
                 app:itemBackground="@color/white"
-                app:itemIconTint="@color/colorAccent"
-                app:itemTextColor="@color/colorAccent"
+                app:itemIconTint="@color/colorPrimary"
+                app:itemTextColor="@color/colorPrimary"
                 app:labelVisibilityMode="labeled"
                 app:menu="@menu/menu_bottom_navigation" />
 </RelativeLayout>

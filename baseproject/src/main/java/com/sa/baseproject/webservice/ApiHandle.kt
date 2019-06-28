@@ -110,7 +110,7 @@ object ApiHandle {
                             DialogUtils.dialog(context, ApiConstant.SOMETHING_WRONG)
                         }
                         apiCallback.onFailure(responseModel!!)
-                        ProgressUtils.closeOldProgressDialog()
+                            ProgressUtils.closeProgressBar()
                     }
 
 

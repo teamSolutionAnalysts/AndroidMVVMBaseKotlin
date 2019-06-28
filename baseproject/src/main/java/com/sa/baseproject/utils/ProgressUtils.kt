@@ -5,44 +5,46 @@ import android.content.Context
 import com.sa.baseproject.R
 
 /**
- * Created by altafhussain.shaikh on 4/24/2016.
+ * Created by sanjay.sisodiya on 27/06/2019.
  *
  */
 object ProgressUtils {
 
-        private var progressDialog : Dialog? = null
+        private var progressBar : Dialog? = null
 
         val isShowing : Boolean
-                get() = progressDialog != null
+                get() = progressBar != null
 
-        fun showOldProgressDialog(context : Context) {
-                if (progressDialog == null || !progressDialog!!.isShowing) {
-                        progressDialog = Dialog(context, R.style.Base_Theme_AppCompat_Dialog)
-                        progressDialog!!.setCancelable(false)
-                        progressDialog!!.setCanceledOnTouchOutside(false)
-                        progressDialog!!.show()
-                        progressDialog!!.window!!.setBackgroundDrawableResource(android.R.color.transparent)
-                        progressDialog!!.setContentView(R.layout.layout_progressdialog)
+        fun showProgressBar(context : Context) {
+                if (progressBar == null || !progressBar!!.isShowing) {
+                        progressBar = Dialog(context, R.style.Base_Theme_AppCompat_Dialog)
+                        progressBar!!.setCancelable(false)
+                        progressBar!!.setCanceledOnTouchOutside(false)
+                        progressBar!!.window!!.setBackgroundDrawableResource(android.R.color.transparent)
+                        progressBar!!.setContentView(R.layout.layout_progressdialog)
+                        progressBar!!.show()
                 }
         }
 
-        fun forceShowOldProgressDialog(context : Context) {
-                progressDialog = Dialog(context)
-                progressDialog!!.setCancelable(true)
-                progressDialog!!.setContentView(R.layout.layout_progressdialog)
-                progressDialog!!.show()
+        fun forceShowProgressBar(context : Context) {
+                progressBar = Dialog(context)
+                progressBar!!.setCancelable(true)
+                progressBar!!.setCanceledOnTouchOutside(false)
+                progressBar!!.window!!.setBackgroundDrawableResource(android.R.color.transparent)
+                progressBar!!.setContentView(R.layout.layout_progressdialog)
+                progressBar!!.show()
         }
 
-        fun closeOldProgressDialog() {
+        fun closeProgressBar() {
                 try {
-                        if (progressDialog != null && progressDialog!!.isShowing) {
-                                progressDialog!!.dismiss()
-                                progressDialog = null
+                        if (progressBar != null && progressBar!!.isShowing) {
+                                progressBar!!.dismiss()
+                                progressBar = null
                         }
                 } catch (e : Exception) {
                         e.printStackTrace()
                 } finally {
-                        progressDialog = null
+                        progressBar = null
                 }
         }
 

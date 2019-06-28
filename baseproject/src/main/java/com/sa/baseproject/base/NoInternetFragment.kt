@@ -21,9 +21,10 @@ class NoInternetFragment : AppFragment() {
         }
 
         override fun initializeComponent(view : View?) {
+                val fragment = arguments?.getSerializable(Constants.FRAGMENT_ENUM) as AppFragmentState
+                (view?.context as AppActivity).appFragmentManager?.setUp(fragment, null)
                 button_try_again.setOnClickListener {
                         if (ConnectivityUtils.isNetworkAvailable(view?.context!!)) {
-                                val fragment = arguments?.getSerializable(Constants.FRAGMENT_ENUM) as AppFragmentState
                                 val bundle = arguments?.getBundle(Constants.BUNDLE)
                                 val isAnimation = arguments?.getBoolean(Constants.ANIMATION, false)
                                 (view.context as AppActivity).appFragmentManager?.replaceFragment(fragment, bundle, isAnimation!!)
