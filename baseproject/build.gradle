@@ -5,9 +5,12 @@ apply plugin: 'kotlin-kapt'
 apply from: '../dependencies.gradle'
 apply from: '../resourcepath.gradle'
 
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
     compileSdkVersion rootProject.ext.androidCompileSdkVersion
-    buildToolsVersion rootProject.ext.androidBuildToolsVersion
 
     defaultConfig {
         applicationId "com.sa.baseproject"
@@ -22,10 +25,6 @@ android {
 
     dataBinding {
         enabled = true
-    }
-
-    kapt {
-        generateStubs = true
     }
 
     flavorDimensions "default"
@@ -53,10 +52,10 @@ android {
 
         release {
             try {
-                storeFile file("bproject.jks")
-                storePassword KEYSTORE_PASSWORD
-                keyAlias "bproject"
-                keyPassword KEY_PASSWORD
+                keyAlias keystoreProperties['KEY_ALIAS']
+                keyPassword keystoreProperties['KEY_PASSWORD']
+                storeFile file(keystoreProperties['STORE_FILE'])
+                storePassword keystoreProperties['STORE_PASSWORD']
             }
             catch (ignored) {
                 throw new InvalidUserDataException("You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.")
@@ -77,6 +76,7 @@ android {
             }
         }
         debug {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -97,7 +97,11 @@ android {
     packagingOptions {
         exclude 'META-INF/atomicfu.kotlin_module'
     }
-
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
+    }
     lintOptions {
         baseline file("lint-baseline.xml")
         // if set to true (default), stops the build if errors are found.
@@ -115,7 +119,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.1-alpha01', {
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.3.0-alpha01', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
@@ -142,6 +146,7 @@ dependencies {
     implementation playSeriviceDependencies.values()
 
     //Paging Libs
+
     implementation pagingDependencies.values()
 
     // Kotlin libs
