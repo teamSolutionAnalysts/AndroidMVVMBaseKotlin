@@ -35,14 +35,14 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
                 activity.supportActionBar!!.title = "News List"
                 activity.supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
                 activity.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-             //   activity.supportActionBar!!.setDefaultDisplayHomeAsUpEnabled(true)
+                //   activity.supportActionBar!!.setDefaultDisplayHomeAsUpEnabled(true)
             }
 
             AppFragmentState.F_NEWS_DETAIL -> {
                 activity.supportActionBar!!.title = "News Detail"
                 activity.supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
                 activity.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-               // activity.supportActionBar!!.setDefaultDisplayHomeAsUpEnabled(true)
+                // activity.supportActionBar!!.setDefaultDisplayHomeAsUpEnabled(true)
             }
 
             AppFragmentState.F_COROUTINE_SCOPE -> {
@@ -61,6 +61,25 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
         } else {
             this.activity.finish()
         }
+    }
+
+    fun removeFragments(vararg fragmentEnum: AppFragmentState) {
+        ft = fragmentManager.beginTransaction()
+        val tempStack = arrayListOf<Fragment>()
+        tempStack.addAll(stack)
+        fragmentEnum.forEachIndexed { index: Int, appFragmentState: AppFragmentState ->
+            tempStack.forEachIndexed { pos: Int, fragment: Fragment ->
+                if (appFragmentState.fragment.name == fragment.tag) {
+                    fragment.onPause()
+                    ft!!.remove(stack.removeAt(stack.indexOf(fragment)))
+                }
+            }
+        }
+
+        ft!!.commit()
+        ft!!.show(stack.lastElement())
+        setUp<Any>(AppFragmentState.getValue(stack.lastElement().javaClass), null)
+        println("stack....size.....${stack.size}")
     }
 
     fun <T> replaceWithCurrentFragment(fragmentEnum: AppFragmentState, keys: T?, isAnimation: Boolean) {
