@@ -13,11 +13,12 @@ import com.sa.baseproject.appview.permissiondemo.viewmodel.PermissionDemoViewMod
 import com.sa.baseproject.base.AppActivity
 import com.sa.baseproject.base.AppFragment
 import com.sa.baseproject.databinding.FragmentPermissionDemoBinding
-import com.sa.baseproject.permission.KotlinPermissions
+import com.sa.baseproject.permission.PermissionUtils
 import com.sa.baseproject.utils.ToastUtils
+import kotlinx.android.synthetic.main.fragment_home.btnPermissionDemo
 import kotlinx.android.synthetic.main.fragment_permission_demo.*
 
-class PermissionDemoFragagmentment : AppFragment() {
+class PermissionDemoFragment : AppFragment() {
     var viewProvider: PermissionDemoViewModel? = null
     override fun initializeComponent(view: View?) {
         btnPermissionDemo.setOnClickListener {
@@ -26,7 +27,7 @@ class PermissionDemoFragagmentment : AppFragment() {
     }
 
     private fun getLocationPermission() {
-        KotlinPermissions.with((context as AppActivity))
+        PermissionUtils.with((context as AppActivity),false)
                 .permissions(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
                 .onAccepted {
                     if (it.size != 2) {

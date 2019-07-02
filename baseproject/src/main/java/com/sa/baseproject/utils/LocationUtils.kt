@@ -14,7 +14,7 @@ import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.*
 import com.sa.baseproject.R
 import com.sa.baseproject.base.AppActivity
-import com.sa.baseproject.permission.KotlinPermissions
+import com.sa.baseproject.permission.PermissionUtils
 
 /**
  * Created by sa on 05/04/17.
@@ -70,7 +70,7 @@ class LocationUtils(private val context: Context) : GoogleApiClient.ConnectionCa
     private fun startLocationUpdates() {
 
 
-        KotlinPermissions.with((context as AppActivity))
+        PermissionUtils.with((context as AppActivity), false)
                 .permissions(ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION)
                 .onAccepted {
                     if (it.size != 2) {
@@ -126,7 +126,7 @@ class LocationUtils(private val context: Context) : GoogleApiClient.ConnectionCa
 
     override fun onConnected(connectionHint: Bundle?) {
         if (mCurrentLocation == null) {
-            if (KotlinPermissions.checkPermission(context, ACCESS_COARSE_LOCATION) && KotlinPermissions.checkPermission(context, ACCESS_FINE_LOCATION)) {
+            if (PermissionUtils.checkPermission(context, ACCESS_COARSE_LOCATION) && PermissionUtils.checkPermission(context, ACCESS_FINE_LOCATION)) {
                 askForPermission(ACCESS_COARSE_LOCATION, Constants.REQUEST_CODE_ASK_PERMISSIONS)
                 return
             }
@@ -139,7 +139,7 @@ class LocationUtils(private val context: Context) : GoogleApiClient.ConnectionCa
 
     private fun askForPermission(accessCoarseLocation: String, requestCodeAskPermissions: Int) {
 
-        KotlinPermissions.with((context as AppActivity))
+        PermissionUtils.with((context as AppActivity), false)
                 .permissions(accessCoarseLocation)
                 .onAccepted {
                     Log.i("test", "Permission -> Granted")
