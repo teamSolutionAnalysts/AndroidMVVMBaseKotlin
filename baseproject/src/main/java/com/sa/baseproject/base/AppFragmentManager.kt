@@ -1,6 +1,5 @@
 package com.sa.baseproject.base
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -183,8 +182,10 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
         val position = stack.indexOf(fragment)
         if (position > -1) {
             stack.removeAt(position)
-            stack.lastElement().onPause()
-            ft!!.hide(stack.lastElement())
+            if (!stack.isEmpty()) {
+                stack.lastElement().onPause()
+                ft!!.hide(stack.lastElement())
+            }
             stack.push(fragment)
             if (!stack.isEmpty()) {
                 stack.lastElement().onResume()
@@ -250,13 +251,16 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
     }
 
     private fun internetConnectionErrorFragmentAdd(fragmentEnum : AppFragmentState, keys : Bundle?, isAnimation : Boolean) {
-        val intent = Intent(activity, NoInternetActivity::class.java)
         val bundle = Bundle()
         bundle.putSerializable(Constants.FRAGMENT_ENUM, fragmentEnum)
         bundle.putBundle(Constants.BUNDLE, keys)
         bundle.putBoolean(Constants.ANIMATION, isAnimation)
-        addFragmentInStack<Any>(AppFragmentState.F_NO_INTERNET, bundle, false)
-        //            activity.startActivityForResult(intent, Constants.NO_INTERNET_REQ_CODE)
+        val availableFragment = getFragment(AppFragmentState.F_NO_INTERNET)
+        if (availableFragment != null) {
+            moveFragmentToTop(AppFragmentState.F_NO_INTERNET, bundle, false)
+        } else {
+            addFragmentInStack<Any>(AppFragmentState.F_NO_INTERNET, bundle, false)
+        }
     }
 
     fun clearAllFragment() {
