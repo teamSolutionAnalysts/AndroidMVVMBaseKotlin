@@ -27,7 +27,7 @@ class PermissionDemoFragment : AppFragment() {
     }
 
     private fun getLocationPermission() {
-        PermissionUtils.with((context as AppActivity),false)
+        PermissionUtils.with( context !! ,true)
                 .permissions(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
                 .onAccepted {
                     if (it.size != 2) {

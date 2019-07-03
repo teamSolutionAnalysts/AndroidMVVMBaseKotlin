@@ -8,6 +8,9 @@ import android.os.Build
 import android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.sa.baseproject.R
+import com.sa.baseproject.utils.DialogUtils
+import com.sa.baseproject.utils.baseinrerface.OkCancelDialogInterface
 import java.lang.ref.WeakReference
 import java.util.*
 import java.util.concurrent.Semaphore
@@ -16,15 +19,20 @@ import java.util.concurrent.Semaphore
 object PermissionUtils {
     private const val TAG = "KotlinPermission"
     private val semaphore: Semaphore = Semaphore(1)
+    private const val defaultMessage = "Permissions denied. Please allow in app settings for additional functionality."
 
     @JvmStatic
-    fun with(activity: androidx.fragment.app.FragmentActivity, withOpenSettings: Boolean): PermissionCore {
-        return PermissionCore(activity, withOpenSettings)
+    fun with(activity: Context,
+             withOpenSettings: Boolean,
+             settingsMessage: String = defaultMessage): PermissionCore {
+        return PermissionCore(activity, withOpenSettings, settingsMessage)
     }
 
-    class PermissionCore(activity: androidx.fragment.app.FragmentActivity, withOpenSettings: Boolean) {
-        private val activityReference: WeakReference<androidx.fragment.app.FragmentActivity> = WeakReference(activity)
+    class PermissionCore(activity: Context, withOpenSettings: Boolean, settingsMessage: String?) {
+        private val activityReference: WeakReference<androidx.fragment.app.FragmentActivity> = WeakReference(activity as androidx.fragment.app.FragmentActivity)
         private val withOpenSettings = withOpenSettings
+        private val context = activity
+        private val settingsMessage = settingsMessage ?: ""
         private var permissions: List<String> = ArrayList()
         private var acceptedCallback: WeakReference<ResponsePermissionCallback>? = null
         private var deniedCallback: WeakReference<ResponsePermissionCallback>? = null
@@ -95,11 +103,20 @@ object PermissionUtils {
 
         private fun openSettingsScreen() {
             if (withOpenSettings) {
-                val intent = Intent()
-                intent.action = ACTION_APPLICATION_DETAILS_SETTINGS
-                val uri = Uri.fromParts("package", activityReference.get()?.applicationContext?.packageName, null)
-                intent.data = uri
-                (activityReference.get()?.applicationContext)?.startActivity(intent)
+                DialogUtils.okCancelDialog(context, context.getString(R.string.app_name), settingsMessage, object : OkCancelDialogInterface {
+                    override fun ok() {
+                        val intent = Intent()
+                        intent.action = ACTION_APPLICATION_DETAILS_SETTINGS
+                        val uri = Uri.fromParts("package", context.packageName, null)
+                        intent.data = uri
+                        (context).startActivity(intent)
+                    }
+
+                    override fun cancel() {
+                    }
+
+                })
+
             }
         }
 
