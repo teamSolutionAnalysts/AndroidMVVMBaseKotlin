@@ -1,54 +1,54 @@
 ext {
 
-    def AppcompatVersion = '1.1.0-beta01'
-    def Material = '1.1.0-alpha07'
-    def ConstraintLayout = '2.0.0-beta2'
-    def Fragment = '1.0.0'
-    def Core = '1.0.2'
-    def LegacySupportCoreUtils = '1.0.0'
-    def LegacySupportCoreUi = '1.0.0'
-    def CoreKtx = '1.2.0-alpha02'
-    def CardViewVersion = '1.0.0'
-    def RecyclerViewVersion = '1.1.0-alpha06'
+    def appcompatVersion = '1.0.2'
+    def material = '1.0.0'
+    def constraintLayout = '1.1.3'
+    def fragment = '1.0.0'
+    def core = '1.0.2'
+    def legacySupportCoreUtils = '1.0.0'
+    def legacySupportCoreUi = '1.0.0'
+    def coreKtx = '1.0.2'
+    def cardViewVersion = '1.0.0'
+    def recyclerViewVersion = '1.0.0'
 
-    def retrofitLibraryVersion = '2.5.0'
+    def retrofitLibraryVersion = '2.6.0'
     def gsonLibraryVersion = '2.8.5'
     def rxAndroidVersion = '2.1.1'
-    def okHttpLibraryVersion = '3.12.0'
+    def okHttpLibraryVersion = '4.0.0'
 
 
-    def LifecycleExtensions = '2.0.0'
-    def RoomRuntime = '2.1.0'
-    def LifecycleRuntime = '2.0.0'
-    def RoomRxJava2 = '2.1.0'
+    def lifecycleExtensions = '2.0.0'
+    def roomRuntime = '2.1.0'
+    def lifecycleRuntime = '2.0.0'
+    def roomRxJava2 = '2.1.0'
 
-    def LifecycleCompiler = '2.0.0'
-    def RoomCompiler = '2.1.0'
+    def lifecycleCompiler = '2.0.0'
+    def roomCompiler = '2.1.0'
 
-    def KotlinxCoroutinesAndroid = '1.2.0'
-    def Retrofit2KotlinCoroutinesAdapter = '0.9.2'
+    def kotlinxCoroutinesAndroid = '1.2.2'
+    def retrofit2KotlinCoroutinesAdapter = '0.9.2'
 
-    def Glide = '4.9.0'
-    def Picasso = '2.71828'
+    def glide = '4.9.0'
+    def picasso = '2.71828'
 
-    def SdpVersion = '1.0.6'
+    def sdpVersion = '1.0.6'
 
-    def PlayServiceLibraryVersion = '17.0.0'
+    def playServiceLibraryVersion = '17.0.0'
 
-    def WorkerVersion = '1.0.1'
-    def PagingRuntime = '2.1.0'
+    def workerVersion = '1.0.1'
+    def pagingRuntime = '2.1.0'
 
     androidSupportDependencies = [
-            appcompat             : "androidx.appcompat:appcompat:${AppcompatVersion}",
-            material              : "com.google.android.material:material:${Material}",
-            constraintLayout      : "androidx.constraintlayout:constraintlayout:${ConstraintLayout}",
-            fragment              : "androidx.fragment:fragment:${Fragment}",
-            core                  : "androidx.core:core:${Core}",
-            legacySupportCoreUtils: "androidx.legacy:legacy-support-core-utils:${LegacySupportCoreUtils}",
-            legacySupportCoreUi   : "androidx.legacy:legacy-support-core-ui:${LegacySupportCoreUi}",
-            coreKtx               : "androidx.core:core-ktx:${CoreKtx}",
-            cardview              : "androidx.cardview:cardview:${CardViewVersion}",
-            recyclerview          : "androidx.recyclerview:recyclerview:${RecyclerViewVersion}",
+            appcompat             : "androidx.appcompat:appcompat:${appcompatVersion}",
+            material              : "com.google.android.material:material:${material}",
+            constraintLayout      : "androidx.constraintlayout:constraintlayout:${constraintLayout}",
+            fragment              : "androidx.fragment:fragment:${fragment}",
+            core                  : "androidx.core:core:${core}",
+            legacySupportCoreUtils: "androidx.legacy:legacy-support-core-utils:${legacySupportCoreUtils}",
+            legacySupportCoreUi   : "androidx.legacy:legacy-support-core-ui:${legacySupportCoreUi}",
+            coreKtx               : "androidx.core:core-ktx:${coreKtx}",
+            cardview              : "androidx.cardview:cardview:${cardViewVersion}",
+            recyclerview          : "androidx.recyclerview:recyclerview:${recyclerViewVersion}",
     ]
 
     retrofitGSONOkHttpDependencies = [
@@ -62,37 +62,37 @@ ext {
     ]
 
     architectureDependencies = [
-            lifecycleExtensions: "androidx.lifecycle:lifecycle-extensions:$LifecycleExtensions",
-            roomRuntime        : "androidx.room:room-runtime:$RoomRuntime",
-            lifecycleRuntime   : "androidx.lifecycle:lifecycle-runtime:$LifecycleRuntime",
-            roomRxJava2        : "androidx.room:room-rxjava2:$RoomRxJava2",
+            lifecycleExtensions: "androidx.lifecycle:lifecycle-extensions:$lifecycleExtensions",
+            roomRuntime        : "androidx.room:room-runtime:$roomRuntime",
+            lifecycleRuntime   : "androidx.lifecycle:lifecycle-runtime:$lifecycleRuntime",
+            roomRxJava2        : "androidx.room:room-rxjava2:$roomRxJava2",
     ]
 
     architectureKapt = [
-            lifecycleCompiler: "androidx.lifecycle:lifecycle-compiler:$LifecycleCompiler",
-            roomCompiler     : "androidx.room:room-compiler:$RoomCompiler"
+            lifecycleCompiler: "androidx.lifecycle:lifecycle-compiler:$lifecycleCompiler",
+            roomCompiler     : "androidx.room:room-compiler:$roomCompiler"
     ]
 
     coroutineDependencies = [
-            kotlinxCoroutinesAndroid        : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$KotlinxCoroutinesAndroid",
-            retrofit2KotlinCoroutinesAdapter: "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$Retrofit2KotlinCoroutinesAdapter"
+            kotlinxCoroutinesAndroid        : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinxCoroutinesAndroid",
+            retrofit2KotlinCoroutinesAdapter: "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$retrofit2KotlinCoroutinesAdapter"
     ]
 
     picasoGlideDependencies = [
-            glide  : "com.github.bumptech.glide:glide:$Glide",
-            picasso: "com.squareup.picasso:picasso:$Picasso",
+            glide  : "com.github.bumptech.glide:glide:$glide",
+            picasso: "com.squareup.picasso:picasso:$picasso",
     ]
 
     sdpSspDependencies = [
-            sdpAndroid: "com.intuit.sdp:sdp-android:$SdpVersion",
-            sspAndroid: "com.intuit.ssp:ssp-android:$SdpVersion"
+            sdpAndroid: "com.intuit.sdp:sdp-android:$sdpVersion",
+            sspAndroid: "com.intuit.ssp:ssp-android:$sdpVersion"
     ]
 
     playSeriviceDependencies = [
-            playServicesLocation: "com.google.android.gms:play-services-location:$PlayServiceLibraryVersion"
+            playServicesLocation: "com.google.android.gms:play-services-location:$playServiceLibraryVersion"
     ]
 
     pagingDependencies = [
-            pagingRuntime : "androidx.paging:paging-runtime:$PagingRuntime",
-            workRuntimeKtx: "android.arch.work:work-runtime-ktx:$WorkerVersion"]
+            pagingRuntime : "androidx.paging:paging-runtime:$pagingRuntime",
+            workRuntimeKtx: "android.arch.work:work-runtime-ktx:$workerVersion"]
 }

@@ -60,25 +60,25 @@ object ApiHandle {
                     is HttpException -> try {
                         val response = error.response()
                         when {
-                            response.code() >= 500 -> {
+                            (response?.code() ?: 0) >= 500 -> {
                                 responseModel = ApiErrorModel()
-                                responseModel.error = response.message()
-                                responseModel.status = response.code().toString()
-                                responseModel.message = response.message()
+                                responseModel.error = response?.message()
+                                responseModel.status = response?.code().toString()
+                                responseModel.message = response?.message()
                             }
-                            response.code() == 400 -> {
+                            (response?.code() ?: 0) == 400 -> {
                                 responseModel = ApiErrorModel()
-                                responseModel.error = response.message()
-                                responseModel.status = response.code().toString()
-                                responseModel.message = response.message()
+                                responseModel.error = response?.message()
+                                responseModel.status = response?.code().toString()
+                                responseModel.message = response?.message()
                             }
                             else -> {
                                 val gson = Gson()
-                                val responseString = response.errorBody()!!.string()
+                                val responseString = response?.errorBody()?.string()
                                 responseModel = gson.fromJson<ApiErrorModel>(responseString, ApiErrorModel::class.java)
-                                responseModel.error = response.message()
-                                responseModel.status = response.code().toString()
-                                responseModel.message = response.message()
+                                responseModel.error = response?.message()
+                                responseModel.status = response?.code().toString()
+                                responseModel.message = response?.message()
                             }
                         }
                     } catch (e: Exception) {

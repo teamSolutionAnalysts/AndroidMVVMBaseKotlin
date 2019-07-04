@@ -1,6 +1,5 @@
 package com.sa.baseproject.base
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -194,8 +193,6 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
             }
             ft!!.commit()
         }
-
-
         setUp<Any>(appFragmentState, null)
     }
 
@@ -254,7 +251,6 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
     }
 
     private fun internetConnectionErrorFragmentAdd(fragmentEnum : AppFragmentState, keys : Bundle?, isAnimation : Boolean) {
-        val intent = Intent(activity, NoInternetActivity::class.java)
         val bundle = Bundle()
         bundle.putSerializable(Constants.FRAGMENT_ENUM, fragmentEnum)
         bundle.putBundle(Constants.BUNDLE, keys)
@@ -265,7 +261,6 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
         } else {
             addFragmentInStack<Any>(AppFragmentState.F_NO_INTERNET, bundle, false)
         }
-        //            activity.startActivityForResult(intent, Constants.NO_INTERNET_REQ_CODE)
     }
 
     fun clearAllFragment() {
