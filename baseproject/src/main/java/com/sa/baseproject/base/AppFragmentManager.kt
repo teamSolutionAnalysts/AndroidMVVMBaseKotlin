@@ -1,5 +1,6 @@
 package com.sa.baseproject.base
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -50,6 +51,12 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
                 activity.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
                 // activity.supportActionBar!!.setDefaultDisplayHomeAsUpEnabled(true)
             }
+            AppFragmentState.F_PERMISSION_DEMO -> {
+                activity.supportActionBar!!.title = "Permissions demo"
+                activity.supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+                activity.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+                // activity.supportActionBar!!.setDefaultDisplayHomeAsUpEnabled(true)
+            }
         }
     }
 
@@ -62,6 +69,28 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
         }
     }
 
+    fun <T> replaceWithCurrentFragment(fragmentEnum: AppFragmentState, keys: T?, isAnimation: Boolean) {
+        ft = fragmentManager.beginTransaction()
+        if (isAnimation) {
+            ft!!.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
+        }
+        val fragment = Fragment.instantiate(this.activity, fragmentEnum.fragment.name)
+        if (keys != null && keys is Bundle) {
+            fragment.arguments = keys
+        }
+        ft!!.replace(containerId, fragment, fragmentEnum.fragment.name)
+
+        if (!stack.isEmpty()) {
+            stack.lastElement().onPause()
+            stack.remove(stack.lastElement())
+        }
+        stack.push(fragment)
+        ft!!.commitAllowingStateLoss()
+        setUp(fragmentEnum, keys)
+        println("stack....size.....${stack.size}")
+    }
+
+    @Deprecated("Not providing proper solution", ReplaceWith("replaceWithCurrentFragment", ""))
     fun <T> replaceFragment(fragmentEnum: AppFragmentState, keys: T?, isAnimation: Boolean) {
         ft = fragmentManager.beginTransaction()
         for (i in 0..stack.size) {
