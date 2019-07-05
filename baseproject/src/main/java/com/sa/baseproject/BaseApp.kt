@@ -1,9 +1,9 @@
 package com.sa.baseproject
 
 import android.app.Application
-import androidx.room.Room
 import com.sa.baseproject.database.AppDatabase
 import com.sa.baseproject.database.daos.AppDao
+import com.sa.baseproject.utils.timberlogutils.SystemUtils
 import com.sa.baseproject.webservice.ApiService
 
 
@@ -21,6 +21,11 @@ class BaseApp : Application() {
         instance = this
         appDao = AppDatabase.getInstance(this)?.appDao()
         apiService = ApiService()
+        initSystemUtils()
+    }
+
+    private fun initSystemUtils() {
+        SystemUtils.initializeSystemUtils(this.packageManager.getInstallerPackageName(this.packageName!!))
     }
 
     override fun onTerminate() {
