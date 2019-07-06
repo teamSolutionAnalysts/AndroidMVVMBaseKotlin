@@ -14,7 +14,7 @@
     <string name="navigation_drawer_close">Close</string>
     <string name="signup">Signup</string>
     <string name="details_screen">Details</string>
-
+    <string name="permissions_denied">Permissions denied. Please allow in app settings for additional functionality.</string>
 
     <!--Title-->
     <string name="title_home">Home Task</string>
