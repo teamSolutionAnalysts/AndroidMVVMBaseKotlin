@@ -3,6 +3,7 @@ package com.sa.baseproject
 import android.app.Application
 import com.sa.baseproject.database.AppDatabase
 import com.sa.baseproject.database.daos.AppDao
+import com.sa.baseproject.utils.timberlogutils.LogUtils
 import com.sa.baseproject.utils.timberlogutils.SystemUtils
 import com.sa.baseproject.webservice.ApiService
 
@@ -22,6 +23,7 @@ class BaseApp : Application() {
         appDao = AppDatabase.getInstance(this)?.appDao()
         apiService = ApiService()
         initSystemUtils()
+        LogUtils.writeLogs(baseContext,false,"dev","stage","prod")
     }
 
     private fun initSystemUtils() {
@@ -39,5 +41,6 @@ class BaseApp : Application() {
         var instance: BaseApp? = null
         var appDao: AppDao? = null
     }
+
 
 }

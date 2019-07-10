@@ -1,7 +1,10 @@
 package com.sa.baseproject.utils.timberlogutils
 
+import android.content.Context
 import android.util.Log
 import com.sa.baseproject.BuildConfig
+import java.io.File
+import java.util.*
 
 class LogUtils {
 
@@ -75,5 +78,41 @@ class LogUtils {
             return concatedString
         }
 
+        fun writeLogs(context: Context, writeInReleaseMode: Boolean = false, vararg flavor: String) {
+            var logPrint = false
+            var currentFlavourName = ""
+
+            /**
+             * prints lof if matching flavor found
+             * */
+            flavor.forEach {
+                if (BuildConfig.FLAVOR == it) {
+                    logPrint = true
+                    currentFlavourName = it
+                }
+            }
+
+            if (!writeInReleaseMode) {
+                logPrint = BuildConfig.DEBUG
+            }
+
+            if (logPrint) {
+                val timer = Timer()
+                val timerTask = object : TimerTask() {
+
+                    override fun run() {
+                        val filename = File("${context.externalCacheDir}${File.separator}${currentFlavourName}Logs.log")
+                        filename.createNewFile()
+                        val cmd = "logcat -d -f" + filename.absolutePath
+                        Runtime.getRuntime().exec(cmd)
+                    }
+                }
+                timer.scheduleAtFixedRate(timerTask, 0, 1000)
+            }
+        }
+
+
     }
+
+
 }
