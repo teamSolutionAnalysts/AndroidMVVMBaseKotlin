@@ -7,6 +7,8 @@ import com.sa.baseproject.appview.ForgotActivity
 import com.sa.baseproject.appview.MainActivity
 import com.sa.baseproject.appview.signup.view.SignUpActivity
 import com.sa.baseproject.base.AppActivity
+import com.sa.baseproject.utils.ResourceUtils
+import com.sa.baseproject.utils.timberlogutils.LogUtils
 import kotlinx.android.synthetic.main.activity_login.*
 
 class SignInActivity : AppActivity() {
@@ -28,17 +30,21 @@ class SignInActivity : AppActivity() {
         supportActionBar!!.setTitle(R.string.login)
 
         txt_forgtpassword.setOnClickListener {
-                startActivity(Intent(this@SignInActivity, ForgotActivity::class.java))
+            startActivity(Intent(this@SignInActivity, ForgotActivity::class.java))
         }
         txt_singup.setOnClickListener {
-                startActivity(Intent(this@SignInActivity, SignUpActivity::class.java))
+            startActivity(Intent(this@SignInActivity, SignUpActivity::class.java))
         }
         button_singin.setOnClickListener {
-                val intent = Intent(this@SignInActivity, MainActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-                startActivity(intent)
-                finish()
+            val intent = Intent(this@SignInActivity, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+            finish()
         }
+        /**
+         * Resource Utils demo
+         * */
+        LogUtils.logFuncWithMessage(ResourceUtils.getInstance(this)?.getString(R.string.app_name) ?: "")
     }
 
     override fun onStop() {

@@ -3,27 +3,41 @@ package com.sa.baseproject.utils
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Build
-import androidx.core.content.res.ResourcesCompat
 import android.text.Html
 import android.text.Spanned
+import androidx.core.content.res.ResourcesCompat
+import com.sa.baseproject.database.AppDatabase
 
 
+class ResourceUtils(val context: Context) {
+    companion object {
+        var INSTANCE: ResourceUtils? = null
 
-object ResourceUtils {
+        fun getInstance(context: Context): ResourceUtils? {
+            if (INSTANCE == null) {
+                synchronized(AppDatabase::class.java) {
 
-
-    fun getColor(context: Context, color: Int): Int {
-        return ResourcesCompat.getColor(context.getResources(), color, null)
+                    if (INSTANCE == null) {
+                        INSTANCE = ResourceUtils(context)
+                    }
+                }
+            }
+            return INSTANCE
+        }
     }
 
-    fun getDrawable(context: Context, drawable: Int): Drawable? {
+    fun getColor(color: Int): Int {
+        return ResourcesCompat.getColor(context.resources, color, null)
+    }
 
-        return ResourcesCompat.getDrawable(context.getResources(), drawable, null)
+    fun getDrawable(drawable: Int): Drawable? {
+
+        return ResourcesCompat.getDrawable(context.resources, drawable, null)
 
     }
 
-    fun getString(context: Context?, stringID: Int): String? {
-        return context!!.getString(stringID)
+    fun getString(stringID: Int): String? {
+        return context.getString(stringID)
     }
 
     fun fromHTML(str_data: String): Spanned {
