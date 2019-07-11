@@ -14,6 +14,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowBackground">@null</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
 
     <style name="ContentText">
         <item name="android:textSize">@dimen/font_normal</item>

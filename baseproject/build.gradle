@@ -104,13 +104,21 @@ android {
     }
     lintOptions {
         baseline file("lint-baseline.xml")
-        abortOnError true       // if set to true (default), stops the build if errors are found.
-        checkAllWarnings true
+        disable 'GoogleAppIndexingWarning'
+//            abortOnError true       // if set to true (default), stops the build if errors are found.
+//            checkAllWarnings true
         warningsAsErrors true
-//        quiet true    //    set to true to turn off analysis progress reporting by lint
-//        ignoreWarnings true    //    if true, only report errors
+        disable 'PrivateResource'
+        //        quiet true    //    set to true to turn off analysis progress reporting by lint
+        //        ignoreWarnings true    //    if true, only report errors
     }
 
+//    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+//        kotlinOptions {
+//            jvmTarget = "1.8"
+//            allWarningsAsErrors = true
+//        }
+//    }
 }
 
 dependencies {
@@ -150,7 +158,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     implementation "androidx.media:media:1.1.0-rc01"
-
 
 }
 repositories {
