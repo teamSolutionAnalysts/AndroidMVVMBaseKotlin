@@ -20,7 +20,7 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
     private var ft: FragmentTransaction? = null
 
     private val stack = Stack<Fragment>()
-    fun getStackSize() = stack?.size ?: 0
+    fun getStackSize() = stack.size
     // Common Handling of top bar for all fragments like header name, icon on top bar in case of moving to other fragment and coming back again
     fun <T> setUp(currentState: AppFragmentState, keys: T?) {
 
@@ -60,7 +60,7 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
     }
 
     // called when fragment backpressed
-    internal fun notifyFragment(isAnimation: Boolean) {
+    internal fun notifyFragment(isAnimation: Boolean = false) {
         if (stack.size > 1) {
             popFragment(isAnimation)
         } else {
@@ -68,7 +68,7 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
         }
     }
 
-    fun <T> replaceWithCurrentFragment(fragmentEnum: AppFragmentState, keys: T?, isAnimation: Boolean) {
+    fun <T> replaceWithCurrentFragment(fragmentEnum: AppFragmentState, keys: T? = null, isAnimation: Boolean = false) {
         ft = fragmentManager.beginTransaction()
         if (isAnimation) {
             ft!!.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
@@ -90,7 +90,7 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
     }
 
     @Deprecated("Not providing proper solution", ReplaceWith("replaceWithCurrentFragment", ""))
-    fun <T> replaceFragment(fragmentEnum: AppFragmentState, keys: T?, isAnimation: Boolean) {
+    fun <T> replaceFragment(fragmentEnum: AppFragmentState, keys: T? = null, isAnimation: Boolean = false) {
         ft = fragmentManager.beginTransaction()
         for (i in 0..stack.size) {
             if (!stack.isEmpty()) {
@@ -157,21 +157,24 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
     // When not to resume last fragment
     fun popFragment(numberOfFragment: Int) {
         val fragmentManager = activity.supportFragmentManager
-        val ft = fragmentManager.beginTransaction()
+        val ft = fragmentManager?.beginTransaction()
         /*ft.setCustomAnimations(R.anim.hold,
                 R.anim.exit_to_right,
                 R.anim.hold,
                 R.anim.exit_to_right);*/
-        for (i in 0 until numberOfFragment) {
+        var newNumOfFragment = numberOfFragment
+        if (numberOfFragment > stack.size)
+            newNumOfFragment = stack.size - 1
+        for (i in 0 until newNumOfFragment) {
             if (!stack.isEmpty()) {
                 stack.lastElement().onPause()
-                ft.remove(stack.pop())
+                ft?.remove(stack.pop())
                 //                fragmentStack.lastElement().onResume();
             }
         }
         if (!stack.isEmpty())
-            ft.show(stack.lastElement())
-        ft.commit()
+            ft?.show(stack.lastElement())
+        ft?.commitAllowingStateLoss()
         setUp<Any>(AppFragmentState.getValue(stack.lastElement().javaClass), null)
     }
 
@@ -255,7 +258,7 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
         return fragmentManager.findFragmentById(containerId)
     }
 
-    fun <T> addFragment(fragmentEnum: AppFragmentState, keys: Bundle?, isAnimation: Boolean) {
+    fun <T> addFragment(fragmentEnum: AppFragmentState, keys: Bundle? = null, isAnimation: Boolean = false) {
         KeyboardUtils.hideKeyboard(activity)
         if (ConnectivityUtils.isNetworkAvailable(BaseApp.instance!!.baseContext)) {
             val availableFragment = getFragment(fragmentEnum)
@@ -269,7 +272,7 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
         }
     }
 
-    fun <T> addFragmentAlwasNew(fragmentEnum: AppFragmentState, keys: Bundle?, isAnimation: Boolean) {
+    fun <T> addFragmentAlwasNew(fragmentEnum: AppFragmentState, keys: Bundle? = null, isAnimation: Boolean = false) {
         KeyboardUtils.hideKeyboard(activity)
         if (ConnectivityUtils.isNetworkAvailable(BaseApp.instance!!.baseContext)) {
             addFragmentInStack(fragmentEnum, keys, isAnimation)
@@ -278,7 +281,7 @@ class AppFragmentManager(private val activity: AppActivity, private val containe
         }
     }
 
-    private fun internetConnectionErrorFragmentAdd(fragmentEnum : AppFragmentState, keys : Bundle?, isAnimation : Boolean) {
+    private fun internetConnectionErrorFragmentAdd(fragmentEnum: AppFragmentState, keys: Bundle?, isAnimation: Boolean) {
         val bundle = Bundle()
         bundle.putSerializable(Constants.FRAGMENT_ENUM, fragmentEnum)
         bundle.putBundle(Constants.BUNDLE, keys)

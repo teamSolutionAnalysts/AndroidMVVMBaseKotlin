@@ -147,8 +147,10 @@ dependencies {
     implementation playSeriviceDependencies.values()
 
     //Paging Libs
-
     implementation pagingDependencies.values()
+
+    //Koin dependencies
+    implementation koinDependencies.values()
 
     // Kotlin libs
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

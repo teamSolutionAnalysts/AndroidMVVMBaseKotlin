@@ -28,7 +28,7 @@
             android:screenOrientation="portrait" />
         <!--<activity android:name=".appview.videoview.view.VideoPlayerActivity" />-->
         <activity
-                android:name=".appview.login.view.SignInActivity"
+                android:name=".appview.authentication.AuthenticationActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -2,7 +2,7 @@ package com.sa.baseproject.appview
 
 import android.content.Intent
 import com.sa.baseproject.R
-import com.sa.baseproject.appview.login.view.SignInActivity
+import com.sa.baseproject.appview.authentication.AuthenticationActivity
 import com.sa.baseproject.base.AppActivity
 import kotlinx.android.synthetic.main.activity_forgot.*
 
@@ -21,7 +21,7 @@ class ForgotActivity : AppActivity() {
         setSupportActionBar(toolbar)
         supportActionBar!!.setTitle(R.string.forgot)
         button_forgot.setOnClickListener{
-                startActivity(Intent(this@ForgotActivity, SignInActivity::class.java))
+                startActivity(Intent(this@ForgotActivity, AuthenticationActivity::class.java))
         }
 
     }

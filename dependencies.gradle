@@ -38,6 +38,8 @@ ext {
     def workerVersion = '1.0.1'
     def pagingRuntime = '2.1.0'
 
+    def koinVersion = '1.0.2'
+
     androidSupportDependencies = [
             appcompat             : "androidx.appcompat:appcompat:${appcompatVersion}",
             material              : "com.google.android.material:material:${material}",
@@ -94,5 +96,13 @@ ext {
 
     pagingDependencies = [
             pagingRuntime : "androidx.paging:paging-runtime:$pagingRuntime",
-            workRuntimeKtx: "android.arch.work:work-runtime-ktx:$workerVersion"]
+            workRuntimeKtx: "android.arch.work:work-runtime-ktx:$workerVersion"
+    ]
+
+    koinDependencies = [
+            koinCore : "org.koin:koin-core:$koinVersion",
+            koinAndroid: "org.koin:koin-android:$koinVersion",
+            koinViewmodel: "org.koin:koin-androidx-viewmodel:$koinVersion",
+            koinScope: "org.koin:koin-androidx-scope:$koinVersion"
+    ]
 }

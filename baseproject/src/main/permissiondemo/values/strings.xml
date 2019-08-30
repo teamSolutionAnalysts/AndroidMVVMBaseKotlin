@@ -2,5 +2,12 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sign_in">Sign In</string>
+    <string name="agree_terms_conditions"><![CDATA[I agree on all Terms & Conditions & Privacy Policy]]></string>
+    <string name="welcome">Welcome</string>
+    <string name="hint_username_number">Username/Mobile No.</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="username_phone_error">Please enter username or mobile no.</string>
+    <string name="password_error">Please enter password</string>
 
 </resources>

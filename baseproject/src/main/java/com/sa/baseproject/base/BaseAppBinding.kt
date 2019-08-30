@@ -9,8 +9,10 @@ class BaseAppBinding {
 
         @BindingAdapter("setErrorMessage")
         @JvmStatic
-        fun setErrorMessage(view: TextInputLayout, errorMessage: String) {
-            view.error = errorMessage
+        fun setErrorMessage(view: TextInputLayout, errorMessage: String?) {
+            errorMessage?.let {
+                view.error = it
+            }
         }
     }
 }
