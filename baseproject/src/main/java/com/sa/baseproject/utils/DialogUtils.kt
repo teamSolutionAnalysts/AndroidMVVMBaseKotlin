@@ -1,9 +1,10 @@
 package com.sa.baseproject.utils
 
 import android.content.Context
-import androidx.appcompat.app.AlertDialog
 import android.text.TextUtils
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import com.sa.baseproject.App
 import com.sa.baseproject.R
 import com.sa.baseproject.utils.baseinrerface.OkCancelDialogInterface
 import com.sa.baseproject.utils.baseinrerface.OkCancelNeutralDialogInterface
@@ -18,9 +19,11 @@ object DialogUtils {
      * @param context Application/Activity context
      * @param message Message which is display in toast.
      */
-    fun toast(context: Context?, message: String) {
+    fun toast(context: Context?, message: String?) {
         if (context != null && !TextUtils.isEmpty(message)) {
-            Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, message
+                    ?: App.instance?.getText(R.string.error_message_somethingwrong)
+                    ?: "", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -31,16 +34,19 @@ object DialogUtils {
      * @param title   Title of dialog
      * @param message Message of dialog
      */
-    fun dialog(context: Context, title: String, message: String) {
+    fun dialog(context: Context?, title: String?, message: String?) {
+        context?.let {
+            val builder = AlertDialog.Builder(it)
+            builder.setTitle(title ?: App.instance?.getText(R.string.app_name) ?: "")
+            builder.setMessage(message
+                    ?: App.instance?.getText(R.string.error_message_somethingwrong) ?: "")
+            builder.setCancelable(false)
+            builder.setPositiveButton(it.getString(android.R.string.ok)) { dialog, which -> dialog.dismiss() }
+            val dialog = builder.create()
+            if (!dialog.isShowing)
+                dialog.show()
+        }
 
-        val builder = AlertDialog.Builder(context)
-        builder.setTitle(title)
-        builder.setMessage(message)
-        builder.setCancelable(false)
-        builder.setPositiveButton(context.getString(android.R.string.ok)) { dialog, which -> dialog.dismiss() }
-        val dialog = builder.create()
-        if (!dialog.isShowing)
-            dialog.show()
     }
 
 
@@ -52,19 +58,23 @@ object DialogUtils {
      * @param message Message of dialog
      * @param callback Callback for button click of dialog
      */
-    fun okDialog(context: Context, title: String, message: String, callback: OkDialogInterface) {
+    fun okDialog(context: Context?, title: String?, message: String?, callback: OkDialogInterface?) {
 
-        val builder = AlertDialog.Builder(context)
-        builder.setTitle(title)
-        builder.setMessage(message)
-        builder.setCancelable(false)
-        builder.setPositiveButton(context.getString(android.R.string.ok)) { dialog, which ->
-            dialog.dismiss()
-            callback.ok()
+        context?.let {
+            val builder = AlertDialog.Builder(it)
+            builder.setTitle(title ?: App.instance?.getText(R.string.app_name) ?: "")
+            builder.setMessage(message
+                    ?: App.instance?.getText(R.string.error_message_somethingwrong) ?: "")
+            builder.setCancelable(false)
+            builder.setPositiveButton(it.getString(android.R.string.ok)) { dialog, which ->
+                dialog.dismiss()
+                callback?.ok()
+            }
+            val dialog = builder.create()
+            if (!dialog.isShowing)
+                dialog.show()
         }
-        val dialog = builder.create()
-        if (!dialog.isShowing)
-            dialog.show()
+
     }
 
     /**
@@ -75,23 +85,27 @@ object DialogUtils {
      * @param message Message of dialog
      * @param callback Callback for button click of dialog
      */
-    fun okCancelDialog(context: Context, title: String, message: String, callback: OkCancelDialogInterface) {
+    fun okCancelDialog(context: Context?, title: String?, message: String?, callback: OkCancelDialogInterface?) {
 
-        val builder = AlertDialog.Builder(context)
-        builder.setTitle(title)
-        builder.setMessage(message)
-        builder.setCancelable(false)
-        builder.setPositiveButton(context.getString(android.R.string.ok)) { dialog, which ->
-            dialog.dismiss()
-            callback.ok()
+        context?.let {
+            val builder = AlertDialog.Builder(it)
+            builder.setTitle(title ?: App.instance?.getText(R.string.app_name) ?: "")
+            builder.setMessage(message
+                    ?: App.instance?.getText(R.string.error_message_somethingwrong) ?: "")
+            builder.setCancelable(false)
+            builder.setPositiveButton(it.getString(android.R.string.ok)) { dialog, which ->
+                dialog.dismiss()
+                callback?.ok()
+            }
+            builder.setNegativeButton(it.getString(android.R.string.cancel)) { dialog, which ->
+                dialog.dismiss()
+                callback?.cancel()
+            }
+            val dialog = builder.create()
+            if (!dialog.isShowing)
+                dialog.show()
         }
-        builder.setNegativeButton(context.getString(android.R.string.cancel)) { dialog, which ->
-            dialog.dismiss()
-            callback.cancel()
-        }
-        val dialog = builder.create()
-        if (!dialog.isShowing)
-            dialog.show()
+
     }
 
     /**
@@ -102,27 +116,32 @@ object DialogUtils {
      * @param message Message of dialog
      * @param callback Callback for button click of dialog
      */
-    fun okCancelNuteralDialog(context: Context, title: String, message: String, callback: OkCancelNeutralDialogInterface) {
+    fun okCancelNuteralDialog(context: Context?, title: String?, message: String?, callback: OkCancelNeutralDialogInterface?) {
 
-        val builder = AlertDialog.Builder(context)
-        builder.setTitle(title)
-        builder.setMessage(message)
-        builder.setCancelable(false)
-        builder.setPositiveButton(context.getString(android.R.string.ok)) { dialog, which ->
-            dialog.dismiss()
-            callback.ok()
+        context?.let {
+            val builder = AlertDialog.Builder(it)
+            builder.setTitle(title ?: App.instance?.getText(R.string.app_name) ?: "")
+            builder.setMessage(message
+                    ?: App.instance?.getText(R.string.error_message_somethingwrong) ?: "")
+            builder.setCancelable(false)
+            builder.setPositiveButton(it.getString(android.R.string.ok)) { dialog, which ->
+                dialog.dismiss()
+                callback?.ok()
+            }
+            builder.setNegativeButton(it.getString(android.R.string.cancel)) { dialog, which ->
+                dialog.dismiss()
+                callback?.cancel()
+            }
+            builder.setNeutralButton(it.getString(android.R.string.cancel)) { dialog, which ->
+                dialog.dismiss()
+                callback?.neutral()
+            }
+            val dialog = builder.create()
+            if (!dialog.isShowing)
+                dialog.show()
         }
-        builder.setNegativeButton(context.getString(android.R.string.cancel)) { dialog, which ->
-            dialog.dismiss()
-            callback.cancel()
-        }
-        builder.setNeutralButton(context.getString(android.R.string.cancel)) { dialog, which ->
-            dialog.dismiss()
-            callback.neutral()
-        }
-        val dialog = builder.create()
-        if (!dialog.isShowing)
-            dialog.show()
+
+
     }
 
     /**
@@ -131,8 +150,12 @@ object DialogUtils {
      * @param context Application/Activity Context
      * @param message Message of dialog
      */
-    fun dialog(context: Context, message: String) {
-        dialog(context, context.getString(R.string.app_name), message)
+    fun dialog(context: Context?, message: String?) {
+        context?.let {
+            dialog(it, it.getString(R.string.app_name), (message
+                    ?: App.instance?.getText(R.string.error_message_somethingwrong)
+                    ?: "").toString())
+        }
     }
 
     /**
@@ -142,18 +165,18 @@ object DialogUtils {
      * @param message Message which is display in toast.
      */
     fun showSnackBar(context: Context?, message: String) {
-     /*   if (context != null && !TextUtils.isEmpty(message)) {
-            val snackbar = Snackbar.make((context as Activity).findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
-            val view = snackbar.view
-            val params = view.layoutParams as FrameLayout.LayoutParams
-            val tv = view.findViewById(android.support.design.R.id.snackbar_text) as TextView
-            val font = Typeface.createFromAsset(context.assets, FontUtils.AVENIR_REGULAR)
-            tv.typeface = font
-            tv.textSize = 16f
-            tv.setTextColor(ContextCompat.getColor(context, R.color.colorWhite))
-            view.layoutParams = params
-            snackbar.show()
-        }*/
+        /*   if (context != null && !TextUtils.isEmpty(message)) {
+               val snackbar = Snackbar.make((context as Activity).findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
+               val view = snackbar.view
+               val params = view.layoutParams as FrameLayout.LayoutParams
+               val tv = view.findViewById(android.support.design.R.id.snackbar_text) as TextView
+               val font = Typeface.createFromAsset(context.assets, FontUtils.AVENIR_REGULAR)
+               tv.typeface = font
+               tv.textSize = 16f
+               tv.setTextColor(ContextCompat.getColor(context, R.color.colorWhite))
+               view.layoutParams = params
+               snackbar.show()
+           }*/
     }
 
 

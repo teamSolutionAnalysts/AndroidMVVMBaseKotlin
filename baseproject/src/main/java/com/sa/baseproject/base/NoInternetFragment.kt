@@ -1,3 +1,4 @@
+/*
 package com.sa.baseproject.base
 
 import android.os.Bundle
@@ -9,10 +10,12 @@ import com.sa.baseproject.utils.Constants
 import com.sa.baseproject.utils.broadcasts.ConnectivityUtils
 import kotlinx.android.synthetic.main.fragment_no_internet.*
 
+*/
 /*
 **  Created by Sanjay.Sisodiya on 26/06/19
 **  Solution Analysts 
-*/
+*//*
+
 
 class NoInternetFragment : AppFragment() {
         override fun onCreateView(inflater : LayoutInflater, container : ViewGroup?, savedInstanceState : Bundle?) : View? {
@@ -33,3 +36,4 @@ class NoInternetFragment : AppFragment() {
 
         override fun pageVisible() {}
 }
+*/

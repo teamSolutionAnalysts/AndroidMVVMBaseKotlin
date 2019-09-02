@@ -2,9 +2,7 @@ ext {
     sourceDirectoriesPath = [permissiondemo: "src/main/permissiondemo",
                              common        : "src/main/common",
                              coroutinedemo : "src/main/coroutinedemo",
-                             news          : "src/main/news",
                              home          : "src/main/home",
-                             signup        : "src/main/signup",
                              login         : "src/main/login",
                              res           : "src/main/res"]
 }

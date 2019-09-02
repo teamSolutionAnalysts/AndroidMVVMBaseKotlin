@@ -9,5 +9,7 @@
     <string name="sign_up">Sign Up</string>
     <string name="username_phone_error">Please enter username or mobile no.</string>
     <string name="password_error">Please enter password</string>
+    <string name="name">Name</string>
+    <string name="description">Description</string>
 
 </resources>

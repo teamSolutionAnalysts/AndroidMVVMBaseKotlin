@@ -68,6 +68,8 @@ ext {
             roomRuntime        : "androidx.room:room-runtime:$roomRuntime",
             lifecycleRuntime   : "androidx.lifecycle:lifecycle-runtime:$lifecycleRuntime",
             roomRxJava2        : "androidx.room:room-rxjava2:$roomRxJava2",
+            roomKtx            : "androidx.room:room-ktx:$roomRuntime"
+
     ]
 
     architectureKapt = [

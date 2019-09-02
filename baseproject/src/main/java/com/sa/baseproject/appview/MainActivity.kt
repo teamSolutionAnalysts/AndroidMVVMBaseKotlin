@@ -1,45 +1,32 @@
 package com.sa.baseproject.appview
 
-/*import androidx.work.Constraints
-import androidx.work.NetworkType
-import androidx.work.OneTimeWorkRequest
-import androidx.work.WorkManager*/
-
 import android.os.Handler
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
-import androidx.work.Constraints
-import androidx.work.NetworkType
+import androidx.databinding.ViewDataBinding
 import com.google.android.material.navigation.NavigationView
-import com.sa.baseproject.BaseApp
+import com.sa.baseproject.App
 import com.sa.baseproject.R
 import com.sa.baseproject.base.AppActivity
 import com.sa.baseproject.base.AppFragmentState
+import com.sa.baseproject.base.fragment.addFragment
 import com.sa.baseproject.utils.KeyboardUtils
 import com.sa.baseproject.utils.SharedPreferenceUtil
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppActivity(), NavigationView.OnNavigationItemSelectedListener {
-
-
-    private var drawer: androidx.drawerlayout.widget.DrawerLayout? = null
-    private var drawareToggle: ActionBarDrawerToggle? = null
-    /**
-     * Used to store the last screen title.
-     */
-    private var mTitle: CharSequence? = null
-
-    override fun defineLayoutResource(): Int {
+    override fun getLayoutId(): Int {
         return R.layout.activity_main
     }
 
-    override fun initializeComponents() {
+    override fun postDataBinding(binding: ViewDataBinding?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun initializeComponent() {
 
         setSupportActionBar(toolbar)
 
@@ -72,7 +59,7 @@ class MainActivity : AppActivity(), NavigationView.OnNavigationItemSelectedListe
 
         nav_view.setNavigationItemSelectedListener(this)
         drawareToggle!!.toolbarNavigationClickListener = View.OnClickListener { onBackPressed() }
-        appFragmentManager!!.addFragment<Any>(AppFragmentState.F_HOME, null, false)
+        addFragment<Any>(AppFragmentState.F_COROUTINE_SCOPE, null, false)
 
         SharedPreferenceUtil.getInstance(this@MainActivity)!!.saveData("test", "1")
 
@@ -84,29 +71,24 @@ class MainActivity : AppActivity(), NavigationView.OnNavigationItemSelectedListe
             }
         }
 
-        var count: Int? = null
-
-        runBlocking {
-            async(Dispatchers.Default) {
-                count = BaseApp.appDao?.countItems()
-            }
-        }
-
-
-
-        if (count != null && count!! <= 0) {
-            val myConstraints = Constraints.Builder()
-                    .setRequiredNetworkType(NetworkType.CONNECTED)
-                    .build()
-/*
-            val workA = OneTimeWorkRequest.Builder(MyTestWorker::class.java)
-                    .setConstraints(myConstraints)
-                    .build()
-
-            WorkManager.getInstance().enqueue(workA)*/
-        }
-
     }
+
+    override fun isNetworkAvailable(): Boolean {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun checkNetworkAvailableWithError(): Boolean {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+
+    private var drawer: androidx.drawerlayout.widget.DrawerLayout? = null
+    private var drawareToggle: ActionBarDrawerToggle? = null
+    /**
+     * Used to store the last screen title.
+     */
+    private var mTitle: CharSequence? = null
+
 
     private var doubleBackToExitPressedOnce = false
     override fun onBackPressed() {
@@ -114,21 +96,17 @@ class MainActivity : AppActivity(), NavigationView.OnNavigationItemSelectedListe
         if (drawer_layout != null && drawer_layout.isDrawerOpen(nav_view)) {
             drawer_layout.closeDrawer(nav_view)
         } else {
-            if (appFragmentManager?.getStackSize() != null && appFragmentManager?.getStackSize()!! > 1) {
+            if (stack.size > 1) {
                 super.onBackPressed()
             } else {
                 if (doubleBackToExitPressedOnce) {
                     super.onBackPressed()
                 }
                 this.doubleBackToExitPressedOnce = true
-                Toast.makeText(BaseApp.instance, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
+                Toast.makeText(App.instance, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
                 Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
             }
         }
-    }
-
-    override fun trackScreen() {
-
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -136,7 +114,7 @@ class MainActivity : AppActivity(), NavigationView.OnNavigationItemSelectedListe
         when (id) {
             R.id.title_home -> {
                 mTitle = getString(R.string.title_home)
-                appFragmentManager!!.addFragment<Any>(AppFragmentState.F_HOME, null, false)
+                addFragment<Any>(AppFragmentState.F_COROUTINE_SCOPE, null, false)
             }
             R.id.title_payment -> {
                 mTitle = getString(R.string.title_payment)

@@ -3,13 +3,19 @@ package com.sa.baseproject.appview.authentication.login.viewmodel
 import android.app.Application
 import android.view.View
 import androidx.lifecycle.MutableLiveData
-import com.sa.baseproject.BaseApp
+import androidx.lifecycle.Observer
+import com.sa.baseproject.App
 import com.sa.baseproject.R
-import com.sa.baseproject.base.BaseViewModel
+import com.sa.baseproject.appview.authentication.UserRepository
+import com.sa.baseproject.appview.authentication.login.model.LoginRequest
+import com.sa.baseproject.appview.authentication.login.model.ResLogin
+import com.sa.baseproject.base.AppViewModel
+import com.sa.baseproject.model.network.Resource
 import com.sa.baseproject.utils.KeyboardUtils
+import kotlinx.coroutines.launch
 
 
-class SignInViewModel(application: Application) : BaseViewModel(application) {
+class SignInViewModel(application: Application, private val userRepository: UserRepository) : AppViewModel(application) {
 
     var userName: MutableLiveData<String> = MutableLiveData()
     var password: MutableLiveData<String> = MutableLiveData()
@@ -20,6 +26,12 @@ class SignInViewModel(application: Application) : BaseViewModel(application) {
     var showError: MutableLiveData<String> = MutableLiveData()
 
     val showDialog = MutableLiveData<String>()
+
+    val userLiveData = MutableLiveData<Resource<ResLogin>>()
+
+    private val userObserver = Observer<Resource<ResLogin>> {
+        userLiveData.postValue(it)
+    }
 
 
     init {
@@ -32,6 +44,9 @@ class SignInViewModel(application: Application) : BaseViewModel(application) {
 
         showError.postValue("")
         showDialog.postValue("")
+
+        userRepository.userLiveData.observeForever(userObserver)
+
     }
 
     fun onClick(view: View) {
@@ -39,6 +54,8 @@ class SignInViewModel(application: Application) : BaseViewModel(application) {
         when (view.id) {
             R.id.btnSignIn -> {
                 KeyboardUtils.hideKeyboard(view)
+                if (validateFields())
+                    callLogin()
             }
             R.id.tvForgotPassword -> {
 
@@ -51,13 +68,13 @@ class SignInViewModel(application: Application) : BaseViewModel(application) {
     fun validateFields(): Boolean {
         var isValidate = true
         if (!hasContent(userName.value!!)) {
-            userNameError.postValue(BaseApp.instance?.getString(R.string.username_phone_error))
+            userNameError.postValue(App.instance?.getString(R.string.username_phone_error))
             isValidate = false
         } else {
             userNameError.postValue("")
         }
         if (!hasContent(password.value!!)) {
-            passwordError.postValue(BaseApp.instance?.getString(R.string.password_error))
+            passwordError.postValue(App.instance?.getString(R.string.password_error))
             isValidate = false
         } else {
             passwordError.postValue("")
@@ -67,6 +84,14 @@ class SignInViewModel(application: Application) : BaseViewModel(application) {
             return false
 
         return isValidate
+    }
+
+    private fun callLogin() {
+        scope.launch {
+            //todo remove static password
+            userRepository.login(LoginRequest(userName = userName.value, password = password.value))
+        }
+
     }
 
 }

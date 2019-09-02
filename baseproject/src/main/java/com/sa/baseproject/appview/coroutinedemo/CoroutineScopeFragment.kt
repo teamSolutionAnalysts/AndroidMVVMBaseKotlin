@@ -5,16 +5,25 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.ViewDataBinding
 import com.sa.baseproject.R
 import com.sa.baseproject.base.AppFragment
-import com.sa.baseproject.model.PayBillsItem
-import com.sa.baseproject.webservice.ApiCallback
-import com.sa.baseproject.webservice.ApiErrorModel
-import com.sa.baseproject.wscoroutine.ApiManager
 import kotlinx.android.synthetic.main.activity_coroutine_scope.*
 import kotlinx.coroutines.CoroutineScope
 
 class CoroutineScopeFragment : AppFragment() {
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_coroutine_scope
+    }
+
+    override fun preDataBinding(arguments: Bundle?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun postDataBinding(binding: ViewDataBinding): ViewDataBinding {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     var fragmentScope: CoroutineScope? = null
 
@@ -27,7 +36,7 @@ class CoroutineScopeFragment : AppFragment() {
 
         btnApiCall.setOnClickListener {
             tvResult.text = ""
-            ApiManager.getHomePayBills(object : ApiCallback<PayBillsItem> {
+            /*ApiManager.getHomePayBills(object : ApiCallback<PayBillsItem> {
                 override fun onSuccess(response: PayBillsItem) {
                     tvResult.text = "Success"
                     Log.d("result", "API Successfully call")
@@ -38,7 +47,7 @@ class CoroutineScopeFragment : AppFragment() {
                     Log.d("result", "API Fail")
                 }
 
-            }, fragmentScope)
+            }, fragmentScope)*/
 //            (activity as MainActivity).appFragmentManager?.notifyFragment(false)
         }
     }

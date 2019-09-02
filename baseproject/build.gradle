@@ -155,6 +155,9 @@ dependencies {
     // Kotlin libs
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+    // Log dependency
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
     implementation "androidx.media:media:1.1.0-rc01"
 
 

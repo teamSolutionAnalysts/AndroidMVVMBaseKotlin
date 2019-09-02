@@ -1,45 +1,50 @@
 package com.sa.baseproject.utils
 
+import android.annotation.SuppressLint
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.widget.TextView
 import android.widget.Toast
-import com.sa.baseproject.BaseApp
+import com.sa.baseproject.App
 import com.sa.baseproject.R
 
-/**
- * Purpose  - Class summary
- * @author  - amit.prajapati
- * Created  - 28/12/17
- * Modified - 28/12/17
- */
+
 object ToastUtils {
     fun shortToast(stringCode: Int = 0, stringText: String? = null) {
-        if (stringCode != 0) {
-            Toast.makeText(BaseApp.Companion.instance!!, BaseApp.Companion.instance!!.getText(stringCode), Toast.LENGTH_SHORT).show()
-        } else if (stringText != null) {
-            Toast.makeText(BaseApp.Companion.instance!!, stringText, Toast.LENGTH_SHORT).show()
+        App.instance?.let {
+            if (stringCode != 0) {
+                Toast.makeText(it, it.getText(stringCode), Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(it, stringText
+                        ?: it.getString(R.string.error_message_somethingwrong), Toast.LENGTH_SHORT).show()
+            }
         }
+
     }
 
     fun longToast(stringCode: Int = 0, stringText: String? = null) {
-        if (stringCode != 0) {
-            Toast.makeText(BaseApp.Companion.instance!!, BaseApp.Companion.instance!!.getText(stringCode), Toast.LENGTH_LONG).show()
-        } else if (stringText != null) {
-            Toast.makeText(BaseApp.Companion.instance!!, stringText, Toast.LENGTH_LONG).show()
+        App.instance?.let {
+            if (stringCode != 0) {
+                Toast.makeText(it, it.getText(stringCode), Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(it, stringText
+                        ?: it.getString(R.string.error_message_somethingwrong), Toast.LENGTH_LONG).show()
+            }
         }
     }
 
-        fun failureToast(stringText : String? = "Failure") {
-                val context = BaseApp.Companion.instance!!
-                val layout = LayoutInflater.from(context).inflate(R.layout.layout_toast_failure, null, false)
-                val text = layout.findViewById(R.id.tToastTitle) as TextView
-                text.text = stringText
+    @SuppressLint("InflateParams")
+    fun failureToast(stringText: String? = "Failure") {
+        App.instance?.let {
+            val layout = LayoutInflater.from(it).inflate(R.layout.layout_toast_failure, null, false)
+            val text = layout.findViewById(R.id.tToastTitle) as TextView
+            text.text = stringText ?: it.getString(R.string.error_message_somethingwrong)
 
-                val toast = Toast(context)
-                toast.setGravity(Gravity.BOTTOM, 0, 0)
-                toast.duration = Toast.LENGTH_LONG
-                toast.view = layout
-                toast.show()
+            val toast = Toast(it)
+            toast.setGravity(Gravity.BOTTOM, 0, 0)
+            toast.duration = Toast.LENGTH_LONG
+            toast.view = layout
+            toast.show()
         }
+    }
 }

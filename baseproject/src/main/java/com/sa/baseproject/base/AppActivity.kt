@@ -1,138 +1,59 @@
 package com.sa.baseproject.base
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
-import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
-import android.widget.TextView
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import com.google.android.material.snackbar.Snackbar
-import com.sa.baseproject.BaseApp
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.sa.baseproject.R
-import com.sa.baseproject.utils.ToastUtils
+import com.sa.baseproject.base.fragment.notifyFragment
 import com.sa.baseproject.utils.baseinrerface.ConnectionBridge
-import com.sa.baseproject.utils.broadcasts.ConnectivityUtils
-import com.sa.baseproject.utils.broadcasts.NetworkChangeReceiver
 import com.sa.baseproject.wscoroutine.CustomCoroutineScope
 import kotlinx.coroutines.CoroutineScope
+import java.util.*
 
 abstract class AppActivity : AppCompatActivity(), ConnectionBridge {
 
-    private lateinit var localBroadcastManager: androidx.localbroadcastmanager.content.LocalBroadcastManager
-    private var networkBroadcastReceiver: NetworkBroadcastReceiver? = null
+    val stack = Stack<Fragment>()
+    var ft: FragmentTransaction? = null
 
-    private var mSnackbar: Snackbar? = null
+    /**
+     *To initialize the component you want to initialize before inflating layout
+     */
+    private fun preInflateInitialization() {
+        /*1. Windows transition
+        * 2. Permission utils initialization*/
+    }
 
-    protected abstract fun defineLayoutResource(): Int //Activity's layout can be declare here
-    protected abstract fun initializeComponents() //Activity's components initialization here
-    abstract fun trackScreen()
+    /**
+     * @return layout resource id
+     */
+    @LayoutRes
+    abstract fun getLayoutId(): Int
 
-    var appFragmentManager: AppFragmentManager? = null
-        private set
 
+    abstract fun postDataBinding(binding: ViewDataBinding?)
+
+    /**
+     *To initialize the activity components
+     */
+    protected abstract fun initializeComponent()
+
+    // Common Handling of top bar for all fragments like header name, icon on top bar in case of moving to other fragment and coming back again
+//    abstract fun <T> setUpFragmentConfig(currentState: IFragmentState, keys: T?)
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setContentView(defineLayoutResource())
-        createAppFragmentManager(this, R.id.activity_main_container)
+        preInflateInitialization()
+        //setContentView(getLayoutId())
+        val binding = DataBindingUtil.setContentView(this, getLayoutId()) as ViewDataBinding?
         super.onCreate(savedInstanceState)
-        initializeComponents()
-        trackScreen()
-        initFields()
-    }
-
-    fun createAppFragmentManager(activity: AppActivity, container: Int) {
-        appFragmentManager = AppFragmentManager(activity = activity, containerId = container)
-    }
-
-    override fun onBackPressed() {
-        appFragmentManager!!.notifyFragment(true)
-    }
-
-
-    private inner class NetworkBroadcastReceiver : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            val activeConnection = intent
-                    .getBooleanExtra(NetworkChangeReceiver.EXTRA_IS_ACTIVE_CONNECTION, false)
-            if (activeConnection) {
-                checkShowingConnectionError()
-            } else {
-                checkShowingConnectionError()
-            }
-        }
-    }
-
-    override fun checkNetworkAvailableWithError(): Boolean {
-        return if (!isNetworkAvailable()) {
-            ToastUtils.longToast(R.string.error_message_network)
-            false
-        } else {
-            true
-        }
-    }
-
-    override fun isNetworkAvailable(): Boolean {
-        return ConnectivityUtils.isNetworkAvailable(this)
-    }
-
-    protected fun checkShowingConnectionError() {
-        //        if (!isNetworkAvailable()) {
-        //            showStyledSankBar()
-        //        } else {
-        //            hideSnackBar()
-        //        }
-    }
-
-    private fun showStyledSankBar() {
-        val rootView = window.decorView.rootView
-        if (rootView != null) {
-            mSnackbar = Snackbar.make(rootView, R.string.error_message_network, Snackbar.LENGTH_INDEFINITE)
-            mSnackbar!!.setActionTextColor(Color.WHITE)
-            mSnackbar!!.setAction("Retry") {
-                // retry to send email here
-                if (!isNetworkAvailable()) {
-                    showStyledSankBar()
-                } else {
-                    hideSnackBar()
-                }
-            }
-
-            val snackBarView = mSnackbar!!.view
-            val snackBarTextId = com.google.android.material.R.id.snackbar_text
-            val textView = snackBarView.findViewById<View>(snackBarTextId) as TextView
-            textView.setTextColor(Color.WHITE)
-            snackBarView.setBackgroundColor(ContextCompat.getColor(BaseApp.instance!!, R.color.colorAccent))
-            mSnackbar!!.show()
-            // recursively call this method again when the snackbar was dismissed through a swipe
-            mSnackbar!!.addCallback(object : Snackbar.Callback() {
-                override fun onDismissed(snackbar: Snackbar?, event: Int) {
-                    if (event == Snackbar.Callback.DISMISS_EVENT_SWIPE) showStyledSankBar()
-                }
-            })
-        } else {
-
-        }
-    }
-
-    private fun hideSnackBar() {
-        if (mSnackbar != null) {
-            mSnackbar!!.dismiss()
-        }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        unregisterBroadcastReceivers()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        registerBroadcastReceivers()
-        checkShowingConnectionError()
+        postDataBinding(binding)
+        initializeComponent()
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -143,24 +64,24 @@ abstract class AppActivity : AppCompatActivity(), ConnectionBridge {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun initFields() {
-        networkBroadcastReceiver = NetworkBroadcastReceiver()
-        localBroadcastManager = androidx.localbroadcastmanager.content.LocalBroadcastManager.getInstance(this)
-    }
-
-    private fun registerBroadcastReceivers() {
-        val networkIntentFilter = IntentFilter(NetworkChangeReceiver.ACTION_LOCAL_CONNECTIVITY)
-        localBroadcastManager.registerReceiver(networkBroadcastReceiver!!, networkIntentFilter)
-    }
-
-    private fun unregisterBroadcastReceivers() {
-        localBroadcastManager.unregisterReceiver(networkBroadcastReceiver!!)
-    }
 
     protected fun getActivityScope(activity: AppCompatActivity): CoroutineScope {
         val localScopeApiHandle = CustomCoroutineScope()
         activity.lifecycle.addObserver(localScopeApiHandle)
         return localScopeApiHandle.getCoroutineScope()
+    }
+
+    override fun onBackPressed() {
+        notifyFragment()
+    }
+
+
+    internal fun getAppActivity(): AppActivity {
+        return this@AppActivity
+    }
+
+    internal fun getFragmentContainerId(): Int {
+        return R.id.activity_main_container
     }
 
 }

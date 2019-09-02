@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:name=".BaseApp"
+        android:name=".App"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -17,16 +17,7 @@
         <activity
             android:name=".appview.MainActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".appview.signup.view.SignUpActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".appview.ForgotActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".appview.news.view.NewsActivity"
-            android:screenOrientation="portrait" />
-        <!--<activity android:name=".appview.videoview.view.VideoPlayerActivity" />-->
+
         <activity
                 android:name=".appview.authentication.AuthenticationActivity"
             android:screenOrientation="portrait">

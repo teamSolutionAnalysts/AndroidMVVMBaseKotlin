@@ -318,6 +318,11 @@ object StringUtils {
 
         return !(data != null && !TextUtils.isEmpty(data.text.toString().trim { it <= ' ' }))
     }
+
+
+    fun isNotNullOrNotEmpty(value: String?): Boolean {
+        return value != null && value.trim() != ""
+    }
 }
 /**
  * Cuts the string at the end if it's longer than maxLength and appends "..." to it. The length of the resulting

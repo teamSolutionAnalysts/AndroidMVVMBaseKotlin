@@ -1,16 +1,10 @@
 package com.sa.baseproject.wscoroutine
 
-import com.sa.baseproject.appview.news.model.ListDataModel
-import com.sa.baseproject.appview.news.model.ListRequest
-import com.sa.baseproject.appview.signup.model.ReqSingup
-import com.sa.baseproject.appview.signup.model.ResSingup
-import com.sa.baseproject.model.LoginModel
-import com.sa.baseproject.model.PayBillsItem
-import io.reactivex.Observable
+import com.sa.baseproject.appview.authentication.login.model.LoginRequest
+import com.sa.baseproject.appview.authentication.login.model.ResLogin
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.Body
-import retrofit2.http.GET
 import retrofit2.http.POST
 
 
@@ -23,15 +17,15 @@ import retrofit2.http.POST
 
 interface ApiInterface {
 
-    @POST("getItems")
+    /*@POST("getItems")
     fun getNewsSource(@Body request: ListRequest): Deferred<Response<ListDataModel>>
 
     @POST("api/register")
-    fun signup(@Body reqSingup: ReqSingup): Deferred<Response<Response<ResSingup>>>
+    fun signup(@Body reqSingup: ReqSingup): Deferred<Response<Response<ResSingup>>>*/
 
-    @POST("oauth/token")
-    fun login(@Body loginModel: com.sa.baseproject.model.request.LoginModel): Deferred<Response<LoginModel>>
+    @POST("/o/oauth2/token")
+    fun login(@Body request: LoginRequest): Deferred<Response<ResLogin>>
 
-    @GET("billPayment/get-categories")
-    fun getHomePayBills(): Deferred<Response<PayBillsItem>>
+    /*@GET("billPayment/get-categories")
+    fun getHomePayBills(): Deferred<Response<PayBillsItem>>*/
 }

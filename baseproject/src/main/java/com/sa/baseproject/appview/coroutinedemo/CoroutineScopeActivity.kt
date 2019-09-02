@@ -1,12 +1,8 @@
 package com.sa.baseproject.appview.coroutinedemo
 
-import android.util.Log
+import androidx.databinding.ViewDataBinding
 import com.sa.baseproject.R
 import com.sa.baseproject.base.AppActivity
-import com.sa.baseproject.model.PayBillsItem
-import com.sa.baseproject.webservice.ApiCallback
-import com.sa.baseproject.webservice.ApiErrorModel
-import com.sa.baseproject.wscoroutine.ApiManager
 import kotlinx.android.synthetic.main.activity_coroutine_scope.*
 import kotlinx.coroutines.CoroutineScope
 
@@ -20,17 +16,21 @@ class CoroutineScopeActivity : AppActivity() {
     //    Create coroutine activity scope
     var activityScope: CoroutineScope? = null
 
-    override fun defineLayoutResource(): Int {
+    override fun getLayoutId(): Int {
         return R.layout.activity_coroutine_scope
     }
 
-    override fun initializeComponents() {
+    override fun postDataBinding(binding: ViewDataBinding?) {
+
+    }
+
+    override fun initializeComponent() {
         activityScope = getActivityScope(this)
 
 
         btnApiCall.setOnClickListener {
             tvResult.text = ""
-            ApiManager.getHomePayBills(object : ApiCallback<PayBillsItem> {
+            /*ApiManager.getHomePayBills(object : ApiCallback<PayBillsItem> {
                 override fun onSuccess(response: PayBillsItem) {
                     tvResult.text = "Success"
                     Log.d("result", "API Successfully call")
@@ -41,12 +41,12 @@ class CoroutineScopeActivity : AppActivity() {
                     Log.d("result", "API Fail")
                 }
 
-            }, activityScope)
+            }, activityScope)*/
         }
 
         tvGlobleCall.setOnClickListener {
             tvResult.text = ""
-            ApiManager.getHomePayBills(object : ApiCallback<PayBillsItem> {
+            /*ApiManager.getHomePayBills(object : ApiCallback<PayBillsItem> {
                 override fun onSuccess(response: PayBillsItem) {
                     tvResult.text = "Success"
                     Log.d("result", "API Successfully call")
@@ -56,12 +56,17 @@ class CoroutineScopeActivity : AppActivity() {
                     tvResult.text = "Fail"
                     Log.d("result", "API Fail")
                 }
-            })
+            })*/
         }
-
     }
 
-    override fun trackScreen() {
+    override fun isNetworkAvailable(): Boolean {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
+    override fun checkNetworkAvailableWithError(): Boolean {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
 
 }

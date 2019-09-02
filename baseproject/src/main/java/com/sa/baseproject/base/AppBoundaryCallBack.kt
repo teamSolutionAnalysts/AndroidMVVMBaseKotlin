@@ -2,17 +2,11 @@ package com.sa.baseproject.base
 
 import android.util.Log
 import androidx.paging.PagedList
-import com.sa.baseproject.BaseApp
-import com.sa.baseproject.appview.news.model.ListDataModel
-import com.sa.baseproject.appview.news.model.ListRequest
-import com.sa.baseproject.database.AppDatabase
-import com.sa.baseproject.database.entities.ListItem
-import com.sa.baseproject.webservice.ApiCallback
-import com.sa.baseproject.webservice.ApiErrorModel
-import com.sa.baseproject.webservice.ApiManager
+import com.sa.baseproject.App
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+/*
 class AppBoundaryCallBack(service : ApiManager, database : AppDatabase) : PagedList.BoundaryCallback<ListItem>() {
 
         var page = 1
@@ -29,7 +23,7 @@ class AppBoundaryCallBack(service : ApiManager, database : AppDatabase) : PagedL
 
                         override fun onSuccess(response : ListDataModel) {
 
-                                GlobalScope.launch { BaseApp.appDao?.insert(response.data!!) }
+                                GlobalScope.launch { App.appDao?.insert(response.data!!) }
                                 page++
                         }
 
@@ -55,7 +49,7 @@ class AppBoundaryCallBack(service : ApiManager, database : AppDatabase) : PagedL
 
                         override fun onSuccess(response : ListDataModel) {
 
-                                GlobalScope.launch { BaseApp.appDao?.insert(response.data!!) }
+                                GlobalScope.launch { App.appDao?.insert(response.data!!) }
                                 page++
                         }
 
@@ -63,4 +57,4 @@ class AppBoundaryCallBack(service : ApiManager, database : AppDatabase) : PagedL
 
         }
 
-}
+}*/

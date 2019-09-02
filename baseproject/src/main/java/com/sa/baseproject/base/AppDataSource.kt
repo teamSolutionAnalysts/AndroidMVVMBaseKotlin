@@ -2,11 +2,7 @@ package com.sa.baseproject.base
 
 import android.util.Log
 import androidx.paging.PageKeyedDataSource
-import com.sa.baseproject.appview.news.model.ListDataModel
-import com.sa.baseproject.appview.news.model.ListRequest
-import com.sa.baseproject.database.entities.ListItem
-import com.sa.baseproject.webservice.ApiCallback
-import com.sa.baseproject.webservice.ApiErrorModel
+/*
 import com.sa.baseproject.webservice.ApiManager.getList
 
 class AppDataSource : PageKeyedDataSource<Int, ListItem>() {
@@ -49,4 +45,4 @@ class AppDataSource : PageKeyedDataSource<Int, ListItem>() {
                 Log.e(TAG, "loadBefore called")
         }
 
-}
+}*/
