@@ -1,4 +1,4 @@
-package com.sa.baseproject.appview.authentication
+package com.sa.baseproject.model
 
 import androidx.lifecycle.MutableLiveData
 import com.sa.baseproject.model.network.EnumLoading

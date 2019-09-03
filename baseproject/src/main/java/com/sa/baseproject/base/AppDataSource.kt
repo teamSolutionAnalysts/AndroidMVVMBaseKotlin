@@ -1,12 +1,5 @@
 package com.sa.baseproject.base
 
-import android.util.Log
-import androidx.paging.PageKeyedDataSource
-import com.sa.baseproject.appview.authentication.login.model.ListDataModel
-import com.sa.baseproject.appview.authentication.login.model.ListItem
-import com.sa.baseproject.appview.authentication.login.model.ListRequest
-import com.sa.baseproject.model.network.result.BaseError
-
 /*class AppDataSource : PageKeyedDataSource<Int, ListItem>() {
 
         var page = 1
