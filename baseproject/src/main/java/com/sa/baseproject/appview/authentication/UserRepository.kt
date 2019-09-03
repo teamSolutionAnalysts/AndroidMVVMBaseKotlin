@@ -12,7 +12,6 @@ import com.sa.baseproject.wscoroutine.ApiInterface
 
 class UserRepository constructor(private var apiServiceInterface: ApiInterface, private var preferenceManager: PreferenceManager) : AppRepository() {
 
-
     val userLiveData = MutableLiveData<Resource<ResLogin>>()
 
     suspend fun login(request: LoginRequest) {

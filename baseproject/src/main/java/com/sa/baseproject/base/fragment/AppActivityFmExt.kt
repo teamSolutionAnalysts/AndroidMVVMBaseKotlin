@@ -97,7 +97,7 @@ fun <T> AppActivity.replaceAllFragment(fragmentEnum: AppFragmentState, keys: T? 
 
 
 // Call For Fragment Switch
-fun <T> AppActivity.addFragmentInStack(fragmentEnum: AppFragmentState, keys: T?, isAnimation: Boolean) {
+fun <T> AppActivity.addFragmentInStack(fragmentEnum: AppFragmentState, keys: T? = null, isAnimation: Boolean = false) {
     ft = supportFragmentManager.beginTransaction()
     if (isAnimation) {
         ft!!.setCustomAnimations(
@@ -122,7 +122,7 @@ fun <T> AppActivity.addFragmentInStack(fragmentEnum: AppFragmentState, keys: T?,
 }
 
 // When to resume last fragment and to pop only one fragment
-fun AppActivity.popFragment(isAnimation: Boolean) {
+fun AppActivity.popFragment(isAnimation: Boolean = false) {
     ft = supportFragmentManager.beginTransaction()
 
     if (isAnimation) {
@@ -169,7 +169,7 @@ fun AppActivity.popAddedFragment() {
 }
 
 // When not to resume last fragment
-fun <T> AppActivity.popFragment(numberOfFragment: Int, appFragmentState: AppFragmentState, bundle: T) {
+fun <T> AppActivity.popFragment(numberOfFragment: Int, appFragmentState: AppFragmentState, bundle: T? = null) {
     ft = supportFragmentManager.beginTransaction()
     ft!!.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_left)
     for (i in 0 until numberOfFragment) {
@@ -187,7 +187,7 @@ fun <T> AppActivity.popFragment(numberOfFragment: Int, appFragmentState: AppFrag
 }
 
 // To bring already fragment in stack to top
-fun <T> AppActivity.moveFragmentToTop(appFragmentState: AppFragmentState, `object`: T, isAnimation: Boolean) {
+fun <T> AppActivity.moveFragmentToTop(appFragmentState: AppFragmentState, `object`: T? = null, isAnimation: Boolean = false) {
     ft = supportFragmentManager.beginTransaction()
     if (isAnimation) {
         ft!!.setCustomAnimations(
@@ -216,10 +216,10 @@ fun <T> AppActivity.moveFragmentToTop(appFragmentState: AppFragmentState, `objec
     setUp<Any>(appFragmentState, null)
 }
 
-fun <T> AppActivity.passDataBetweenFragment(appFragmentState: AppFragmentState, bundle: T) {
+fun <T> AppActivity.passDataBetweenFragment(appFragmentState: AppFragmentState, bundle: T? = null) {
     val fragment = getFragment(appFragmentState) as AppFragment
-    if (bundle != null) {
-//            fragment?.switchData(bundle)
+    bundle?.let {
+        //            fragment?.switchData(bundle)
     }
     //        switch (appFragmentState) {
     //            case F_ONE:
@@ -261,7 +261,7 @@ fun <T> AppActivity.addFragment(fragmentEnum: AppFragmentState, keys: Bundle? = 
 //    }
 }
 
-fun <T> AppActivity.addFragmentAlwaysNew(fragmentEnum: AppFragmentState, keys: Bundle?, isAnimation: Boolean) {
+fun <T> AppActivity.addFragmentAlwaysNew(fragmentEnum: AppFragmentState, keys: Bundle? = null, isAnimation: Boolean = false) {
     KeyboardUtils.hideKeyboard(getAppActivity())
 //    if (ConnectivityUtils.isNetworkAvailable(getAppActivity())) {
     addFragmentInStack(fragmentEnum, keys, isAnimation)

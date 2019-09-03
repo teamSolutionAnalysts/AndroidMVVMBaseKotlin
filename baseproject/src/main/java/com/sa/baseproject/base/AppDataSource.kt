@@ -2,10 +2,12 @@ package com.sa.baseproject.base
 
 import android.util.Log
 import androidx.paging.PageKeyedDataSource
-/*
-import com.sa.baseproject.webservice.ApiManager.getList
+import com.sa.baseproject.appview.authentication.login.model.ListDataModel
+import com.sa.baseproject.appview.authentication.login.model.ListItem
+import com.sa.baseproject.appview.authentication.login.model.ListRequest
+import com.sa.baseproject.model.network.result.BaseError
 
-class AppDataSource : PageKeyedDataSource<Int, ListItem>() {
+/*class AppDataSource : PageKeyedDataSource<Int, ListItem>() {
 
         var page = 1
 
@@ -14,7 +16,7 @@ class AppDataSource : PageKeyedDataSource<Int, ListItem>() {
                 Log.e(TAG, "loadInitial called")
                 val request = ListRequest(true.toString(), 50.toString(), page.toString())
                 getList(request, object : ApiCallback<ListDataModel> {
-                        override fun onFailure(apiErrorModel : ApiErrorModel) {
+                        override fun onFailure(apiErrorModel : BaseError) {
                                 Log.e("error", apiErrorModel.message)
                         }
 
@@ -30,7 +32,7 @@ class AppDataSource : PageKeyedDataSource<Int, ListItem>() {
                 val request = ListRequest(true.toString(), 50.toString(), page.toString())
 
                 getList(request, object : ApiCallback<ListDataModel> {
-                        override fun onFailure(apiErrorModel : ApiErrorModel) {
+                        override fun onFailure(apiErrorModel : BaseError) {
                                 Log.e("error", apiErrorModel.message)
                         }
 

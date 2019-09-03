@@ -65,7 +65,7 @@ class SignInViewModel(application: Application, private val userRepository: User
     }
 
     //validate login fields
-    fun validateFields(): Boolean {
+    private fun validateFields(): Boolean {
         var isValidate = true
         if (!hasContent(userName.value!!)) {
             userNameError.postValue(App.instance?.getString(R.string.username_phone_error))
@@ -88,7 +88,6 @@ class SignInViewModel(application: Application, private val userRepository: User
 
     private fun callLogin() {
         scope.launch {
-            //todo remove static password
             userRepository.login(LoginRequest(userName = userName.value, password = password.value))
         }
 
