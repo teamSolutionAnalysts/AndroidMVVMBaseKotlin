@@ -10,7 +10,7 @@ import com.sa.baseproject.base.AppFragmentState
 import com.sa.baseproject.utils.KeyboardUtils
 
 // Common Handling of top bar for all fragments like header name, icon on top bar in case of moving to other fragment and coming back again
-fun <T> AppActivity.setUp(currentState: AppFragmentState, keys: T?) {
+fun <T> AppActivity.setUp(currentState: AppFragmentState, keys: T?=null) {
 
     when (currentState) {
         AppFragmentState.F_SIGN_IN -> {
@@ -138,7 +138,7 @@ fun AppActivity.popFragment(isAnimation: Boolean = false) {
     stack.lastElement().onResume()
     ft!!.show(stack.lastElement())
     ft!!.commit()
-    setUp<Any>(AppFragmentState.getValue(stack.lastElement().javaClass), null)
+    setUp<Any>(AppFragmentState.getValue(stack.lastElement().javaClass))
 }
 
 // When not to resume last fragment
@@ -159,7 +159,7 @@ fun AppActivity.popFragment(numberOfFragment: Int) {
     if (!stack.isEmpty())
         ft.show(stack.lastElement())
     ft.commit()
-    setUp<Any>(AppFragmentState.getValue(stack.lastElement().javaClass), null)
+    setUp<Any>(AppFragmentState.getValue(stack.lastElement().javaClass))
 }
 
 fun AppActivity.popAddedFragment() {
@@ -183,7 +183,7 @@ fun <T> AppActivity.popFragment(numberOfFragment: Int, appFragmentState: AppFrag
     if (!stack.isEmpty())
         ft!!.show(fragment)
     ft!!.commit()
-    setUp<Any>(AppFragmentState.getValue(stack.lastElement().javaClass), null)
+    setUp<Any>(AppFragmentState.getValue(stack.lastElement().javaClass))
 }
 
 // To bring already fragment in stack to top
